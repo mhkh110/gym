@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
+  <title>تمرین‌یار | ردیاب حرفه‌ای تمرین</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --primary: #1e88e5;
+      --primary-light: #e3f2fd;
+      --primary-soft: #bbdefb;
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.08);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --success: #10b981;
+      --warn: #f59e0b;
+      --error: #ef4444;
+      --font: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 16px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+    }
+    .app {
+      max-width: 960px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    /* هدر */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--surface);
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .today-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .date-badge {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 40px;
+      font-size: 15px;
+    }
+    .nav-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    button {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 10px 16px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text);
+      background: var(--surface);
+      box-shadow: var(--shadow-sm);
+    }
+    button.primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    button:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    button.primary:hover {
+      background: #1976d2;
+    }
+    .tabs {
+      display: flex;
+      overflow-x: auto;
+      gap: 8px;
+      padding: 6px 0;
+      scrollbar-width: thin;
+    }
+    .tab {
+      padding: 10px 18px;
+      background: var(--surface);
+      border-radius: 30px;
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid var(--border);
+    }
+    .tab.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .section-title {
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .exercise-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: #f8fafc;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 10px;
+    }
+    .exercise-info {
+      flex: 2;
+      min-width: 130px;
+    }
+    .exercise-name {
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .exercise-meta {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .input-group {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    input, select {
+      padding: 8px 10px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      font-size: 14px;
+      width: 70px;
+      background: white;
+    }
+    .small-btn {
+      padding: 6px 12px;
+      font-size: 13px;
+      border-radius: 20px;
+    }
+    .progress {
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      margin: 12px 0 6px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 10px;
+      width: 0%;
+      transition: width 0.3s;
+    }
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      background: #1e293b;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 40px;
+      text-align: center;
+      max-width: 400px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+    }
+    .modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      max-width: 360px;
+      width: 90%;
+    }
+    hr { margin: 14px 0; border-color: var(--border); }
+    .timer-display {
+      font-weight: 700;
+      font-size: 20px;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+<div class="app" id="app">
+  <header class="header">
+    <div class="today-info">
+      <span class="date-badge" id="todayDate"></span>
+      <span id="workoutMessage" style="font-weight:600;"></span>
+    </div>
+    <div class="nav-actions">
+      <button onclick="switchView('tracker')" id="navTracker">📋 تمرین</button>
+      <button onclick="switchView('history')" id="navHistory">📊 آرشیو</button>
+      <button onclick="switchView('dashboard')" id="navDashboard">📈 داشبورد</button>
+      <button onclick="exportData()">📤 خروجی</button>
+    </div>
+  </header>
+
+  <!-- نماها -->
+  <div id="viewTracker">
+    <div class="tabs" id="dayTabs"></div>
+    <div id="dayContent" class="card" style="margin-top:8px;"></div>
+  </div>
+
+  <div id="viewHistory" style="display:none;">
+    <div class="card">
+      <input type="text" id="searchInput" placeholder="جستجو حرکت یا تاریخ..." style="width:100%; margin-bottom:12px; padding:10px; border-radius:20px;">
+      <div id="historyList"></div>
+    </div>
+  </div>
+
+  <div id="viewDashboard" style="display:none;">
+    <div class="grid" id="statsGrid"></div>
+    <div class="card" style="margin-top:12px;"><canvas id="progressChart" width="400" height="200" style="width:100%; max-height:220px;"></canvas></div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ---------- داده‌های اصلی ----------
+    const WEEK_DAYS = ['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'];
+    const TODAY_INDEX = new Date().getDay(); // 6=جمعه 5=پنجشنبه ... 0=شنبه (تنظیم شده)
+    // تنظیم شاخص: شنبه=0 یکشنبه=1 ... جمعه=6
+    const PERSIAN_DAY_MAP = [6,0,1,2,3,4,5]; // یک‌شنبه index0 در JS
+    const todayPersianIndex = (TODAY_INDEX + 1) % 7; // تبدیل به شنبه=0
+
+    const programData = {
+      'شنبه': {
+        preWorkout: ['موز','کره بادام زمینی','تخم مرغ','نان سبوس‌دار'],
+        warmup: ['۵ دقیقه راه رفتن سریع','چرخش شانه ۲×۱۰','Arm Circle','Hip Circle','Leg Swing','Bodyweight Squat','Push-up دیواری'],
+        exercises: [
+          {name:'بارفیکس دست باز',sets:'4×6-8',rest:90,tip:'کنترل منفی'},
+          {name:'لت سیم‌کش دست باز',sets:'3×10',rest:75,tip:'انقباض کامل'},
+          {name:'روئینگ T-Bar',sets:'3×10',rest:90,tip:'کتف جمع'},
+          {name:'Straight Arm Pulldown',sets:'3×15',rest:60},
+          {name:'فلای معکوس دستگاه',sets:'3×15',rest:60},
+          {name:'Face Pull',sets:'3×20',rest:45},
+          {name:'جلو بازو EZ',sets:'3×10',rest:60},
+          {name:'جلو بازو چکشی',sets:'3×12',rest:60}
+        ],
+        cooldown: ['Hamstring Stretch ۳۰ث','Quad Stretch','Chest Stretch','Lat Stretch','Child Pose','تنفس دیافراگمی']
+      },
+      'یکشنبه': {
+        preWorkout: ['جو دوسر','شیر','موز','سینه مرغ'],
+        warmup: ['راه رفتن سریع','چرخش شانه دمبل سبک','Arm Circle','پرش پروانه'],
+        exercises:[
+          {name:'پرس بالا سینه هالتر',sets:'4×6-8',rest:90},
+          {name:'پرس بالا سینه دمبل',sets:'3×10',rest:75},
+          {name:'پرس سینه دستگاه',sets:'3×12',rest:60},
+          {name:'فلای کابل پایین→بالا',sets:'3×15',rest:60},
+          {name:'نشر جانب کابل',sets:'4×15',rest:45},
+          {name:'پرس سرشانه دمبل نشسته',sets:'3×10',rest:75},
+          {name:'پشت بازو طناب',sets:'3×12',rest:60},
+          {name:'پشت بازو بالای سر طناب',sets:'3×15',rest:60}
+        ],
+        cooldown: ['کشش شانه متقاطع','Chest Stretch','Lat Stretch','راه رفتن آرام']
+      },
+      'دوشنبه': {
+        preWorkout: ['برنج','مرغ','آووکادو'],
+        warmup: ['اسکوات بدون وزن','لانج راه رفتن','Hip Circle'],
+        exercises:[
+          {name:'گابلت اسکوات',sets:'4×8',rest:90},
+          {name:'RDL با دمبل',sets:'4×10',rest:90},
+          {name:'پرس پا',sets:'3×12',rest:75},
+          {name:'لانج بلغاری',sets:'3×10',rest:75},
+          {name:'پشت پا خوابیده',sets:'3×12',rest:60},
+          {name:'ساق ایستاده',sets:'5×15',rest:45},
+          {name:'Hanging Leg Raise',sets:'3×15',rest:60}
+        ],
+        cooldown: ['Hamstring Stretch','Quad Stretch','Child Pose']
+      },
+      'سه‌شنبه': {
+        preWorkout: ['تخم مرغ','پنیر','گردو'],
+        warmup: ['۵ دقیقه دوچرخه','چرخش تنه'],
+        exercises:[
+          {name:'ددلیفت رومانیایی دمبل',sets:'3×8',rest:90},
+          {name:'پارویی هالتر خمیده',sets:'4×8',rest:90},
+          {name:'روئینگ سیم‌کش دست خنثی',sets:'3×10',rest:75},
+          {name:'لت دست جمع',sets:'3×12',rest:60},
+          {name:'فلای معکوس',sets:'3×15',rest:60},
+          {name:'Face Pull',sets:'3×20',rest:45},
+          {name:'جلو بازو لاری',sets:'3×10',rest:60}
+        ],
+        cooldown: ['Lat Stretch','Shoulder Stretch']
+      },
+      'چهارشنبه': {
+        preWorkout: ['موز','شیر','جو دوسر'],
+        warmup: ['راه رفتن','چرخش شانه'],
+        exercises:[
+          {name:'نشر جانب دمبل نشسته',sets:'5×15',rest:45},
+          {name:'نشر خم دمبل',sets:'4×15',rest:45},
+          {name:'پرس آرنولدی',sets:'3×10',rest:75},
+          {name:'شراگ دمبل',sets:'3×12',rest:60},
+          {name:'پشت بازو دیپ دستگاه',sets:'3×10',rest:60},
+          {name:'جلو بازو دمبل تناوبی',sets:'3×12',rest:60},
+          {name:'جلو بازو چکشی طناب',sets:'3×15',rest:45}
+        ],
+        cooldown: ['Chest Stretch','Child Pose']
+      },
+      'پنجشنبه': {
+        preWorkout: ['برنج قهوه‌ای','بوقلمون','سویا'],
+        warmup: ['راه رفتن سریع','Arm Circle'],
+        exercises:[
+          {name:'نشر جانب کابل',sets:'4×15',rest:45},
+          {name:'پرس سرشانه هالتر',sets:'4×8',rest:90},
+          {name:'Face Pull',sets:'3×20',rest:45},
+          {name:'پشت بازو طناب',sets:'3×12',rest:60},
+          {name:'جلو بازو چکشی',sets:'3×12',rest:60}
+        ],
+        cooldown: ['کشش شانه','تنفس عمیق']
+      },
+      'جمعه': {
+        preWorkout: ['استراحت فعال'],
+        warmup: ['پیاده‌روی سبک'],
+        exercises:[],
+        cooldown: []
+      }
+    };
+
+    // ---------- state ----------
+    let currentView = 'tracker';
+    let activeDay = WEEK_DAYS[todayPersianIndex];
+    let sessionLog = {}; // day -> { exercises: [{name, weight, reps, note, date}] }
+    let bodyWeights = []; // {date, weight}
+    let workoutHistory = []; // آرایه کامل رکوردها
+
+    // ---------- localStorage ----------
+    function loadData() {
+      const saved = localStorage.getItem('workoutTrackerData');
+      if(saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          sessionLog = parsed.sessionLog || {};
+          bodyWeights = parsed.bodyWeights || [];
+          workoutHistory = parsed.workoutHistory || [];
+        } catch(e){}
+      }
+    }
+    function saveData() {
+      localStorage.setItem('workoutTrackerData', JSON.stringify({
+        sessionLog, bodyWeights, workoutHistory
+      }));
+    }
+    loadData();
+
+    // ---------- توابع کمکی ----------
+    function formatDate() {
+      const d = new Date();
+      return `${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}`;
+    }
+    function todayStr() { return formatDate(); }
+
+    // نمایش توست
+    function showToast(msg) {
+      const t = document.createElement('div'); t.className='toast'; t.textContent=msg;
+      document.body.appendChild(t);
+      setTimeout(()=> t.remove(), 2000);
+    }
+
+    // بررسی وزن هفتگی
+    function checkWeeklyWeight() {
+      const lastWeight = bodyWeights[bodyWeights.length-1];
+      const today = new Date();
+      const weekAgo = new Date(today);
+      weekAgo.setDate(today.getDate()-7);
+      if(!lastWeight || new Date(lastWeight.date) < weekAgo) {
+        setTimeout(()=> {
+          const w = prompt('وزن این هفته خود را وارد کنید (کیلوگرم):');
+          if(w && !isNaN(w)) {
+            bodyWeights.push({date: todayStr(), weight: parseFloat(w)});
+            saveData(); showToast('وزن ثبت شد');
+            renderDashboard();
+          }
+        }, 500);
+      }
+    }
+
+    // رندر تب‌ها
+    function renderTabs() {
+      const container = document.getElementById('dayTabs');
+      container.innerHTML = WEEK_DAYS.map(day => {
+        const activeClass = day === activeDay ? 'active' : '';
+        return `<span class="tab ${activeClass}" data-day="${day}">${day}</span>`;
+      }).join('');
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          activeDay = e.target.dataset.day;
+          renderTabs();
+          renderDayContent();
+        });
+      });
+    }
+
+    // رندر محتوای روز
+    function renderDayContent() {
+      const day = activeDay;
+      const data = programData[day] || { preWorkout:[], warmup:[], exercises:[], cooldown:[] };
+      const log = sessionLog[day] || { exercises: [] };
+      const html = `
+        <div><strong class="section-title">🥗 تغذیه قبل تمرین</strong>
+          <div class="grid">${data.preWorkout.map(f => `<span>🍽️ ${f}</span>`).join('')}</div>
+        </div>
+        <div><strong class="section-title">🔥 گرم کردن</strong> ${data.warmup.join(' · ')}</div>
+        <div><strong class="section-title">💪 تمرین</strong>
+          ${data.exercises.map((ex,idx) => {
+            const saved = log.exercises ? log.exercises.find(e=>e.name===ex.name) : null;
+            return `<div class="exercise-row" data-name="${ex.name}">
+              <div class="exercise-info"><span class="exercise-name">${ex.name}</span><div class="exercise-meta">${ex.sets} | استراحت ${ex.rest || 60}ث</div></div>
+              <div class="input-group">
+                <input placeholder="وزنه" value="${saved?.weight||''}" class="weight-inp">
+                <input placeholder="تکرار" value="${saved?.reps||''}" class="reps-inp">
+                <input placeholder="یادداشت" value="${saved?.note||''}" class="note-inp" style="width:90px;">
+                <button class="small-btn primary save-exercise">ذخیره</button>
+                <button class="small-btn timer-btn" data-seconds="${ex.rest||60}">⏱️</button>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+        <div><strong class="section-title">🧊 سرد کردن</strong> ${data.cooldown.join(' · ')}</div>
+        <div class="progress"><div class="progress-fill" id="dayProgress"></div></div>
+      `;
+      document.getElementById('dayContent').innerHTML = html;
+      attachExerciseEvents(day);
+      updateDayProgress(day);
+    }
+
+    function attachExerciseEvents(day) {
+      document.querySelectorAll('.save-exercise').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const row = e.target.closest('.exercise-row');
+          const name = row.dataset.name;
+          const weight = row.querySelector('.weight-inp').value;
+          const reps = row.querySelector('.reps-inp').value;
+          const note = row.querySelector('.note-inp').value;
+          if(!sessionLog[day]) sessionLog[day] = { exercises: [] };
+          const dayLog = sessionLog[day];
+          const existing = dayLog.exercises.findIndex(e=>e.name===name);
+          const entry = { name, weight, reps, note, date: todayStr() };
+          if(existing>=0) dayLog.exercises[existing] = entry;
+          else dayLog.exercises.push(entry);
+          workoutHistory.push({...entry, day});
+          saveData();
+          showToast('ذخیره شد');
+          updateDayProgress(day);
+        });
+      });
+      document.querySelectorAll('.timer-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const sec = parseInt(e.target.dataset.seconds) || 60;
+          startTimer(sec);
+        });
+      });
+    }
+
+    function updateDayProgress(day) {
+      const data = programData[day]?.exercises || [];
+      const log = sessionLog[day]?.exercises || [];
+      const done = data.filter(ex => log.some(l=>l.name===ex.name)).length;
+      const percent = data.length ? (done/data.length)*100 : 0;
+      const fill = document.getElementById('dayProgress');
+      if(fill) fill.style.width = percent+'%';
+    }
+
+    let timerInterval;
+    function startTimer(seconds) {
+      clearInterval(timerInterval);
+      let remaining = seconds;
+      const disp = document.createElement('span'); disp.className='timer-display';
+      document.body.appendChild(disp);
+      timerInterval = setInterval(()=> {
+        disp.textContent = `⏱️ ${remaining} ثانیه`;
+        if(remaining<=0) { clearInterval(timerInterval); disp.remove(); showToast('استراحت تمام شد'); }
+        remaining--;
+      }, 1000);
+    }
+
+    // نمایش آرشیو
+    function renderHistory() {
+      const q = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+      const filtered = workoutHistory.filter(r=> 
+        r.name?.toLowerCase().includes(q) || r.day?.includes(q) || r.date?.includes(q)
+      );
+      const list = document.getElementById('historyList');
+      list.innerHTML = filtered.map(r=> `<div class="exercise-row">
+        <div><b>${r.name}</b> (${r.day}) ${r.date}</div>
+        <div>وزنه:${r.weight} تکرار:${r.reps} ${r.note||''}</div>
+        <button class="small-btn" onclick="deleteRecord('${r.date}','${r.name}')">حذف</button>
+      </div>`).join('') || '<p>موردی یافت نشد</p>';
+    }
+    window.deleteRecord = (date,name) => {
+      workoutHistory = workoutHistory.filter(r=> !(r.date===date && r.name===name));
+      saveData(); renderHistory();
+    };
+
+    // نمودار ساده با Canvas
+    function drawChart(canvasId, labels, data, color='#1e88e5') {
+      const canvas = document.getElementById(canvasId);
+      if(!canvas) return;
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      if(!data.length) return;
+      const max = Math.max(...data);
+      const step = canvas.width / (data.length-1 || 1);
+      ctx.beginPath();
+      ctx.strokeStyle=color; ctx.lineWidth=2;
+      data.forEach((val,i)=>{
+        const x = i*step;
+        const y = canvas.height - (val/max)*canvas.height*0.8;
+        if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      });
+      ctx.stroke();
+    }
+
+    function renderDashboard() {
+      const totalSessions = workoutHistory.length;
+      const avgWeight = workoutHistory.reduce((a,b)=>a+(parseFloat(b.weight)||0),0)/(totalSessions||1);
+      const grid = document.getElementById('statsGrid');
+      grid.innerHTML = `
+        <div class="card">📅 جلسات: ${totalSessions}</div>
+        <div class="card">⚖️ میانگین وزنه: ${avgWeight.toFixed(1)}</div>
+        <div class="card">📊 وزن فعلی: ${bodyWeights.slice(-1)[0]?.weight || '---'}</div>
+      `;
+      const weightHistory = bodyWeights.map(w=>w.weight);
+      drawChart('progressChart', bodyWeights.map((_,i)=>i), weightHistory);
+    }
+
+    function switchView(view) {
+      currentView = view;
+      document.getElementById('viewTracker').style.display = view==='tracker'?'block':'none';
+      document.getElementById('viewHistory').style.display = view==='history'?'block':'none';
+      document.getElementById('viewDashboard').style.display = view==='dashboard'?'block':'none';
+      if(view==='history') renderHistory();
+      if(view==='dashboard') renderDashboard();
+    }
+
+    function exportData() {
+      const blob = new Blob([JSON.stringify({sessionLog,bodyWeights,workoutHistory})], {type:'application/json'});
+      const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='workout_backup.json'; a.click();
+    }
+
+    // شروع
+    document.getElementById('todayDate').textContent = `📆 ${WEEK_DAYS[todayPersianIndex]} ${formatDate()}`;
+    document.getElementById('workoutMessage').textContent = WEEK_DAYS[todayPersianIndex]!=='جمعه' ? 'امروز روز تمرین شماست 💪' : 'امروز استراحت فعال';
+    renderTabs();
+    renderDayContent();
+    checkWeeklyWeight();
+
+    window.switchView = switchView;
+    window.exportData = exportData;
+    document.getElementById('searchInput')?.addEventListener('input', renderHistory);
+  })();
+</script>
+</body>
+</html>
