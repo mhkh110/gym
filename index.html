@@ -44,7 +44,6 @@
       flex-direction: column;
       gap: 14px;
     }
-    /* glass header */
     .header {
       background: var(--glass);
       backdrop-filter: blur(16px);
@@ -56,7 +55,7 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
     .logo {
       display: flex;
@@ -66,7 +65,11 @@
       font-size: 18px;
       letter-spacing: -0.3px;
     }
-    .logo svg { width: 28px; height: 28px; fill: var(--primary); }
+    .logo svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--primary);
+    }
     .today-badge {
       background: #1e1e24;
       padding: 6px 14px;
@@ -74,7 +77,11 @@
       font-size: 14px;
       color: var(--text-secondary);
     }
-    .nav-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+    .nav-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
     button {
       background: var(--card);
       border: 1px solid var(--border);
@@ -90,9 +97,17 @@
       gap: 5px;
       backdrop-filter: blur(8px);
     }
-    button.primary { background: var(--primary); border-color: var(--primary); color: white; }
-    button:hover { background: var(--hover); }
-    button.primary:hover { background: #2563eb; }
+    button.primary {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    button:hover {
+      background: var(--hover);
+    }
+    button.primary:hover {
+      background: #2563eb;
+    }
     .tabs {
       display: flex;
       overflow-x: auto;
@@ -111,7 +126,10 @@
       transition: 0.2s;
       font-size: 14px;
     }
-    .tab.active { background: var(--primary); border-color: var(--primary); }
+    .tab.active {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
     .tab.disabled {
       opacity: 0.4;
       text-decoration: line-through;
@@ -123,8 +141,9 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 14px;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.6);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(4px);
+      margin-bottom: 10px;
     }
     .section-header {
       display: flex;
@@ -134,6 +153,14 @@
       margin-bottom: 10px;
       color: var(--text);
       cursor: pointer;
+      user-select: none;
+    }
+    .section-header .chevron {
+      transition: transform 0.2s;
+      font-size: 12px;
+    }
+    .collapsible {
+      transition: all 0.2s;
     }
     .exercise-row {
       display: flex;
@@ -146,11 +173,47 @@
       margin-bottom: 8px;
       flex-wrap: wrap;
       border: 1px solid transparent;
+      transition: all 0.2s;
     }
-    .exercise-row:hover { border-color: var(--border); }
-    .ex-name { font-weight: 700; font-size: 15px; }
-    .ex-meta { font-size: 12px; color: var(--text-secondary); }
-    .input-group { display: flex; gap: 6px; align-items: center; }
+    .exercise-row:hover {
+      border-color: var(--border);
+      background: #222228;
+    }
+    .ex-name {
+      font-weight: 700;
+      font-size: 15px;
+      display: block;
+    }
+    .ex-meta {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .prev-record {
+      font-size: 12px;
+      color: var(--accent);
+      background: rgba(59, 130, 246, 0.1);
+      padding: 2px 10px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+    .badge-pr {
+      background: gold;
+      color: black;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-weight: bold;
+      font-size: 11px;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .input-group {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
     input {
       background: #27272a;
       border: 1px solid #3f3f46;
@@ -159,6 +222,11 @@
       border-radius: 20px;
       width: 70px;
       font-size: 14px;
+      transition: border 0.2s;
+    }
+    input:focus {
+      border-color: var(--primary);
+      outline: none;
     }
     .small-btn {
       padding: 6px 12px;
@@ -175,7 +243,7 @@
       background: var(--primary);
       border-radius: 10px;
       width: 0%;
-      transition: width 0.4s;
+      transition: width 0.4s ease;
     }
     .floating-timer {
       position: sticky;
@@ -192,19 +260,17 @@
       margin-top: 10px;
       z-index: 50;
     }
-    .timer-btn { background: #27272a; border-radius: 20px; padding: 6px 12px; }
-    .badge-pr {
-      background: gold;
-      color: black;
+    .timer-btn {
+      background: #27272a;
       border-radius: 20px;
-      padding: 2px 10px;
-      font-weight: bold;
+      padding: 6px 12px;
       font-size: 12px;
     }
     .toast {
       position: fixed;
       bottom: 20px;
-      left: 20px; right: 20px;
+      left: 20px;
+      right: 20px;
       background: #1e293b;
       color: white;
       padding: 12px;
@@ -213,188 +279,455 @@
       max-width: 400px;
       margin: 0 auto;
       z-index: 999;
+      animation: fadeIn 0.3s;
     }
-    canvas { width: 100%; border-radius: 12px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 10px; }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    canvas {
+      width: 100%;
+      border-radius: 12px;
+      background: #18181b;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+    }
+    .completed-day {
+      color: var(--success) !important;
+      border-color: var(--success) !important;
+    }
+    .history-card {
+      background: #1e1e24;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .ripple {
+      position: relative;
+      overflow: hidden;
+    }
+    .ripple::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+      background-repeat: no-repeat;
+      background-position: 50%;
+      transform: scale(10, 10);
+      opacity: 0;
+      transition: transform 0.5s, opacity 1s;
+    }
+    .ripple:active::after {
+      transform: scale(0, 0);
+      opacity: 0.3;
+      transition: 0s;
+    }
   </style>
 </head>
 <body>
-<div class="app" id="app">
-  <header class="header">
-    <div class="logo">
-      <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2Zm1 13h-2V9h2v6Zm0 4h-2v-2h2v2Z"/></svg>
-      <span>تمرین‌یار</span>
+  <div class="app" id="app">
+    <header class="header">
+      <div class="logo">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2L1 21h22L12 2Zm1 13h-2V9h2v6Zm0 4h-2v-2h2v2Z" />
+        </svg>
+        <span>تمرین‌یار</span>
+      </div>
+      <span class="today-badge" id="todayDate"></span>
+      <div class="nav-actions">
+        <button onclick="switchView('tracker')">📋 تمرین</button>
+        <button onclick="switchView('history')">📊 آرشیو</button>
+        <button onclick="switchView('dashboard')">📈 داشبورد</button>
+        <button onclick="exportData()">📤</button>
+      </div>
+    </header>
+
+    <div id="viewTracker">
+      <div class="tabs" id="dayTabs"></div>
+      <div id="dayContent" style="margin-top:8px;"></div>
+      <div class="floating-timer" id="floatingTimer">
+        <span>⏱️ استراحت</span>
+        <button class="timer-btn" onclick="startFloatingTimer(30)">۳۰ث</button>
+        <button class="timer-btn" onclick="startFloatingTimer(60)">۶۰ث</button>
+        <button class="timer-btn" onclick="startFloatingTimer(90)">۹۰ث</button>
+        <button class="timer-btn" onclick="startFloatingTimer(120)">۱۲۰ث</button>
+        <span id="timerDisplay" style="font-weight:bold; margin-right:8px;"></span>
+      </div>
     </div>
-    <span class="today-badge" id="todayDate"></span>
-    <div class="nav-actions">
-      <button onclick="switchView('tracker')">📋 تمرین</button>
-      <button onclick="switchView('history')">📊 آرشیو</button>
-      <button onclick="switchView('dashboard')">📈 داشبورد</button>
-      <button onclick="exportData()">📤</button>
+
+    <div id="viewHistory" style="display:none;">
+      <div class="card">
+        <input id="searchInput" placeholder="جستجو حرکت یا تاریخ..." style="width:100%; margin-bottom:10px; padding:10px; border-radius:20px;">
+        <div id="historyList"></div>
+      </div>
     </div>
-  </header>
-  <div id="viewTracker">
-    <div class="tabs" id="dayTabs"></div>
-    <div id="dayContent" style="margin-top:8px;"></div>
-    <div class="floating-timer" id="floatingTimer">
-      <span>⏱️ استراحت</span>
-      <button class="timer-btn" onclick="startFloatingTimer(30)">۳۰ث</button>
-      <button class="timer-btn" onclick="startFloatingTimer(60)">۶۰ث</button>
-      <button class="timer-btn" onclick="startFloatingTimer(90)">۹۰ث</button>
-      <button class="timer-btn" onclick="startFloatingTimer(120)">۱۲۰ث</button>
-      <span id="timerDisplay" style="font-weight:bold; margin-right:8px;"></span>
+
+    <div id="viewDashboard" style="display:none;">
+      <div class="grid" id="statsGrid"></div>
+      <div class="card"><canvas id="progressChart" height="180"></canvas></div>
     </div>
   </div>
-  <div id="viewHistory" style="display:none;"><div class="card"><input id="searchInput" placeholder="جستجو..." style="width:100%; margin-bottom:10px;"><div id="historyList"></div></div></div>
-  <div id="viewDashboard" style="display:none;"><div class="grid" id="statsGrid"></div><div class="card"><canvas id="progressChart" height="180"></canvas></div></div>
-</div>
-<script>
-  (function() {
-    const WEEK = ['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'];
-    const todayIdx = (new Date().getDay() + 1) % 7;
-    const todayStr = () => new Date().toISOString().slice(0,10);
-    const PROGRAM = {
-      'شنبه':{pre:['موز','کره بادام زمینی'],warmup:'راه رفتن سریع · چرخش شانه',ex:[
-        {name:'بارفیکس دست باز',sets:'4×6-8',rest:90},{name:'لت سیم‌کش دست باز',sets:'3×10',rest:75},{name:'روئینگ T-Bar',sets:'3×10',rest:90},{name:'Straight Arm Pulldown',sets:'3×15',rest:60},{name:'فلای معکوس دستگاه',sets:'3×15',rest:60},{name:'Face Pull',sets:'3×20',rest:45},{name:'جلو بازو EZ',sets:'3×10',rest:60},{name:'جلو بازو چکشی',sets:'3×12',rest:60}],cooldown:'Hamstring · Child Pose'},
-      'یکشنبه':{pre:['جو دوسر','شیر'],warmup:'چرخش شانه',ex:[
-        {name:'پرس بالا سینه هالتر',sets:'4×6-8',rest:90},{name:'پرس بالا سینه دمبل',sets:'3×10',rest:75},{name:'پرس سینه دستگاه',sets:'3×12',rest:60},{name:'فلای کابل پایین→بالا',sets:'3×15',rest:60},{name:'نشر جانب کابل',sets:'4×15',rest:45},{name:'پرس سرشانه دمبل نشسته',sets:'3×10',rest:75},{name:'پشت بازو طناب',sets:'3×12',rest:60},{name:'پشت بازو بالای سر طناب',sets:'3×15',rest:60}],cooldown:'کشش شانه'},
-      'دوشنبه':{pre:['برنج','مرغ'],warmup:'اسکوات بدون وزن',ex:[
-        {name:'گابلت اسکوات',sets:'4×8',rest:90},{name:'RDL با دمبل',sets:'4×10',rest:90},{name:'پرس پا',sets:'3×12',rest:75},{name:'لانج بلغاری',sets:'3×10',rest:75},{name:'پشت پا خوابیده',sets:'3×12',rest:60},{name:'ساق ایستاده',sets:'5×15',rest:45},{name:'Hanging Leg Raise',sets:'3×15',rest:60}],cooldown:'کشش پا'},
-      'سه‌شنبه':{pre:['تخم مرغ','پنیر'],warmup:'ددلیفت سبک',ex:[
-        {name:'ددلیفت رومانیایی دمبل',sets:'3×8',rest:90},{name:'پارویی هالتر خمیده',sets:'4×8',rest:90},{name:'روئینگ سیم‌کش دست خنثی',sets:'3×10',rest:75},{name:'لت دست جمع',sets:'3×12',rest:60},{name:'فلای معکوس',sets:'3×15',rest:60},{name:'Face Pull',sets:'3×20',rest:45},{name:'جلو بازو لاری',sets:'3×10',rest:60}],cooldown:'Lat Stretch'},
-      'چهارشنبه':{pre:['موز','شیر'],warmup:'چرخش شانه',ex:[
-        {name:'نشر جانب دمبل نشسته',sets:'5×15',rest:45},{name:'نشر خم دمبل',sets:'4×15',rest:45},{name:'پرس آرنولدی',sets:'3×10',rest:75},{name:'شراگ دمبل',sets:'3×12',rest:60},{name:'پشت بازو دیپ دستگاه',sets:'3×10',rest:60},{name:'جلو بازو دمبل تناوبی',sets:'3×12',rest:60},{name:'جلو بازو چکشی طناب',sets:'3×15',rest:45}],cooldown:'Child Pose'},
-      'پنجشنبه':{pre:['برنج قهوه‌ای','بوقلمون'],warmup:'راه رفتن',ex:[
-        {name:'نشر جانب کابل',sets:'4×15',rest:45},{name:'پرس سرشانه هالتر',sets:'4×8',rest:90},{name:'Face Pull',sets:'3×20',rest:45},{name:'پشت بازو طناب',sets:'3×12',rest:60},{name:'جلو بازو چکشی',sets:'3×12',rest:60}],cooldown:'تنفس عمیق'},
-      'جمعه':{pre:[],warmup:'',ex:[],cooldown:'',rest:true}
-    };
-    let activeDay = WEEK[todayIdx];
-    let logs = JSON.parse(localStorage.getItem('wt2_logs')||'{}');
-    let history = JSON.parse(localStorage.getItem('wt2_history')||'[]');
-    let weights = JSON.parse(localStorage.getItem('wt2_weights')||'[]');
-    function save() { localStorage.setItem('wt2_logs',JSON.stringify(logs)); localStorage.setItem('wt2_history',JSON.stringify(history)); localStorage.setItem('wt2_weights',JSON.stringify(weights)); }
-    function showToast(m) { const t=document.createElement('div'); t.className='toast'; t.textContent=m; document.body.appendChild(t); setTimeout(()=>t.remove(),2000); }
-    function renderTabs() {
-      const c = document.getElementById('dayTabs');
-      c.innerHTML = WEEK.map(d=>{
-        const cls = d===activeDay?'active':(PROGRAM[d]?.rest?'disabled':'');
-        return `<span class="tab ${cls}" data-day="${d}">${d}</span>`;
-      }).join('');
-      c.querySelectorAll('.tab:not(.disabled)').forEach(t=>t.onclick=()=>{ activeDay=t.dataset.day; renderTabs(); renderDay(); });
-    }
-    function renderDay() {
-      const d = activeDay; const p = PROGRAM[d]||{pre:[],warmup:'',ex:[],cooldown:''};
-      const log = logs[d]||{};
-      const html = `
-        <div class="card"><div class="section-header" onclick="toggleSection(this)"><span>🥗 تغذیه قبل تمرین</span></div><div class="collapsible">${p.pre.join(' · ')}</div></div>
-        <div class="card"><div class="section-header"><span>🔥 گرم کردن</span></div><div>${p.warmup||'---'}</div></div>
-        <div class="card"><div class="section-header"><span>💪 تمرین اصلی</span></div>
-          ${p.ex.map((ex,i)=>{
-            const saved = log[ex.name];
-            const prev = getPreviousRecord(ex.name);
-            return `<div class="exercise-row" data-name="${ex.name}">
-              <div><span class="ex-name">${ex.name}</span><div class="ex-meta">${ex.sets} · استراحت ${ex.rest}ث</div>${prev ? `<div class="badge-pr">🏆 PR: ${prev.weight}kg</div>`:''}</div>
+
+  <script>
+    (function() {
+      const WEEK = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
+      const todayIdx = (new Date().getDay() + 1) % 7;
+      const todayStr = () => new Date().toISOString().slice(0, 10);
+
+      const PROGRAM = {
+        'شنبه': {
+          pre: ['موز', 'کره بادام زمینی', 'تخم مرغ', 'نان سبوس‌دار'],
+          warmup: '۵ دقیقه راه رفتن سریع · چرخش شانه ۲×۱۰ · Arm Circle · Hip Circle · Leg Swing · Bodyweight Squat',
+          ex: [
+            { name: 'بارفیکس دست باز', sets: '4×6-8', rest: 90 },
+            { name: 'لت سیم‌کش دست باز', sets: '3×10', rest: 75 },
+            { name: 'روئینگ T-Bar', sets: '3×10', rest: 90 },
+            { name: 'Straight Arm Pulldown', sets: '3×15', rest: 60 },
+            { name: 'فلای معکوس دستگاه', sets: '3×15', rest: 60 },
+            { name: 'Face Pull', sets: '3×20', rest: 45 },
+            { name: 'جلو بازو EZ', sets: '3×10', rest: 60 },
+            { name: 'جلو بازو چکشی', sets: '3×12', rest: 60 }
+          ],
+          cooldown: 'Hamstring Stretch ۳۰ث · Quad Stretch · Chest Stretch · Lat Stretch · Child Pose · تنفس دیافراگمی'
+        },
+        'یکشنبه': {
+          pre: ['جو دوسر', 'شیر', 'موز', 'سینه مرغ'],
+          warmup: 'راه رفتن سریع · چرخش شانه دمبل سبک · Arm Circle · پرش پروانه',
+          ex: [
+            { name: 'پرس بالا سینه هالتر', sets: '4×6-8', rest: 90 },
+            { name: 'پرس بالا سینه دمبل', sets: '3×10', rest: 75 },
+            { name: 'پرس سینه دستگاه', sets: '3×12', rest: 60 },
+            { name: 'فلای کابل پایین→بالا', sets: '3×15', rest: 60 },
+            { name: 'نشر جانب کابل', sets: '4×15', rest: 45 },
+            { name: 'پرس سرشانه دمبل نشسته', sets: '3×10', rest: 75 },
+            { name: 'پشت بازو طناب', sets: '3×12', rest: 60 },
+            { name: 'پشت بازو بالای سر طناب', sets: '3×15', rest: 60 }
+          ],
+          cooldown: 'کشش شانه متقاطع · Chest Stretch · Lat Stretch · راه رفتن آرام'
+        },
+        'دوشنبه': {
+          pre: ['برنج', 'مرغ', 'آووکادو'],
+          warmup: 'اسکوات بدون وزن · لانج راه رفتن · Hip Circle',
+          ex: [
+            { name: 'گابلت اسکوات', sets: '4×8', rest: 90 },
+            { name: 'RDL با دمبل', sets: '4×10', rest: 90 },
+            { name: 'پرس پا', sets: '3×12', rest: 75 },
+            { name: 'لانج بلغاری', sets: '3×10', rest: 75 },
+            { name: 'پشت پا خوابیده', sets: '3×12', rest: 60 },
+            { name: 'ساق ایستاده', sets: '5×15', rest: 45 },
+            { name: 'Hanging Leg Raise', sets: '3×15', rest: 60 }
+          ],
+          cooldown: 'Hamstring Stretch · Quad Stretch · Child Pose'
+        },
+        'سه‌شنبه': {
+          pre: ['تخم مرغ', 'پنیر', 'گردو'],
+          warmup: 'ددلیفت با هالتر سبک · چرخش تنه',
+          ex: [
+            { name: 'ددلیفت رومانیایی دمبل', sets: '3×8', rest: 90 },
+            { name: 'پارویی هالتر خمیده', sets: '4×8', rest: 90 },
+            { name: 'روئینگ سیم‌کش دست خنثی', sets: '3×10', rest: 75 },
+            { name: 'لت دست جمع', sets: '3×12', rest: 60 },
+            { name: 'فلای معکوس', sets: '3×15', rest: 60 },
+            { name: 'Face Pull', sets: '3×20', rest: 45 },
+            { name: 'جلو بازو لاری', sets: '3×10', rest: 60 }
+          ],
+          cooldown: 'Lat Stretch · Shoulder Stretch'
+        },
+        'چهارشنبه': {
+          pre: ['موز', 'شیر', 'جو دوسر'],
+          warmup: 'راه رفتن · چرخش شانه با کش',
+          ex: [
+            { name: 'نشر جانب دمبل نشسته', sets: '5×15', rest: 45 },
+            { name: 'نشر خم دمبل', sets: '4×15', rest: 45 },
+            { name: 'پرس آرنولدی', sets: '3×10', rest: 75 },
+            { name: 'شراگ دمبل', sets: '3×12', rest: 60 },
+            { name: 'پشت بازو دیپ دستگاه', sets: '3×10', rest: 60 },
+            { name: 'جلو بازو دمبل تناوبی', sets: '3×12', rest: 60 },
+            { name: 'جلو بازو چکشی طناب', sets: '3×15', rest: 45 }
+          ],
+          cooldown: 'Chest Stretch · Child Pose'
+        },
+        'پنجشنبه': {
+          pre: ['برنج قهوه‌ای', 'بوقلمون', 'سویا'],
+          warmup: 'راه رفتن سریع · Arm Circle',
+          ex: [
+            { name: 'نشر جانب کابل', sets: '4×15', rest: 45 },
+            { name: 'پرس سرشانه هالتر', sets: '4×8', rest: 90 },
+            { name: 'Face Pull', sets: '3×20', rest: 45 },
+            { name: 'پشت بازو طناب', sets: '3×12', rest: 60 },
+            { name: 'جلو بازو چکشی', sets: '3×12', rest: 60 }
+          ],
+          cooldown: 'کشش شانه · تنفس عمیق'
+        },
+        'جمعه': {
+          pre: [],
+          warmup: 'پیاده‌روی سبک',
+          ex: [],
+          cooldown: '',
+          rest: true
+        }
+      };
+
+      let activeDay = WEEK[todayIdx];
+      let logs = JSON.parse(localStorage.getItem('wt2_logs') || '{}');
+      let history = JSON.parse(localStorage.getItem('wt2_history') || '[]');
+      let weights = JSON.parse(localStorage.getItem('wt2_weights') || '[]');
+
+      function save() {
+        localStorage.setItem('wt2_logs', JSON.stringify(logs));
+        localStorage.setItem('wt2_history', JSON.stringify(history));
+        localStorage.setItem('wt2_weights', JSON.stringify(weights));
+      }
+
+      function showToast(m) {
+        const t = document.createElement('div');
+        t.className = 'toast';
+        t.textContent = m;
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 2000);
+      }
+
+      function getLastRecordForDayExercise(day, exerciseName) {
+        if (!logs[day]) return null;
+        return logs[day][exerciseName] || null;
+      }
+
+      function renderTabs() {
+        const c = document.getElementById('dayTabs');
+        c.innerHTML = WEEK.map(d => {
+          const isActive = d === activeDay;
+          const isDisabled = PROGRAM[d]?.rest;
+          const isComplete = !isDisabled && PROGRAM[d]?.ex?.length > 0 &&
+            PROGRAM[d].ex.every(ex => logs[d]?.[ex.name]);
+          let cls = isActive ? 'active' : '';
+          if (isDisabled) cls += ' disabled';
+          if (isComplete && !isActive && !isDisabled) cls += ' completed-day';
+          return `<span class="tab ${cls}" data-day="${d}">${d}</span>`;
+        }).join('');
+        c.querySelectorAll('.tab:not(.disabled)').forEach(t => {
+          t.onclick = () => {
+            activeDay = t.dataset.day;
+            renderTabs();
+            renderDay();
+          };
+        });
+      }
+
+      function renderDay() {
+        const d = activeDay;
+        const p = PROGRAM[d] || { pre: [], warmup: '', ex: [], cooldown: '' };
+        const html = `
+        <div class="card">
+          <div class="section-header" onclick="toggleSection(this)">
+            <span>🥗 تغذیه قبل تمرین</span><span class="chevron">▼</span>
+          </div>
+          <div class="collapsible">${p.pre.length ? p.pre.join(' · ') : '---'}</div>
+        </div>
+        <div class="card">
+          <div class="section-header" onclick="toggleSection(this)">
+            <span>🔥 گرم کردن</span><span class="chevron">▼</span>
+          </div>
+          <div class="collapsible">${p.warmup || '---'}</div>
+        </div>
+        <div class="card">
+          <div class="section-header"><span>💪 تمرین اصلی</span></div>
+          ${p.ex.map((ex, i) => {
+            const lastRecord = getLastRecordForDayExercise(d, ex.name);
+            const prevWeight = lastRecord ? lastRecord.weight : '';
+            const prevReps = lastRecord ? lastRecord.reps : '';
+            return `
+            <div class="exercise-row" data-name="${ex.name}">
+              <div>
+                <span class="ex-name">${ex.name}</span>
+                <div class="ex-meta">${ex.sets} · استراحت ${ex.rest}ث</div>
+                ${lastRecord ? `<span class="prev-record">📋 جلسه قبل: ${lastRecord.weight}kg × ${lastRecord.reps}</span>` : ''}
+              </div>
               <div class="input-group">
-                <input placeholder="وزنه" value="${saved?.weight||''}" class="w-inp">
-                <input placeholder="تکرار" value="${saved?.reps||''}" class="r-inp">
-                <button class="small-btn primary save-ex">ذخیره</button>
+                <input placeholder="وزنه" value="${prevWeight}" class="w-inp">
+                <input placeholder="تکرار" value="${prevReps}" class="r-inp">
+                <button class="small-btn primary save-ex ripple">ذخیره</button>
               </div>
             </div>`;
           }).join('')}
-          <div class="progress"><div class="progress-fill" id="dayProgress"></div></div>
+          ${p.ex.length ? '<div class="progress"><div class="progress-fill" id="dayProgress"></div></div>' : ''}
         </div>
-        <div class="card"><div class="section-header"><span>🧊 سرد کردن</span></div><div>${p.cooldown||'---'}</div></div>
-        ${p.ex.length ? '<button class="primary" onclick="copyLastWeek()">📋 کپی جلسه قبل</button>' : ''}
+        <div class="card">
+          <div class="section-header" onclick="toggleSection(this)">
+            <span>🧊 سرد کردن</span><span class="chevron">▼</span>
+          </div>
+          <div class="collapsible">${p.cooldown || '---'}</div>
+        </div>
       `;
-      document.getElementById('dayContent').innerHTML = html;
-      attachEvents(d);
-      updateProgress(d);
-    }
-    function attachEvents(day) {
-      document.querySelectorAll('.save-ex').forEach(b=>{
-        b.onclick = (e) => {
-          const row = e.target.closest('.exercise-row');
-          const name = row.dataset.name;
-          const w = row.querySelector('.w-inp').value;
-          const r = row.querySelector('.r-inp').value;
-          if(!logs[day]) logs[day]={};
-          logs[day][name] = {weight:w, reps:r, date:todayStr(), time:new Date().toLocaleTimeString()};
-          history.push({name,weight:w,reps:r,date:todayStr(),day});
-          save(); updateProgress(day); showToast('ذخیره شد');
-        };
-      });
-    }
-    function getPreviousRecord(name) {
-      const sorted = history.filter(h=>h.name===name).sort((a,b)=>new Date(b.date)-new Date(a.date));
-      return sorted.length>0 ? sorted[0] : null;
-    }
-    function updateProgress(day) {
-      const p = PROGRAM[day]?.ex||[];
-      const log = logs[day]||{};
-      const done = p.filter(e=>log[e.name]).length;
-      const pct = p.length? (done/p.length)*100 : 0;
-      const fill = document.getElementById('dayProgress');
-      if(fill) fill.style.width = pct+'%';
-      if(pct===100 && p.length) showToast('✅ تمرین امروز کامل شد');
-    }
-    window.toggleSection = (el) => { const c = el.nextElementSibling; if(c) c.style.display = c.style.display==='none'?'block':'none'; };
-    window.copyLastWeek = () => {
-      const prev = logs[activeDay] || {};
-      Object.entries(prev).forEach(([name,data])=>{
-        const row = [...document.querySelectorAll('.exercise-row')].find(r=>r.dataset.name===name);
-        if(row) { row.querySelector('.w-inp').value=data.weight||''; row.querySelector('.r-inp').value=data.reps||''; }
-      });
-      showToast('رکورد قبلی کپی شد');
-    };
-    let timerId;
-    function startFloatingTimer(sec) {
-      clearInterval(timerId);
-      let rem = sec;
-      const disp = document.getElementById('timerDisplay');
-      timerId = setInterval(()=>{ disp.textContent = rem+'ث'; if(rem--<=0){clearInterval(timerId);disp.textContent='';showToast('استراحت تمام شد');}},1000);
-    }
-    window.startFloatingTimer = startFloatingTimer;
-    function renderHistory() {
-      const q = document.getElementById('searchInput')?.value?.toLowerCase()||'';
-      const filtered = history.filter(r=>r.name?.toLowerCase().includes(q)||r.day?.includes(q));
-      document.getElementById('historyList').innerHTML = filtered.map(r=>`<div class="exercise-row"><div><b>${r.name}</b> (${r.day}) ${r.date}</div><div>${r.weight}kg × ${r.reps}</div><button onclick="deleteRec('${r.date}','${r.name}')">🗑️</button></div>`).join('');
-    }
-    window.deleteRec = (date,name)=>{ history = history.filter(r=>!(r.date===date&&r.name===name)); save(); renderHistory(); };
-    function renderDashboard() {
-      document.getElementById('statsGrid').innerHTML = `
-        <div class="card">📅 جلسات: ${history.length}</div>
-        <div class="card">🏆 بهترین: ${Math.max(...history.map(r=>parseFloat(r.weight)||0))}kg</div>
-        <div class="card">⚖️ وزن: ${weights.slice(-1)[0]?.weight||'---'}</div>
-      `;
-      const ctx = document.getElementById('progressChart')?.getContext('2d');
-      if(ctx) {
-        const wData = weights.map(w=>w.weight);
-        ctx.clearRect(0,0,400,180);
-        if(wData.length) {
-          const max = Math.max(...wData);
-          ctx.strokeStyle='#3b82f6'; ctx.lineWidth=2;
-          ctx.beginPath();
-          wData.forEach((v,i)=>{ const x=i*40; const y=180-(v/max)*140; i?ctx.lineTo(x,y):ctx.moveTo(x,y); });
-          ctx.stroke();
+        document.getElementById('dayContent').innerHTML = html;
+        attachEvents(d);
+        updateProgress(d);
+      }
+
+      function attachEvents(day) {
+        document.querySelectorAll('.save-ex').forEach(b => {
+          b.onclick = (e) => {
+            const row = e.target.closest('.exercise-row');
+            const name = row.dataset.name;
+            const w = row.querySelector('.w-inp').value;
+            const r = row.querySelector('.r-inp').value;
+            if (!logs[day]) logs[day] = {};
+            const prev = logs[day][name];
+            const isNewPR = prev && parseFloat(w) > parseFloat(prev.weight || '0');
+            logs[day][name] = { weight: w, reps: r, date: todayStr(), time: new Date().toLocaleTimeString() };
+            history.push({ name, weight: w, reps: r, date: todayStr(), day });
+            save();
+            updateProgress(day);
+            if (isNewPR) showToast('🏆 PR جدید!');
+            else showToast('ذخیره شد');
+            renderDay();
+          };
+        });
+      }
+
+      function updateProgress(day) {
+        const p = PROGRAM[day]?.ex || [];
+        const log = logs[day] || {};
+        const done = p.filter(e => log[e.name]).length;
+        const pct = p.length ? (done / p.length) * 100 : 0;
+        const fill = document.getElementById('dayProgress');
+        if (fill) fill.style.width = pct + '%';
+        if (pct === 100 && p.length) {
+          showToast('✅ تمرین امروز کامل شد');
+          renderTabs();
         }
       }
-    }
-    function switchView(v) {
-      document.getElementById('viewTracker').style.display = v==='tracker'?'block':'none';
-      document.getElementById('viewHistory').style.display = v==='history'?'block':'none';
-      document.getElementById('viewDashboard').style.display = v==='dashboard'?'block':'none';
-      if(v==='history') renderHistory();
-      if(v==='dashboard') renderDashboard();
-    }
-    window.switchView = switchView;
-    window.exportData = ()=> { const b=new Blob([JSON.stringify({logs,history,weights})],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='backup.json'; a.click(); };
-    document.getElementById('todayDate').textContent = WEEK[todayIdx]+' '+todayStr();
-    renderTabs(); renderDay();
-    document.getElementById('searchInput')?.addEventListener('input', renderHistory);
-    if(!weights.length || new Date(weights.slice(-1)[0]?.date) < new Date(Date.now()-7*86400000)) {
-      setTimeout(()=>{ const w=prompt('وزن این هفته؟'); if(w) { weights.push({date:todayStr(),weight:parseFloat(w)}); save(); }},600);
-    }
-  })();
-</script>
+
+      window.toggleSection = (el) => {
+        const collapsible = el.nextElementSibling;
+        const chevron = el.querySelector('.chevron');
+        if (collapsible.style.display === 'none') {
+          collapsible.style.display = 'block';
+          if (chevron) chevron.textContent = '▼';
+        } else {
+          collapsible.style.display = 'none';
+          if (chevron) chevron.textContent = '▶';
+        }
+      };
+
+      let timerId;
+
+      function startFloatingTimer(sec) {
+        clearInterval(timerId);
+        let rem = sec;
+        const disp = document.getElementById('timerDisplay');
+        timerId = setInterval(() => {
+          disp.textContent = rem + 'ث';
+          if (rem-- <= 0) {
+            clearInterval(timerId);
+            disp.textContent = '';
+            showToast('استراحت تمام شد');
+          }
+        }, 1000);
+      }
+      window.startFloatingTimer = startFloatingTimer;
+
+      function renderHistory() {
+        const q = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+        const filtered = history.filter(r => r.name?.toLowerCase().includes(q) || r.day?.includes(q) || r.date?.includes(
+          q));
+        document.getElementById('historyList').innerHTML = filtered.map(r => `
+        <div class="history-card">
+          <div><b>${r.name}</b> (${r.day}) ${r.date}</div>
+          <div>${r.weight}kg × ${r.reps}</div>
+          <button onclick="deleteRec('${r.date}','${r.name}')">🗑️</button>
+        </div>`).join('') || '<p style="color:var(--text-secondary);">موردی یافت نشد</p>';
+      }
+
+      window.deleteRec = (date, name) => {
+        history = history.filter(r => !(r.date === date && r.name === name));
+        save();
+        renderHistory();
+      };
+
+      function renderDashboard() {
+        const totalSessions = history.length;
+        const bestWeight = history.length ? Math.max(...history.map(r => parseFloat(r.weight) || 0)) : 0;
+        const lastWeight = weights.slice(-1)[0]?.weight || '---';
+        document.getElementById('statsGrid').innerHTML = `
+        <div class="card">📅 جلسات: ${totalSessions}</div>
+        <div class="card">🏆 بهترین وزنه: ${bestWeight}kg</div>
+        <div class="card">⚖️ وزن بدن: ${lastWeight}</div>
+        <div class="card">📊 رکوردها: ${history.length}</div>
+      `;
+        const ctx = document.getElementById('progressChart')?.getContext('2d');
+        if (ctx) {
+          const wData = weights.map(w => w.weight);
+          ctx.clearRect(0, 0, 400, 180);
+          if (wData.length > 1) {
+            const max = Math.max(...wData);
+            const min = Math.min(...wData);
+            const range = max - min || 1;
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            wData.forEach((v, i) => {
+              const x = (i / (wData.length - 1)) * 380 + 10;
+              const y = 180 - ((v - min) / range) * 140 - 20;
+              if (i === 0) ctx.moveTo(x, y);
+              else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+          }
+        }
+      }
+
+      function switchView(v) {
+        document.getElementById('viewTracker').style.display = v === 'tracker' ? 'block' : 'none';
+        document.getElementById('viewHistory').style.display = v === 'history' ? 'block' : 'none';
+        document.getElementById('viewDashboard').style.display = v === 'dashboard' ? 'block' : 'none';
+        if (v === 'history') renderHistory();
+        if (v === 'dashboard') renderDashboard();
+      }
+      window.switchView = switchView;
+
+      window.exportData = () => {
+        const blob = new Blob([JSON.stringify({ logs, history, weights })], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'workout_backup.json';
+        a.click();
+      };
+
+      document.getElementById('todayDate').textContent = WEEK[todayIdx] + ' ' + todayStr();
+      document.getElementById('searchInput')?.addEventListener('input', renderHistory);
+      renderTabs();
+      renderDay();
+
+      if (!weights.length || new Date(weights.slice(-1)[0]?.date) < new Date(Date.now() - 7 * 86400000)) {
+        setTimeout(() => {
+          const w = prompt('وزن این هفته خود را وارد کنید (کیلوگرم):');
+          if (w && !isNaN(w)) {
+            weights.push({ date: todayStr(), weight: parseFloat(w) });
+            save();
+            showToast('وزن ثبت شد');
+          }
+        }, 600);
+      }
+    })();
+  </script>
 </body>
 </html>
