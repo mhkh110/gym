@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
-  <title>تمرین‌یار | ردیاب کهکشانی</title>
+  <title>کهکشان تمرین | ردیاب هوشمند</title>
   <style>
     * {
       margin: 0;
@@ -188,12 +188,18 @@
       color: white;
       box-shadow: 0 0 20px rgba(139, 92, 246, 0.45);
     }
-    .tab.disabled {
-      opacity: 0.35;
-      text-decoration: line-through;
-      cursor: not-allowed;
-      pointer-events: none;
-      filter: grayscale(0.6);
+    .tab.rest-day {
+      opacity: 0.45;
+      border-color: rgba(255,255,255,0.08);
+      color: #6b6b7b;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+    .tab.rest-day.active {
+      opacity: 0.7;
+      background: rgba(30, 30, 40, 0.8);
+      border-color: rgba(255,255,255,0.15);
+      color: #b0b0c0;
     }
     .tab.completed-day {
       border-color: var(--success) !important;
@@ -367,14 +373,8 @@
       box-shadow: 0 8px 24px rgba(139, 92, 246, 0.3);
     }
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     canvas {
       width: 100%;
@@ -399,6 +399,10 @@
       border: 1px solid rgba(139, 92, 246, 0.12);
       backdrop-filter: blur(8px);
     }
+    .search-icon {
+      color: var(--accent);
+      margin-left: 4px;
+    }
   </style>
 </head>
 <body>
@@ -412,6 +416,7 @@
         </linearGradient>
       </defs>
     </svg>
+
     <header class="header">
       <div class="logo">
         <svg viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2Zm1 13h-2V9h2v6Zm0 4h-2v-2h2v2Z"/></svg>
@@ -441,7 +446,7 @@
 
     <div id="viewHistory" style="display:none;">
       <div class="card">
-        <input id="searchInput" placeholder="جستجو حرکت یا تاریخ..." style="width:100%; margin-bottom:10px; padding:10px; border-radius:20px;">
+        <input id="searchInput" placeholder="🔍 جستجو حرکت یا تاریخ..." style="width:100%; margin-bottom:10px; padding:10px; border-radius:20px;">
         <div id="historyList"></div>
       </div>
     </div>
@@ -460,97 +465,118 @@
 
       const PROGRAM = {
         'شنبه': {
-          pre: ['موز', 'کره بادام زمینی', 'تخم مرغ', 'نان سبوس‌دار'],
-          warmup: '۵ دقیقه راه رفتن سریع · چرخش شانه ۲×۱۰ · Arm Circle · Hip Circle · Leg Swing · Bodyweight Squat',
+          pre: ['۱ عدد موز', '۸۰ تا ۱۰۰ گرم جو دوسر', '۳ عدد تخم‌مرغ (یا ۱۵۰ گرم سینه مرغ)', '۲ برش نان سبوس‌دار', '۵۰۰ میلی‌لیتر آب'],
+          warmup: '۵ دقیقه راه رفتن سریع یا دوچرخه ثابت · Arm Circle (۲×۱۵) · Band Pull Apart (۲×۱۵) · Scapular Pull-up (۲×۱۰) · Hip Circle (۲×۱۰) · Leg Swing (۲×۱۵) · Face Pull سبک (۲×۱۵)',
           ex: [
             { name: 'بارفیکس دست باز', sets: '4×6-8', rest: 90 },
             { name: 'لت سیم‌کش دست باز', sets: '3×10', rest: 75 },
-            { name: 'روئینگ T-Bar', sets: '3×10', rest: 90 },
+            { name: 'لت تک‌دست', sets: '3×12', rest: 60 },
+            { name: 'روئینگ سینه‌تکیه', sets: '3×10', rest: 75 },
             { name: 'Straight Arm Pulldown', sets: '3×15', rest: 60 },
             { name: 'فلای معکوس دستگاه', sets: '3×15', rest: 60 },
             { name: 'Face Pull', sets: '3×20', rest: 45 },
             { name: 'جلو بازو EZ', sets: '3×10', rest: 60 },
             { name: 'جلو بازو چکشی', sets: '3×12', rest: 60 }
           ],
-          cooldown: 'Hamstring Stretch ۳۰ث · Quad Stretch · Chest Stretch · Lat Stretch · Child Pose · تنفس دیافراگمی'
+          cooldown: 'Lat Stretch · Hamstring Stretch · Chest Stretch · Child Pose · تنفس دیافراگمی (۲ دقیقه)'
         },
         'یکشنبه': {
-          pre: ['جو دوسر', 'شیر', 'موز', 'سینه مرغ'],
-          warmup: 'راه رفتن سریع · چرخش شانه دمبل سبک · Arm Circle · پرش پروانه',
+          pre: ['۱۰۰ گرم برنج', '۱۵۰ گرم مرغ', 'موز', 'ماست'],
+          warmup: '۵ دقیقه هوازی سبک · کشش پویا شانه · Wall Slide · Push-up روی دیوار · External Rotation با کش',
           ex: [
             { name: 'پرس بالا سینه هالتر', sets: '4×6-8', rest: 90 },
             { name: 'پرس بالا سینه دمبل', sets: '3×10', rest: 75 },
-            { name: 'پرس سینه دستگاه', sets: '3×12', rest: 60 },
-            { name: 'فلای کابل پایین→بالا', sets: '3×15', rest: 60 },
+            { name: 'پرس دستگاه', sets: '3×12', rest: 60 },
+            { name: 'فلای کابل', sets: '3×15', rest: 60 },
             { name: 'نشر جانب کابل', sets: '4×15', rest: 45 },
-            { name: 'پرس سرشانه دمبل نشسته', sets: '3×10', rest: 75 },
+            { name: 'پرس سرشانه دمبل', sets: '3×10', rest: 75 },
             { name: 'پشت بازو طناب', sets: '3×12', rest: 60 },
             { name: 'پشت بازو بالای سر طناب', sets: '3×15', rest: 60 }
           ],
-          cooldown: 'کشش شانه متقاطع · Chest Stretch · Lat Stretch · راه رفتن آرام'
+          cooldown: 'Chest Stretch · Shoulder Stretch · Lat Stretch · تنفس عمیق'
         },
         'دوشنبه': {
-          pre: ['برنج', 'مرغ', 'آووکادو'],
-          warmup: 'اسکوات بدون وزن · لانج راه رفتن · Hip Circle',
+          pre: ['۱۵۰ گرم برنج', '۱۵۰ گرم مرغ', 'آووکادو یا مقداری مغزها', 'یک عدد موز'],
+          warmup: 'دوچرخه ثابت ۵ دقیقه · Bodyweight Squat · Walking Lunge · Hip Opener · Glute Bridge · Leg Swing',
           ex: [
-            { name: 'گابلت اسکوات', sets: '4×8', rest: 90 },
-            { name: 'RDL با دمبل', sets: '4×10', rest: 90 },
+            { name: 'اسکوات', sets: '4×6', rest: 90 },
+            { name: 'Romanian Deadlift', sets: '4×8', rest: 90 },
             { name: 'پرس پا', sets: '3×12', rest: 75 },
             { name: 'لانج بلغاری', sets: '3×10', rest: 75 },
             { name: 'پشت پا خوابیده', sets: '3×12', rest: 60 },
             { name: 'ساق ایستاده', sets: '5×15', rest: 45 },
-            { name: 'Hanging Leg Raise', sets: '3×15', rest: 60 }
+            { name: 'Hanging Leg Raise', sets: '3×15', rest: 60 },
+            { name: 'پلانک', sets: '3×۶۰ ثانیه', rest: 60 }
           ],
-          cooldown: 'Hamstring Stretch · Quad Stretch · Child Pose'
+          cooldown: 'Hamstring Stretch · Quad Stretch · Hip Flexor Stretch · Child Pose'
         },
         'سه‌شنبه': {
+          pre: [],
+          warmup: '۲۰ تا ۳۰ دقیقه پیاده‌روی · حرکات کششی · Foam Rolling (در صورت دسترسی)',
+          ex: [],
+          cooldown: '',
+          rest: true
+        },
+        'چهارشنبه': {
           pre: ['تخم مرغ', 'پنیر', 'گردو'],
-          warmup: 'ددلیفت با هالتر سبک · چرخش تنه',
+          warmup: 'مشابه شنبه',
           ex: [
-            { name: 'ددلیفت رومانیایی دمبل', sets: '3×8', rest: 90 },
-            { name: 'پارویی هالتر خمیده', sets: '4×8', rest: 90 },
-            { name: 'روئینگ سیم‌کش دست خنثی', sets: '3×10', rest: 75 },
+            { name: 'ددلیفت', sets: '3×5', rest: 120 },
+            { name: 'پارویی هالتر', sets: '4×8', rest: 90 },
+            { name: 'روئینگ سیم‌کش', sets: '3×10', rest: 75 },
             { name: 'لت دست جمع', sets: '3×12', rest: 60 },
             { name: 'فلای معکوس', sets: '3×15', rest: 60 },
             { name: 'Face Pull', sets: '3×20', rest: 45 },
-            { name: 'جلو بازو لاری', sets: '3×10', rest: 60 }
+            { name: 'جلو بازو لاری', sets: '3×10', rest: 60 },
+            { name: 'جلو بازو سیم‌کش', sets: '3×12', rest: 60 }
           ],
-          cooldown: 'Lat Stretch · Shoulder Stretch'
-        },
-        'چهارشنبه': {
-          pre: ['موز', 'شیر', 'جو دوسر'],
-          warmup: 'راه رفتن · چرخش شانه با کش',
-          ex: [
-            { name: 'نشر جانب دمبل نشسته', sets: '5×15', rest: 45 },
-            { name: 'نشر خم دمبل', sets: '4×15', rest: 45 },
-            { name: 'پرس آرنولدی', sets: '3×10', rest: 75 },
-            { name: 'شراگ دمبل', sets: '3×12', rest: 60 },
-            { name: 'پشت بازو دیپ دستگاه', sets: '3×10', rest: 60 },
-            { name: 'جلو بازو دمبل تناوبی', sets: '3×12', rest: 60 },
-            { name: 'جلو بازو چکشی طناب', sets: '3×15', rest: 45 }
-          ],
-          cooldown: 'Chest Stretch · Child Pose'
+          cooldown: 'کشش پشت و لت'
         },
         'پنجشنبه': {
           pre: ['برنج قهوه‌ای', 'بوقلمون', 'سویا'],
-          warmup: 'راه رفتن سریع · Arm Circle',
+          warmup: 'هوازی سبک · Band Pull Apart · Wall Slide · Arm Circle',
           ex: [
-            { name: 'نشر جانب کابل', sets: '4×15', rest: 45 },
-            { name: 'پرس سرشانه هالتر', sets: '4×8', rest: 90 },
-            { name: 'Face Pull', sets: '3×20', rest: 45 },
-            { name: 'پشت بازو طناب', sets: '3×12', rest: 60 },
-            { name: 'جلو بازو چکشی', sets: '3×12', rest: 60 }
+            { name: 'نشر جانب دمبل', sets: '5×15', rest: 45 },
+            { name: 'نشر جانب کابل', sets: '3×15', rest: 45 },
+            { name: 'نشر خم دمبل', sets: '4×15', rest: 45 },
+            { name: 'پرس آرنولدی', sets: '3×10', rest: 75 },
+            { name: 'شراگ دمبل', sets: '3×12', rest: 60 },
+            { name: 'دیپ دستگاه', sets: '3×10', rest: 60 },
+            { name: 'پشت بازو طناب', sets: '3×15', rest: 45 },
+            { name: 'جلو بازو تناوبی', sets: '3×12', rest: 60 },
+            { name: 'جلو بازو چکشی طناب', sets: '3×15', rest: 45 }
           ],
-          cooldown: 'کشش شانه · تنفس عمیق'
+          cooldown: 'کشش سرشانه و سینه'
         },
         'جمعه': {
           pre: [],
-          warmup: 'پیاده‌روی سبک',
+          warmup: 'پیاده‌روی سبک (اختیاری) · خواب کافی · آب کافی · ریکاوری',
           ex: [],
           cooldown: '',
           rest: true
         }
       };
+
+      const CORRECTIVE = [
+        { name: 'Chin Tuck', desc: 'کنترل اسکاپولا و گردن' },
+        { name: 'Wall Slide', desc: 'حرکت آهسته' },
+        { name: 'Band Pull Apart', desc: 'باز کردن شانه‌ها' },
+        { name: 'Face Pull (سبک)', desc: 'تمرکز روی پشت شانه' },
+        { name: 'Doorway Chest Stretch', desc: 'کاهش قفل‌شدگی سینه' },
+        { name: 'Dead Hang', desc: 'آویزان شدن از بارفیکس' },
+        { name: 'Scapular Push-up', desc: 'کنترل حرکت کتف' }
+      ];
+
+      const PRINCIPLES = [
+        'کنترل کامل حرکت در تمام دامنه',
+        'فاز منفی: ۲ تا ۳ ثانیه',
+        'RIR حدود ۱ تا ۲ در اکثر ست‌ها',
+        'افزایش وزنه فقط وقتی تمام ست‌ها و تکرارها با فرم صحیح انجام شوند',
+        'استراحت شبانه ۷ تا ۹ ساعت',
+        'ثبت وزن بدن هر هفته',
+        'ثبت رکورد هر حرکت در هر جلسه',
+        '۵ تا ۱۰ دقیقه گرم کردن و ۵ دقیقه سرد کردن در هر جلسه'
+      ];
 
       let activeDay = WEEK[todayIdx];
       let logs = JSON.parse(localStorage.getItem('wt2_logs') || '{}');
@@ -571,6 +597,11 @@
         setTimeout(() => t.remove(), 2200);
       }
 
+      function searchExercise(name) {
+        const query = encodeURIComponent(name + ' تمرین بدنسازی');
+        window.open('https://www.google.com/search?q=' + query, '_blank');
+      }
+
       function getLastRecordForDayExercise(day, exerciseName) {
         if (!logs[day]) return null;
         return logs[day][exerciseName] || null;
@@ -580,15 +611,15 @@
         const c = document.getElementById('dayTabs');
         c.innerHTML = WEEK.map(d => {
           const isActive = d === activeDay;
-          const isDisabled = PROGRAM[d]?.rest;
-          const isComplete = !isDisabled && PROGRAM[d]?.ex?.length > 0 &&
+          const isRest = PROGRAM[d]?.rest;
+          const isComplete = !isRest && PROGRAM[d]?.ex?.length > 0 &&
             PROGRAM[d].ex.every(ex => logs[d]?.[ex.name]);
           let cls = isActive ? 'active' : '';
-          if (isDisabled) cls += ' disabled';
-          if (isComplete && !isActive && !isDisabled) cls += ' completed-day';
+          if (isRest) cls += ' rest-day';
+          if (isComplete && !isActive && !isRest) cls += ' completed-day';
           return `<span class="tab ${cls}" data-day="${d}">${d}</span>`;
         }).join('');
-        c.querySelectorAll('.tab:not(.disabled)').forEach(t => {
+        c.querySelectorAll('.tab').forEach(t => {
           t.onclick = () => {
             activeDay = t.dataset.day;
             renderTabs();
@@ -600,19 +631,21 @@
       function renderDay() {
         const d = activeDay;
         const p = PROGRAM[d] || { pre: [], warmup: '', ex: [], cooldown: '' };
+        const isRest = p.rest;
         const html = `
         <div class="card">
           <div class="section-header" onclick="toggleSection(this)">
-            <span>🥗 تغذیه قبل تمرین</span><span class="chevron">▼</span>
+            <span>🥗 تغذیه ${isRest ? 'روز استراحت' : 'قبل تمرین (۶۰ تا ۹۰ دقیقه قبل)'}</span><span class="chevron">▼</span>
           </div>
-          <div class="collapsible">${p.pre.length ? p.pre.join(' · ') : '---'}</div>
+          <div class="collapsible">${p.pre.length ? p.pre.join(' · ') : (isRest ? 'تغذیه آزاد (کالری حدود ۲۷۰۰)' : '---')}</div>
         </div>
         <div class="card">
           <div class="section-header" onclick="toggleSection(this)">
-            <span>🔥 گرم کردن</span><span class="chevron">▼</span>
+            <span>🔥 گرم کردن${isRest ? ' / فعالیت' : ' (۱۰ دقیقه)'}</span><span class="chevron">▼</span>
           </div>
           <div class="collapsible">${p.warmup || '---'}</div>
         </div>
+        ${p.ex.length > 0 ? `
         <div class="card">
           <div class="section-header"><span>💪 تمرین اصلی</span></div>
           ${p.ex.map((ex, i) => {
@@ -620,26 +653,57 @@
             const prevWeight = lastRecord ? lastRecord.weight : '';
             const prevReps = lastRecord ? lastRecord.reps : '';
             return `
-            <div class="exercise-row" data-name="${ex.name}">
-              <div>
-                <span class="ex-name">${ex.name}</span>
-                <div class="ex-meta">${ex.sets} · استراحت ${ex.rest}ث</div>
-                ${lastRecord ? `<span class="prev-record">📋 جلسه قبل: ${lastRecord.weight}kg × ${lastRecord.reps}</span>` : ''}
+            <div class="exercise-row">
+              <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:150px; cursor:pointer;" onclick="searchExercise('${ex.name.replace(/'/g, "\\'")}')" title="جستجو در گوگل">
+                <span class="search-icon">🔍</span>
+                <div>
+                  <span class="ex-name">${ex.name}</span>
+                  <div class="ex-meta">${ex.sets} · استراحت ${ex.rest}ث</div>
+                  ${lastRecord ? `<span class="prev-record">📋 جلسه قبل: ${lastRecord.weight}kg × ${lastRecord.reps}</span>` : ''}
+                </div>
               </div>
-              <div class="input-group">
+              <div class="input-group" onclick="event.stopPropagation()">
                 <input placeholder="وزنه" value="${prevWeight}" class="w-inp">
                 <input placeholder="تکرار" value="${prevReps}" class="r-inp">
                 <button class="small-btn primary save-ex ripple">ذخیره</button>
               </div>
             </div>`;
           }).join('')}
-          ${p.ex.length ? '<div class="progress"><div class="progress-fill" id="dayProgress"></div></div>' : ''}
+          <div class="progress"><div class="progress-fill" id="dayProgress"></div></div>
         </div>
+        ` : ''}
         <div class="card">
           <div class="section-header" onclick="toggleSection(this)">
             <span>🧊 سرد کردن</span><span class="chevron">▼</span>
           </div>
           <div class="collapsible">${p.cooldown || '---'}</div>
+        </div>
+        <div class="card">
+          <div class="section-header" onclick="toggleSection(this)">
+            <span>🦴 حرکات اصلاحی (هر روز ۸ تا ۱۰ دقیقه)</span><span class="chevron">▼</span>
+          </div>
+          <div class="collapsible">
+            ${CORRECTIVE.map(c => `
+              <div class="exercise-row" onclick="searchExercise('${c.name.replace(/'/g, "\\'")}')" style="cursor:pointer;">
+                <div style="display:flex; align-items:center; gap:8px; flex:1;">
+                  <span class="search-icon">🔍</span>
+                  <div>
+                    <span class="ex-name">${c.name}</span>
+                    <div class="ex-meta">${c.desc}</div>
+                  </div>
+                </div>
+                <span class="badge-pr" style="font-size:10px;">روزانه</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-header" onclick="toggleSection(this)">
+            <span>⭐ اصول اجرا</span><span class="chevron">▼</span>
+          </div>
+          <div class="collapsible">
+            ${PRINCIPLES.map(p => `<div style="padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.05);">• ${p}</div>`).join('')}
+          </div>
         </div>
       `;
         document.getElementById('dayContent').innerHTML = html;
@@ -650,8 +714,9 @@
       function attachEvents(day) {
         document.querySelectorAll('.save-ex').forEach(b => {
           b.onclick = (e) => {
+            e.stopPropagation();
             const row = e.target.closest('.exercise-row');
-            const name = row.dataset.name;
+            const name = row.querySelector('.ex-name').textContent;
             const w = row.querySelector('.w-inp').value;
             const r = row.querySelector('.r-inp').value;
             if (!logs[day]) logs[day] = {};
@@ -712,8 +777,7 @@
 
       function renderHistory() {
         const q = document.getElementById('searchInput')?.value?.toLowerCase() || '';
-        const filtered = history.filter(r => r.name?.toLowerCase().includes(q) || r.day?.includes(q) || r.date?.includes(
-          q));
+        const filtered = history.filter(r => r.name?.toLowerCase().includes(q) || r.day?.includes(q) || r.date?.includes(q));
         document.getElementById('historyList').innerHTML = filtered.map(r => `
         <div class="history-card">
           <div><b>${r.name}</b> (${r.day}) ${r.date}</div>
