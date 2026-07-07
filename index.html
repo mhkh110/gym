@@ -305,6 +305,9 @@
       transition: all 0.25s;
       backdrop-filter: blur(6px);
     }
+    input::placeholder {
+      font-size: 13px;
+    }
     input:focus {
       border-color: var(--primary);
       outline: none;
@@ -424,10 +427,9 @@
       </div>
       <span class="today-badge" id="todayDate"></span>
       <div class="nav-actions">
-        <button onclick="switchView('tracker')" class="ripple">📋 تمرین</button>
-        <button onclick="switchView('history')" class="ripple">📊 آرشیو</button>
-        <button onclick="switchView('dashboard')" class="ripple">📈 داشبورد</button>
-        <button onclick="exportData()" class="ripple">📤</button>
+        <button onclick="switchView('tracker')" class="ripple">تمرین</button>
+        <button onclick="switchView('history')" class="ripple">آرشیو</button>
+        <button onclick="switchView('dashboard')" class="ripple">داشبورد</button>
       </div>
     </header>
 
@@ -435,18 +437,18 @@
       <div class="tabs" id="dayTabs"></div>
       <div id="dayContent" style="margin-top:8px;"></div>
       <div class="floating-timer" id="floatingTimer">
-        <span>⏱️ استراحت</span>
-        <button class="timer-btn ripple" onclick="startFloatingTimer(30)">۳۰ث</button>
-        <button class="timer-btn ripple" onclick="startFloatingTimer(60)">۶۰ث</button>
-        <button class="timer-btn ripple" onclick="startFloatingTimer(90)">۹۰ث</button>
-        <button class="timer-btn ripple" onclick="startFloatingTimer(120)">۱۲۰ث</button>
+        <span>تایمر</span>
+        <button class="timer-btn ripple" onclick="startFloatingTimer(30)">30ث</button>
+        <button class="timer-btn ripple" onclick="startFloatingTimer(60)">60ث</button>
+        <button class="timer-btn ripple" onclick="startFloatingTimer(90)">90ث</button>
+        <button class="timer-btn ripple" onclick="startFloatingTimer(120)">120ث</button>
         <span id="timerDisplay" style="font-weight:bold; margin-right:8px; color:#c4b5fd;"></span>
       </div>
     </div>
 
     <div id="viewHistory" style="display:none;">
       <div class="card">
-        <input id="searchInput" placeholder="🔍 جستجو حرکت یا تاریخ..." style="width:100%; margin-bottom:10px; padding:10px; border-radius:20px;">
+        <input id="searchInput" placeholder="جستجو..." style="width:100%; margin-bottom:10px; padding:10px; border-radius:20px;">
         <div id="historyList"></div>
       </div>
     </div>
@@ -460,7 +462,11 @@
   <script>
     (function() {
       const WEEK = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
-      const todayIdx = (new Date().getDay() + 1) % 7;
+      const getDayIndex = () => {
+        const days = [6, 0, 1, 2, 3, 4, 5]; // Map JS day index to WEEK index
+        return days[new Date().getDay()];
+      };
+      const todayIdx = getDayIndex();
       const todayStr = () => new Date().toISOString().slice(0, 10);
 
       const PROGRAM = {
@@ -579,15 +585,8 @@
       ];
 
       let activeDay = WEEK[todayIdx];
-      let logs = JSON.parse(localStorage.getItem('wt2_logs') || '{}');
-      let history = JSON.parse(localStorage.getItem('wt2_history') || '[]');
-      let weights = JSON.parse(localStorage.getItem('wt2_weights') || '[]');
-
-      function save() {
-        localStorage.setItem('wt2_logs', JSON.stringify(logs));
-        localStorage.setItem('wt2_history', JSON.stringify(history));
-        localStorage.setItem('wt2_weights', JSON.stringify(weights));
-      }
+      let logs = {};
+      let history = [];
 
       function showToast(m) {
         const t = document.createElement('div');
@@ -635,36 +634,36 @@
         const html = `
         <div class="card">
           <div class="section-header" onclick="toggleSection(this)">
-            <span>🥗 تغذیه ${isRest ? 'روز استراحت' : 'قبل تمرین (۶۰ تا ۹۰ دقیقه قبل)'}</span><span class="chevron">▼</span>
+            <span>تغذیه ${isRest ? '(استراحت)' : '(قبل تمرین)'}</span><span class="chevron">▼</span>
           </div>
-          <div class="collapsible">${p.pre.length ? p.pre.join(' · ') : (isRest ? 'تغذیه آزاد (کالری حدود ۲۷۰۰)' : '---')}</div>
+          <div class="collapsible">${p.pre.length ? p.pre.join(' · ') : (isRest ? 'آزاد' : '---')}</div>
         </div>
         <div class="card">
           <div class="section-header" onclick="toggleSection(this)">
-            <span>🔥 گرم کردن${isRest ? ' / فعالیت' : ' (۱۰ دقیقه)'}</span><span class="chevron">▼</span>
+            <span>گرم کردن${isRest ? ' (فعالیت)' : ''}</span><span class="chevron">▼</span>
           </div>
           <div class="collapsible">${p.warmup || '---'}</div>
         </div>
         ${p.ex.length > 0 ? `
         <div class="card">
-          <div class="section-header"><span>💪 تمرین اصلی</span></div>
+          <div class="section-header"><span>تمرین اصلی</span></div>
           ${p.ex.map((ex, i) => {
             const lastRecord = getLastRecordForDayExercise(d, ex.name);
             const prevWeight = lastRecord ? lastRecord.weight : '';
             const prevReps = lastRecord ? lastRecord.reps : '';
             return `
             <div class="exercise-row">
-              <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:150px; cursor:pointer;" onclick="searchExercise('${ex.name.replace(/'/g, "\\'")}')" title="جستجو در گوگل">
+              <div style="display:flex; align-items:center; gap:8px; flex:1; min-width:150px; cursor:pointer;" onclick="searchExercise('${ex.name.replace(/'/g, "\\'")}')" title="جستجو">
                 <span class="search-icon">🔍</span>
                 <div>
                   <span class="ex-name">${ex.name}</span>
-                  <div class="ex-meta">${ex.sets} · استراحت ${ex.rest}ث</div>
-                  ${lastRecord ? `<span class="prev-record">📋 جلسه قبل: ${lastRecord.weight}kg × ${lastRecord.reps}</span>` : ''}
+                  <div class="ex-meta">${ex.sets} · ${ex.rest}s</div>
+                  ${lastRecord ? `<span class="prev-record">${lastRecord.weight}kg × ${lastRecord.reps}</span>` : ''}
                 </div>
               </div>
               <div class="input-group" onclick="event.stopPropagation()">
-                <input placeholder="وزنه" value="${prevWeight}" class="w-inp">
-                <input placeholder="تکرار" value="${prevReps}" class="r-inp">
+                <input placeholder="kg" value="${prevWeight}" class="w-inp">
+                <input placeholder="reps" value="${prevReps}" class="r-inp">
                 <button class="small-btn primary save-ex ripple">ذخیره</button>
               </div>
             </div>`;
@@ -674,13 +673,13 @@
         ` : ''}
         <div class="card">
           <div class="section-header" onclick="toggleSection(this)">
-            <span>🧊 سرد کردن</span><span class="chevron">▼</span>
+            <span>سرد کردن</span><span class="chevron">▼</span>
           </div>
           <div class="collapsible">${p.cooldown || '---'}</div>
         </div>
         <div class="card">
           <div class="section-header" onclick="toggleSection(this)">
-            <span>🦴 حرکات اصلاحی (هر روز ۸ تا ۱۰ دقیقه)</span><span class="chevron">▼</span>
+            <span>حرکات اصلاحی</span><span class="chevron">▼</span>
           </div>
           <div class="collapsible">
             ${CORRECTIVE.map(c => `
@@ -692,14 +691,13 @@
                     <div class="ex-meta">${c.desc}</div>
                   </div>
                 </div>
-                <span class="badge-pr" style="font-size:10px;">روزانه</span>
               </div>
             `).join('')}
           </div>
         </div>
         <div class="card">
           <div class="section-header" onclick="toggleSection(this)">
-            <span>⭐ اصول اجرا</span><span class="chevron">▼</span>
+            <span>اصول</span><span class="chevron">▼</span>
           </div>
           <div class="collapsible">
             ${PRINCIPLES.map(p => `<div style="padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.05);">• ${p}</div>`).join('')}
@@ -724,7 +722,6 @@
             const isNewPR = prev && parseFloat(w) > parseFloat(prev.weight || '0');
             logs[day][name] = { weight: w, reps: r, date: todayStr(), time: new Date().toLocaleTimeString() };
             history.push({ name, weight: w, reps: r, date: todayStr(), day });
-            save();
             updateProgress(day);
             if (isNewPR) showToast('🏆 PR جدید!');
             else showToast('ذخیره شد');
@@ -765,11 +762,11 @@
         let rem = sec;
         const disp = document.getElementById('timerDisplay');
         timerId = setInterval(() => {
-          disp.textContent = rem + 'ث';
+          disp.textContent = rem + 's';
           if (rem-- <= 0) {
             clearInterval(timerId);
             disp.textContent = '';
-            showToast('استراحت تمام شد');
+            showToast('تایمر تمام شد');
           }
         }, 1000);
       }
@@ -782,41 +779,37 @@
         <div class="history-card">
           <div><b>${r.name}</b> (${r.day}) ${r.date}</div>
           <div>${r.weight}kg × ${r.reps}</div>
-          <button onclick="deleteRec('${r.date}','${r.name}')" class="ripple">🗑️</button>
         </div>`).join('') || '<p style="color:var(--text-secondary);">موردی یافت نشد</p>';
       }
 
       window.deleteRec = (date, name) => {
         history = history.filter(r => !(r.date === date && r.name === name));
-        save();
         renderHistory();
       };
 
       function renderDashboard() {
         const totalSessions = history.length;
         const bestWeight = history.length ? Math.max(...history.map(r => parseFloat(r.weight) || 0)) : 0;
-        const lastWeight = weights.slice(-1)[0]?.weight || '---';
         document.getElementById('statsGrid').innerHTML = `
         <div class="card">📅 جلسات: ${totalSessions}</div>
         <div class="card">🏆 بهترین وزنه: ${bestWeight}kg</div>
-        <div class="card">⚖️ وزن بدن: ${lastWeight}</div>
         <div class="card">📊 رکوردها: ${history.length}</div>
       `;
         const ctx = document.getElementById('progressChart')?.getContext('2d');
-        if (ctx) {
-          const wData = weights.map(w => w.weight);
+        if (ctx && history.length > 0) {
           ctx.clearRect(0, 0, 400, 180);
-          if (wData.length > 1) {
-            const max = Math.max(...wData);
-            const min = Math.min(...wData);
+          const weights = [...new Set(history.map(r => parseFloat(r.weight) || 0))].sort((a, b) => a - b);
+          if (weights.length > 1) {
+            const max = Math.max(...weights);
+            const min = Math.min(...weights);
             const range = max - min || 1;
             ctx.strokeStyle = '#c084fc';
             ctx.lineWidth = 2.5;
             ctx.shadowColor = '#8b5cf6';
             ctx.shadowBlur = 8;
             ctx.beginPath();
-            wData.forEach((v, i) => {
-              const x = (i / (wData.length - 1)) * 380 + 10;
+            weights.forEach((v, i) => {
+              const x = (i / (weights.length - 1)) * 380 + 10;
               const y = 180 - ((v - min) / range) * 140 - 20;
               if (i === 0) ctx.moveTo(x, y);
               else ctx.lineTo(x, y);
@@ -837,10 +830,10 @@
       window.switchView = switchView;
 
       window.exportData = () => {
-        const blob = new Blob([JSON.stringify({ logs, history, weights })], { type: 'application/json' });
+        const blob = new Blob([JSON.stringify({ logs, history })], { type: 'application/json' });
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = 'کهکشان_تمرین_پشتیبان.json';
+        a.download = 'کهکشان_تمرین.json';
         a.click();
       };
 
@@ -848,17 +841,6 @@
       document.getElementById('searchInput')?.addEventListener('input', renderHistory);
       renderTabs();
       renderDay();
-
-      if (!weights.length || new Date(weights.slice(-1)[0]?.date) < new Date(Date.now() - 7 * 86400000)) {
-        setTimeout(() => {
-          const w = prompt('وزن این هفته خود را وارد کنید (کیلوگرم):');
-          if (w && !isNaN(w)) {
-            weights.push({ date: todayStr(), weight: parseFloat(w) });
-            save();
-            showToast('وزن ثبت شد');
-          }
-        }, 600);
-      }
     })();
   </script>
 </body>
