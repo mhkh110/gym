@@ -25,8 +25,6 @@
     .container {
       max-width: 1100px;
       width: 100%;
-      position: relative;
-      z-index: 2;
     }
 
     .header {
@@ -51,6 +49,20 @@
       border-right: 4px solid #7b66d9;
       padding-right: 14px;
       margin-top: 6px;
+    }
+    .header .session-time {
+      font-size: 1rem;
+      color: #b0a3d9;
+      margin-top: 6px;
+      padding-right: 18px;
+    }
+    .header .rule {
+      font-size: 0.95rem;
+      color: #c5bae6;
+      margin-top: 4px;
+      padding-right: 18px;
+      border-right: 3px solid #7b66d9;
+      padding-right: 12px;
     }
 
     .info-box {
@@ -119,7 +131,6 @@
       margin-right: 6px;
     }
 
-    /* accordion */
     .accordion-item {
       background: rgba(10, 6, 28, 0.6);
       backdrop-filter: blur(5px);
@@ -311,7 +322,6 @@
       margin-top: 6px;
     }
 
-    /* extra sections: posture, cardio, nutrition */
     .extra-section {
       background: rgba(18, 12, 42, 0.7);
       backdrop-filter: blur(6px);
@@ -373,6 +383,8 @@
   <header class="header">
     <h1>🚀 برنامه کهکشانی</h1>
     <div class="sub">۵ روز تمرین · سه‌شنبه و جمعه استراحت</div>
+    <div class="session-time">⏱ مدت هر جلسه: حدود ۷۰ تا ۹۰ دقیقه (همراه با گرم‌کردن و سرد کردن)</div>
+    <div class="rule">📌 ترتیب حرکات: ابتدا چندمفصلی، سپس تک‌مفصلی، در پایان حرکات اصلاحی و Core</div>
   </header>
 
   <div class="info-box">
@@ -398,7 +410,7 @@
 
   <div id="accordionContainer"></div>
 
-  <!-- ===== روتین اصلاح پوسچر (روزانه) ===== -->
+  <!-- ===== روتین اصلاح پوسچر ===== -->
   <div class="extra-section">
     <h3>🧘 روتین روزانه اصلاح پوسچر (هر روز، حتی روز استراحت)</h3>
     <ul>
@@ -431,19 +443,20 @@
     </ul>
   </div>
 
-  <div class="footer">★ برنامه تمرینی ۵ روزه · به‌روز شده با اصلاحات ★</div>
+  <div class="footer">★ برنامه تمرینی ۵ روزه · نسخه نهایی ★</div>
 </div>
 
 <script>
   (function() {
-    // ===== داده با نام روزهای هفته =====
+    // ===== ساختار روزها =====
     const weekDays = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
+    // روزهای تمرین: 0,1,2,4,5  |  استراحت: 3 (سه‌شنبه) و 6 (جمعه)
     const workoutMap = [
-      { dayIndex: 0, label: 'شنبه', name: 'Push A' },
-      { dayIndex: 1, label: 'یکشنبه', name: 'Pull A' },
-      { dayIndex: 2, label: 'دوشنبه', name: 'Legs' },
-      { dayIndex: 4, label: 'چهارشنبه', name: 'Push B' },
-      { dayIndex: 5, label: 'پنجشنبه', name: 'Pull B' }
+      { dayIndex: 0, label: 'روز ۱ — شنبه', name: 'Push A' },
+      { dayIndex: 1, label: 'روز ۲ — یکشنبه', name: 'Pull A' },
+      { dayIndex: 2, label: 'روز ۳ — دوشنبه', name: 'Legs' },
+      { dayIndex: 4, label: 'روز ۴ — چهارشنبه', name: 'Push B' },
+      { dayIndex: 5, label: 'روز ۵ — پنجشنبه', name: 'Pull B' }
     ];
 
     const exercisesData = {
@@ -457,7 +470,7 @@
         ["Push-up Plus", "2×12-15", "2-1-2-0", "45s", "در بالا کتف را ۱s بیشتر جلو هل بده"]
       ],
       'Pull A': [
-        ["لت پول‌داون دست باز", "4×8-10", "2-1-1-0", "90s", "تا بالای سینه؛ بدون تاب بدن"],
+        ["لت پول‌داون دست باز", "4×8-10", "2-1-1-0", "90s", "قبل از خم کردن آرنج‌ها، کتف‌ها را پایین ببر (Scapular Depression)، سپس میله را تا بالای سینه بکش"],
         ["Chest-Supported Row", "3×10-12", "2-1-1-0", "75s", "مکث و انقباض کامل کتف در انتها"],
         ["Chest-Supported Reverse Fly", "4×12-15", "2-0-1-1", "60s", "حرکت از شانه نه مچ"],
         ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی؛ شست‌ها پشت سر در انتها · در انتها ۱s مکث"],
@@ -483,7 +496,7 @@
         ["پلانک", "2×45-60s", "ایزومتریک", "45s", "باسن نه بالا نه پایین"]
       ],
       'Pull B': [
-        ["روئینگ تک‌دست دمبل", "4×8-10", "2-1-1-0", "90s", "اول کتف پایین/عقب، بعد آرنج بکش"],
+        ["روئینگ تک‌دست دمبل", "4×8-10", "2-1-1-0", "90s", "ابتدا کتف را پایین و عقب ببر، سپس آرنج را به سمت لگن بکش و در انتهای حرکت ۱ ثانیه انقباض لت را حفظ کن"],
         ["Half-Kneeling Lat Pulldown", "3×10-12", "2-1-1-0", "75s", "تنه عمود؛ Core منقبض"],
         ["Trap-3 Raise", "3×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک، مسیر قطری"],
         ["نشر جانب کابل", "3×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه"],
@@ -496,6 +509,7 @@
     const container = document.getElementById('accordionContainer');
     if (!container) return;
 
+    // 7 روز هفته
     for (let i = 0; i < 7; i++) {
       const dayInfo = workoutMap.find(d => d.dayIndex === i);
       if (!dayInfo) {
@@ -507,7 +521,7 @@
         continue;
       }
 
-      const dayName = dayInfo.label;
+      const displayLabel = dayInfo.label; // "روز ۱ — شنبه"
       const workoutName = dayInfo.name;
       const exercises = exercisesData[workoutName] || [];
 
@@ -518,7 +532,7 @@
       header.className = 'accordion-header';
       header.innerHTML = `
         <h2>
-          ${dayName}
+          ${displayLabel}
           <span class="day-badge">${workoutName}</span>
         </h2>
         <span class="arrow">▾</span>
@@ -581,6 +595,7 @@
       container.appendChild(item);
     }
 
+    // set initial height for active items
     document.querySelectorAll('.accordion-item.active').forEach(item => {
       const body = item.querySelector('.accordion-body');
       const inner = body?.querySelector('.accordion-body-inner');
