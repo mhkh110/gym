@@ -1,501 +1,509 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>برنامه تمرینی روستایی · مرغ و خروس · قارچ‌خور</title>
-  <!-- Font: Vazir (وزیر) -->
-  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: #2d4a2c;
-      font-family: 'Vazir', 'Segoe UI', Tahoma, sans-serif;
-      direction: rtl;
-      padding: 20px;
-      color: #2d2d1c;
-    }
-
-    /* جعبه اصلی با تم روستایی (مرغ، خروس، قارچ‌خور) */
-    .farm-container {
-      max-width: 1300px;
-      margin: 0 auto;
-      background: #f9f2d9;
-      background-image: 
-        repeating-linear-gradient(45deg, #e6dbb0 0px, #e6dbb0 2px, #f3e8c5 2px, #f3e8c5 6px);
-      border-radius: 60px 60px 40px 40px;
-      padding: 40px 30px 30px 30px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 0 2px #b4946a, inset 0 0 0 6px #dac29c;
-      position: relative;
-      border: 4px solid #6d4f2b;
-    }
-
-    /* حصار چوبی */
-    .farm-container::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: 20px;
-      right: 20px;
-      height: 18px;
-      background: repeating-linear-gradient(90deg, #8b6b40 0px, #8b6b40 18px, #a88555 18px, #a88555 22px);
-      border-radius: 30px;
-      border: 2px solid #5f451f;
-      opacity: 0.7;
-      z-index: 2;
-    }
-
-    .farm-container::after {
-      content: '🐔 🐓 🐣';
-      position: absolute;
-      bottom: 10px;
-      left: 20px;
-      font-size: 2.8rem;
-      opacity: 0.2;
-      letter-spacing: 10px;
-      pointer-events: none;
-    }
-
-    /* سربرگ با مرغ و خروس و قارچ‌خور */
-    .header-farm {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #dac29c;
-      background-image: radial-gradient(circle at 20% 30%, #f3e3bc 5%, #b4946a 90%);
-      padding: 15px 30px;
-      border-radius: 100px 100px 40px 40px;
-      border: 3px solid #6d4f2b;
-      box-shadow: inset 0 4px 8px rgba(255,255,200,0.5), 0 8px 12px rgba(0,0,0,0.2);
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .header-title {
-      font-size: 2.1rem;
-      font-weight: 900;
-      color: #2b401a;
-      text-shadow: 3px 3px 0 #dbbd87, 0 2px 10px #f5e6b0;
-      background: rgba(250, 240, 200, 0.5);
-      padding: 0 25px;
-      border-radius: 50px;
-      backdrop-filter: blur(2px);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .farm-animals {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      font-size: 3.2rem;
-      background: #dbbd87;
-      padding: 5px 25px 5px 15px;
-      border-radius: 80px;
-      border: 3px solid #4f3a1e;
-      box-shadow: inset 0 -4px 0 #6d4f2b;
-    }
-
-    .farm-animals span {
-      filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.2));
-    }
-
-    /* قارچ‌خور (شخصیت) */
-    .mushroom-man {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      background: #7d5d38;
-      padding: 5px 20px 5px 12px;
-      border-radius: 50px;
-      border: 3px solid #3d2b14;
-      box-shadow: inset 0 -4px 0 #4f3a1e;
-      color: #f9f2d9;
-    }
-
-    .mushroom-man span {
-      font-size: 2.6rem;
-      line-height: 1;
-    }
-
-    .mushroom-man small {
-      font-size: 0.9rem;
-      font-weight: bold;
-      background: #dbbd87;
-      color: #2b401a;
-      padding: 0 12px;
-      border-radius: 30px;
-    }
-
-    /* بخش‌های برنامه با تم روستایی */
-    .section-card {
-      background: #fcf5e3;
-      border: 4px solid #b4946a;
-      border-radius: 40px 12px 40px 12px;
-      padding: 20px 25px;
-      margin-bottom: 28px;
-      box-shadow: 6px 6px 0 #7d5d38, inset 0 0 0 2px #e6dbb0;
-      position: relative;
-      transition: 0.1s ease;
-    }
-
-    .section-card:hover {
-      box-shadow: 8px 8px 0 #5f451f, inset 0 0 0 2px #f3e8c5;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: #2b401a;
-      background: #dac29c;
-      padding: 8px 30px 8px 20px;
-      border-radius: 80px 20px 80px 20px;
-      border-bottom: 6px solid #6d4f2b;
-      margin-bottom: 20px;
-      box-shadow: inset 0 2px 8px #f3e3bc;
-      flex-wrap: wrap;
-    }
-
-    .section-title .emoji-big {
-      font-size: 2.6rem;
-      line-height: 1;
-    }
-
-    .grid-2col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    @media (max-width: 800px) {
-      .grid-2col { grid-template-columns: 1fr; }
-      .header-farm { flex-direction: column; align-items: stretch; text-align: center; }
-      .farm-animals { justify-content: center; }
-      .mushroom-man { justify-content: center; }
-    }
-
-    .exercise-block {
-      background: #f3e8c5;
-      border-radius: 30px 8px 30px 8px;
-      padding: 14px 18px;
-      border: 3px solid #b4946a;
-      margin-bottom: 18px;
-      box-shadow: inset 0 -4px 0 #8b6b40;
-    }
-
-    .exercise-name {
-      font-weight: 800;
-      font-size: 1.3rem;
-      color: #3d2b14;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .exercise-name .icon {
-      font-size: 2rem;
-    }
-
-    .exercise-detail {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 20px;
-      margin-top: 8px;
-      font-size: 0.95rem;
-      background: #faf1d8;
-      padding: 8px 14px;
-      border-radius: 30px;
-      border: 2px dotted #8b6b40;
-    }
-
-    .exercise-detail strong {
-      color: #4f3a1e;
-    }
-
-    .note {
-      background: #e6dbb0;
-      padding: 8px 16px;
-      border-radius: 30px;
-      font-size: 0.9rem;
-      border-right: 6px solid #6d4f2b;
-      margin: 8px 0 0 0;
-      color: #1f2f12;
-    }
-
-    .badge-farm {
-      background: #8b6b40;
-      color: #f9f2d9;
-      padding: 2px 16px;
-      border-radius: 40px;
-      font-size: 0.8rem;
-      display: inline-block;
-      margin: 4px 0;
-    }
-
-    .table-vol {
-      width: 100%;
-      border-collapse: collapse;
-      background: #f3e8c5;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 3px solid #b4946a;
-    }
-
-    .table-vol td, .table-vol th {
-      padding: 8px 15px;
-      border: 2px solid #b4946a;
-      text-align: right;
-    }
-
-    .table-vol th {
-      background: #dac29c;
-      color: #2b401a;
-      font-weight: 700;
-    }
-
-    .footer-chicken {
-      margin-top: 30px;
-      text-align: center;
-      font-size: 2.2rem;
-      letter-spacing: 8px;
-      background: #dbbd87;
-      padding: 12px;
-      border-radius: 80px;
-      border: 4px solid #6d4f2b;
-      color: #2d2d1c;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    .footer-chicken span {
-      background: #fcf5e3;
-      padding: 0 25px;
-      border-radius: 60px;
-      box-shadow: inset 0 -4px 0 #6d4f2b;
-    }
-
-    .mushroom-bg {
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="18" fill="%23b48b5a" opacity="0.1"/><circle cx="70" cy="25" r="14" fill="%23b48b5a" opacity="0.08"/><circle cx="45" cy="70" r="22" fill="%23b48b5a" opacity="0.07"/></svg>');
-      background-repeat: repeat;
-      background-size: 120px 120px;
-      opacity: 0.3;
-      pointer-events: none;
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      z-index: 0;
-    }
-
-    .relative {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* قارچ‌خور در پایین */
-    .mushroom-footer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 30px;
-      background: #b4946a;
-      padding: 12px 30px;
-      border-radius: 80px;
-      border: 4px solid #4f3a1e;
-      margin-top: 30px;
-      flex-wrap: wrap;
-      color: #f9f2d9;
-      font-weight: bold;
-    }
-
-    .mushroom-footer span {
-      font-size: 3rem;
-      filter: drop-shadow(0 4px 4px #2b2b1a);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>برنامه تمرینی جامع اصلاحی-عضله‌سازی (۸ هفته)</title>
+    <style>
+        /* Reset & base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f7f9fc;
+            font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+            padding: 20px 15px 40px;
+            color: #1e2a3a;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+            padding: 25px 20px 40px;
+        }
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.25rem;
+            color: #0b1a2b;
+            border-right: 6px solid #2a7de1;
+            padding-right: 18px;
+        }
+        .subhead {
+            color: #3e5a76;
+            font-size: 1rem;
+            padding-right: 24px;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #e9edf4;
+            padding-bottom: 16px;
+        }
+        summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.3rem;
+            background: #f0f4fe;
+            padding: 14px 20px;
+            border-radius: 16px;
+            margin: 18px 0 8px;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #0b2b4a;
+            border: 1px solid #dde5f0;
+        }
+        summary:hover {
+            background: #e6edfc;
+        }
+        summary::before {
+            content: "▸";
+            font-size: 1.6rem;
+            color: #2a7de1;
+            transition: transform 0.2s;
+        }
+        details[open] summary::before {
+            content: "▾";
+        }
+        details {
+            margin-bottom: 6px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 16px 18px 20px;
+            margin: 10px 0 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #eef3f9;
+        }
+        .movement {
+            background: #fafcff;
+            border-right: 5px solid #2a7de1;
+            padding: 14px 16px;
+            margin: 14px 0;
+            border-radius: 14px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .movement h4 {
+            font-size: 1.15rem;
+            color: #10345e;
+            margin-bottom: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+        .badge {
+            background: #e1eaf7;
+            border-radius: 40px;
+            padding: 2px 14px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1f4a7a;
+            white-space: nowrap;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 14px;
+            margin: 6px 0 4px;
+            font-size: 0.95rem;
+        }
+        .primary {
+            color: #0066cc;
+            font-weight: 500;
+        }
+        .secondary {
+            color: #4d6a8f;
+        }
+        .note {
+            background: #f2f6fd;
+            border-radius: 14px;
+            padding: 10px 16px;
+            margin: 12px 0 4px;
+            font-size: 0.95rem;
+            border-left: 4px solid #6b8fc9;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 16px 0;
+            border-radius: 18px;
+            border: 1px solid #e2e9f3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            min-width: 480px;
+        }
+        th {
+            background: #e7eefa;
+            padding: 12px 10px;
+            text-align: right;
+            font-weight: 600;
+            color: #0b2b4a;
+        }
+        td {
+            padding: 10px 10px;
+            border-bottom: 1px solid #eaeef6;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 20px;
+        }
+        @media (max-width: 700px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .container {
+                padding: 16px 12px 30px;
+            }
+            h1 {
+                font-size: 1.6rem;
+                padding-right: 12px;
+            }
+            summary {
+                font-size: 1.1rem;
+                padding: 12px 16px;
+            }
+            .movement {
+                padding: 12px 14px;
+            }
+        }
+        .chip {
+            background: #eef4fa;
+            border-radius: 40px;
+            display: inline-block;
+            padding: 0 14px;
+            font-size: 0.8rem;
+            color: #1f4a7a;
+            margin-left: 6px;
+        }
+        .mt-1 { margin-top: 12px; }
+        .mb-1 { margin-bottom: 12px; }
+        .flex { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+        .strong { font-weight: 600; color: #0b2b4a; }
+        hr { border: none; border-top: 2px dashed #dce3ed; margin: 24px 0; }
+        .day-title {
+            background: #e1ebf9;
+            padding: 8px 18px;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 600;
+            color: #0f3b66;
+            margin: 6px 0 12px;
+        }
+        .icon {
+            font-size: 1.2rem;
+            margin-left: 6px;
+        }
+    </style>
 </head>
 <body>
-<div class="farm-container">
+<div class="container">
 
-  <!-- لایه قارچ‌های تزئینی -->
-  <div class="mushroom-bg"></div>
+    <h1>🏋️ برنامه تمرینی جامع اصلاحی-عضله‌سازی</h1>
+    <div class="subhead">۸ هفته · طراحی بر اساس اولویت اصلاح پوسچر + هایپرتروفی هدفمند</div>
 
-  <!-- هدر با مرغ، خروس، قارچ‌خور -->
-  <div class="header-farm relative">
-    <div class="header-title">
-      <span>🐓</span> برنامه‌ی تمرینی روستا <span>🌾</span>
+    <!-- ۱. خلاصه وضعیت -->
+    <details open>
+        <summary>۱. خلاصه وضعیت و اهداف</summary>
+        <div class="card">
+            <p><span class="strong">قد:</span> ۱۸۲ سانتی‌متر · <span class="strong">وزن:</span> ۷۸ کیلوگرم · <span class="strong">سابقه:</span> ~۵ ماه · <span class="strong">درصد چربی:</span> ۱۷-۲۰٪</p>
+            <p><span class="strong">نقاط ضعف عضلانی:</span> Upper Chest، Lateral Delt، Rear Delt، عرض Lat، Mid/Lower Trap، Triceps</p>
+            <p><span class="strong">مشکلات پوسچر:</span> Forward Head، Rounded Shoulders، کایفوز خفیف قفسه سینه</p>
+            <p><span class="strong">ترتیب اولویت اهداف:</span> ۱. اصلاح Forward Head → ۲. اصلاح Rounded Shoulders → ۳. بهبود کایفوز → ۴. عرض شانه → ۵. V-Taper → ۶. Upper Chest → ۷. عرض Lat → ۸. Triceps → ۹. تناسب پا → ۱۰. کاهش چربی</p>
+            <p><span class="strong">اسپلیت:</span> Push A / Pull A / Legs / Push B / Pull B — ۵ روز، ۶۰-۷۵ دقیقه</p>
+        </div>
+    </details>
+
+    <!-- ۲. آنالیز اولیه -->
+    <details>
+        <summary>۲. آنالیز اولیه برنامه</summary>
+        <div class="card">
+            <p><span class="strong">چرا این اسپلیت:</span> فرکانس ۲ بار در هفته برای عضلات کلیدی، با استناد به شواهد Schoenfeld و همکاران. نسبت حجم Pull به Push ~۱.۳ : ۱ برای اصلاح پوسچر.</p>
+            <p><span class="strong">ریسک اصلی مدیریت‌شده:</span> حرکات Behind Neck، Upright Row، Shrug سنگین حذف شدند.</p>
+        </div>
+    </details>
+
+    <!-- ۳. گرم‌کردن -->
+    <details>
+        <summary>۳. گرم‌کردن (قبل از هر جلسه — ۸-۱۰ دقیقه)</summary>
+        <div class="card">
+            <table>
+                <thead><tr><th>حرکت</th><th>ست×تکرار/زمان</th><th>چرا</th></tr></thead>
+                <tbody>
+                    <tr><td>Cat-Camel</td><td>1×10</td><td>تحرک ستون فقرات</td></tr>
+                    <tr><td>Band Pull-Apart</td><td>2×15</td><td>فعال‌سازی Rear Delt و Rhomboid</td></tr>
+                    <tr><td>Dead Hang</td><td>2×30s</td><td>کشش غیرفعال شانه</td></tr>
+                    <tr><td>Chin Tuck</td><td>2×10 (نگه ۳ ثانیه)</td><td>فعال‌سازی Deep Neck Flexor</td></tr>
+                    <tr><td>Scapular Wall Slide</td><td>1×10</td><td>الگوی چرخش صحیح کتف</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+    <!-- ۴. روز ۱ — Push A -->
+    <details>
+        <summary>۴. روز ۱ — Push A <span class="chip">Upper Chest + Lateral Delt + Triceps</span></summary>
+        <div class="card">
+            <!-- حرکت 1 -->
+            <div class="movement">
+                <h4>پرس سینه دمبل شیب‌دار (۳۰-۴۵ درجه) <span class="badge">۴ ست · ۸-۱۰ تکرار</span></h4>
+                <div class="row"><span class="primary">اولیه:</span> Upper Chest <span class="secondary">| فرعی:</span> Front Delt, Triceps</div>
+                <div class="note"><strong>نکات اجرایی:</strong> کتف پایین/عقب، آرنج ~۴۵ درجه، دمبل تا پایین‌تر از خط سینه، قفل نکن، کمر ثابت. <br> <strong>اشتباهات:</strong> له‌شدن کتف، ضربه‌ای بلند کردن، آرنج ۹۰ درجه، قوس کمر. <br> <strong>ریسک:</strong> شانه — توقف در کشش جلوی شانه.</div>
+            </div>
+            <!-- فلای کابل -->
+            <div class="movement">
+                <h4>فلای شیب‌دار کابل <span class="badge">۳ ست · ۱۲-۱۵ تکرار</span></h4>
+                <div class="row"><span class="primary">اولیه:</span> Upper Chest <span class="secondary">| فرعی:</span> Front Delt</div>
+                <div class="note"><strong>نکات:</strong> مسیر بغل‌کردن درخت، آرنج خم ثابت، کتف پایین، قفل نکن. <br> <strong>اشتباهات:</strong> خم بیش از حد آرنج، استفاده از شانه. <br> <strong>ریسک:</strong> کپسول قدامی شانه — توقف هم‌راستا با بدن.</div>
+            </div>
+            <!-- نشر جانب کابل -->
+            <div class="movement">
+                <h4>نشر جانب کابل (Lateral Raise) <span class="badge">۵ ست · ۱۵-۲۰ تکرار</span></h4>
+                <div class="row"><span class="primary">اولیه:</span> Lateral Delt <span class="secondary">| فرعی:</span> Front Delt, Traps</div>
+                <div class="note"><strong>نکات:</strong> خم جزئی آرنج، تا ارتفاع شانه، شروع از شانه، مکث در بالا، پایین‌آوردن کنترل‌شده. <br> <strong>اشتباهات:</strong> تاب تنه، بالا بردن بیش از حد، وزنه سنگین با دامنه ناقص. <br> <strong>ریسک:</strong> Impingement — توقف در ارتفاع شانه.</div>
+            </div>
+            <!-- پشت بازو طناب -->
+            <div class="movement">
+                <h4>پشت بازو کابل طناب (Triceps Pushdown) <span class="badge">۳ ست · ۱۰-۱۲ تکرار</span></h4>
+                <div class="row"><span class="primary">اولیه:</span> Triceps (سر جانبی/میانی)</div>
+                <div class="note"><strong>نکات:</strong> آرنج چسبیده به پهلو، فقط ساعد حرکت، طناب را باز کن، بدون خم تنه. <br> <strong>اشتباهات:</strong> حرکت آرنج، خم شدن تنه، رها کردن وزنه. <br> <strong>ریسک:</strong> آرنج — کنترل فاز نزولی.</div>
+            </div>
+            <!-- اورهد کابل -->
+            <div class="movement">
+                <h4>پشت بازو اورهد کابل <span class="badge">۳ ست · ۱۲-۱۵ تکرار</span></h4>
+                <div class="row"><span class="primary">اولیه:</span> Triceps (سر بلند)</div>
+                <div class="note"><strong>نکات:</strong> آرنج نزدیک سر ثابت، کمر صاف، دامنه کامل، شانه‌ها پایین. <br> <strong>اشتباهات:</strong> باز شدن آرنج به طرفین، قوس کمر. <br> <strong>ریسک:</strong> آرنج و شانه — آرنج ثابت.</div>
+            </div>
+            <!-- Pallof -->
+            <div class="movement">
+                <h4>Pallof Press <span class="badge">۲ ست هر طرف · ۱۲ تکرار</span></h4>
+                <div class="row"><span class="primary">اولیه:</span> Core (Anti-rotation) <span class="secondary">| فرعی:</span> Obliques</div>
+                <div class="note"><strong>نکات:</strong> عمود بر کابل، فشار مستقیم، لگن و شانه ثابت، زانو نرم. <br> <strong>اشتباهات:</strong> چرخش تنه، خم شدن کمر. <br> <strong>ریسک:</strong> کمر — سرعت پایین.</div>
+            </div>
+            <!-- Push-up Plus -->
+            <div class="movement">
+                <h4>Push-up Plus (Serratus Anterior) <span class="badge">۲ ست · ۱۲-۱۵ تکرار</span></h4>
+                <div class="row"><span class="primary">اولیه:</span> Serratus Anterior <span class="secondary">| فرعی:</span> Chest, Triceps</div>
+                <div class="note"><strong>نکات:</strong> در بالای حرکت کتف را ۱ ثانیه جلو هل بده، کمر صاف، حرکت آهسته. <br> <strong>اشتباهات:</strong> نادیده گرفتن فاز Plus، افتادن کمر. <br> <strong>ریسک:</strong> کم‌ریسک — در صورت درد مچ روی مشت.</div>
+            </div>
+        </div>
+    </details>
+
+    <!-- ۵. روز ۲ — Pull A -->
+    <details>
+        <summary>۵. روز ۲ — Pull A <span class="chip">Lat عرض + ضخامت پشت + Rear Delt</span></summary>
+        <div class="card">
+            <div class="movement"><h4>لت پول‌داون دست باز <span class="badge">۴ ست · ۸-۱۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Lats (عرض) <span class="secondary">| فرعی:</span> Rear Delt, Biceps</div><div class="note"><strong>نکات:</strong> میله تا بالای سینه، سینه جلو، کتف پایین/عقب، آرنج به پایین/عقب. <br> <strong>اشتباهات:</strong> پشت گردن، خم شدن بیش از حد، بالا انداختن شانه. <br> <strong>ریسک:</strong> گردن/شانه — همیشه جلوی سر.</div></div>
+            <div class="movement"><h4>Chest-Supported Row <span class="badge">۳ ست · ۱۰-۱۲ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Mid Back (Rhomboid, Mid Trap) <span class="secondary">| فرعی:</span> Lats, Rear Delt</div><div class="note"><strong>نکات:</strong> سینه روی نیمکت، کشیدن به سمت شکم پایین، آرنج نزدیک تنه، مکث. <br> <strong>اشتباهات:</strong> بلند کردن سر، کشیدن با مچ. <br> <strong>ریسک:</strong> کم‌ریسک.</div></div>
+            <div class="movement"><h4>Chest-Supported Reverse Fly (Rear Delt) <span class="badge">۴ ست · ۱۲-۱۵ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Rear Delt <span class="secondary">| فرعی:</span> Mid Trap, Rhomboid</div><div class="note"><strong>نکات:</strong> خم جزئی آرنج، حرکت از شانه، تا ارتفاع شانه، مکث. <br> <strong>اشتباهات:</strong> تاب دادن، خم بیش از حد آرنج. <br> <strong>ریسک:</strong> کم‌ریسک با تکیه‌گاه.</div></div>
+            <div class="movement"><h4>Face Pull <span class="badge">۳ ست · ۱۵-۲۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Rear Delt, Rotator Cuff <span class="secondary">| فرعی:</span> Mid Trap</div><div class="note"><strong>نکات:</strong> طناب به سمت پیشانی/بینی، شست‌ها پشت سر، آرنج بالاتر از مچ، چانه جمع. <br> <strong>اشتباهات:</strong> کشیدن پایین، بالا انداختن شانه. <br> <strong>ریسک:</strong> کم‌ریسک (حرکت اصلاحی).</div></div>
+            <div class="movement"><h4>Prone Y-Raise <span class="badge">۲ ست · ۱۲-۱۵ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Lower Trap <span class="secondary">| فرعی:</span> Rear Delt</div><div class="note"><strong>نکات:</strong> روی نیمکت شیب‌دار، دست‌ها به شکل Y، وزنه بسیار سبک، کتف پایین. <br> <strong>اشتباهات:</strong> وزنه سنگین، بالا انداختن شانه. <br> <strong>ریسک:</strong> کم‌ریسک با وزنه سبک.</div></div>
+            <div class="movement"><h4>جلو بازو دمبل <span class="badge">۲ ست · ۱۰-۱۲ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Biceps <span class="secondary">| فرعی:</span> Forearms</div><div class="note"><strong>نکات:</strong> آرنج ثابت کنار تنه، چرخش مچ در بالا، بازگشت کنترل‌شده. <br> <strong>اشتباهات:</strong> تاب بدن، حرکت آرنج. <br> <strong>ریسک:</strong> کم‌ریسک.</div></div>
+            <div class="movement"><h4>Scapular Pull-up <span class="badge">۲ ست · ۱۰-۱۲ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Lower Trap, Serratus</div><div class="note"><strong>نکات:</strong> آویزان کامل، فقط کتف را پایین/عقب ببر (بدون خم آرنج). <br> <strong>اشتباهات:</strong> خم کردن آرنج، تاب بدن. <br> <strong>ریسک:</strong> کم‌ریسک (آموزشی).</div></div>
+            <div class="movement"><h4>Deep Neck Flexor Hold <span class="badge">۳ ست · ۱۵-۲۰ ثانیه</span></h4><div class="row"><span class="primary">اولیه:</span> Deep Neck Flexors</div><div class="note"><strong>نکات:</strong> طاق‌باز، چانه جمع، سر ۲-۳ سانتی‌متر بلند، تنفس عادی. <br> <strong>اشتباهات:</strong> بلند کردن کل سر، نگه داشتن نفس. <br> <strong>ریسک:</strong> کم‌ریسک.</div></div>
+        </div>
+    </details>
+
+    <!-- ۶. روز ۳ — Legs -->
+    <details>
+        <summary>۶. روز ۳ — Legs <span class="chip">حجم متوسط، اولویت پایین‌تر</span></summary>
+        <div class="card">
+            <div class="movement"><h4>اسکوات پا یا لگ پرس <span class="badge">۳ ست · ۸-۱۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Quads <span class="secondary">| فرعی:</span> Glutes</div><div class="note"><strong>نکات:</strong> زانو هم‌راستا با پا، عمق موازی، کمر صاف، وزن روی کف پا. <br> <strong>اشتباهات:</strong> جمع شدن زانو، بلند شدن پاشنه، گرد شدن کمر. <br> <strong>ریسک:</strong> زانو/کمر — عمق متناسب.</div></div>
+            <div class="movement"><h4>رومانین ددلیفت دمبل <span class="badge">۴ ست · ۸-۱۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Hamstrings <span class="secondary">| فرعی:</span> Glutes, Lower Back</div><div class="note"><strong>نکات:</strong> زانو نرم، چرخش از لگن، دمبل نزدیک بدن، ستون فقرات خنثی. <br> <strong>اشتباهات:</strong> خم کردن کمر، رفتن بیش از حد پایین، زانوی قفل. <br> <strong>ریسک:</strong> کمر — توقف در نقطه خنثی.</div></div>
+            <div class="movement"><h4>لانج بلغاری <span class="badge">۲ ست هر پا · ۱۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Quads, Glutes <span class="secondary">| فرعی:</span> Hamstrings</div><div class="note"><strong>نکات:</strong> تنه کمی جلو، زانوی جلو هم‌راستا، عمق راحت، تعادل روی پای جلو. <br> <strong>اشتباهات:</strong> زانو جلوتر از پا، عدم تعادل. <br> <strong>ریسک:</strong> زانو — کنترل سرعت.</div></div>
+            <div class="movement"><h4>پشت پا خوابیده (Lying Leg Curl) <span class="badge">۳ ست · ۱۲-۱۵ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Hamstrings <span class="secondary">| فرعی:</span> Calves</div><div class="note"><strong>نکات:</strong> لگن چسبیده، دامنه کامل، بازگشت کنترل‌شده. <br> <strong>اشتباهات:</strong> بلند کردن لگن، حرکت سریع. <br> <strong>ریسک:</strong> کم‌ریسک.</div></div>
+            <div class="movement"><h4>ساق ایستاده <span class="badge">۳ ست · ۱۵-۲۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Gastrocnemius <span class="secondary">| فرعی:</span> Soleus</div><div class="note"><strong>نکات:</strong> دامنه کامل، مکث در بالا، زانو صاف، سرعت پایین. <br> <strong>اشتباهات:</strong> دامنه ناقص، تاب بدن. <br> <strong>ریسک:</strong> کم‌ریسک.</div></div>
+            <div class="movement"><h4>Suitcase Carry <span class="badge">۳ ست · ۳۰-۴۰ متر هر طرف</span></h4><div class="row"><span class="primary">اولیه:</span> Core (Anti-lateral flexion), QL <span class="secondary">| فرعی:</span> Grip</div><div class="note"><strong>نکات:</strong> تنه عمود، شانه‌ها هم‌سطح، گام‌های کوتاه، شکم منقبض. <br> <strong>اشتباهات:</strong> خم شدن به سمت مخالف، بالا انداختن شانه. <br> <strong>ریسک:</strong> کمر — وزنه مناسب.</div></div>
+        </div>
+    </details>
+
+    <!-- ۷. روز ۴ — Push B -->
+    <details>
+        <summary>۷. روز ۴ — Push B <span class="chip">سینه میانی + Shoulder Press سبک + Triceps</span></summary>
+        <div class="card">
+            <div class="movement"><h4>پرس سینه دمبل (تخت یا شیب ۱۵ درجه) <span class="badge">۴ ست · ۸-۱۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Chest (میانی) <span class="secondary">| فرعی:</span> Front Delt, Triceps</div><div class="note"><strong>نکات:</strong> کتف پایین/عقب، آرنج ~۴۵ درجه، دامنه کامل، قفل نکن. <br> <strong>اشتباهات:</strong> آرنج کاملاً باز، رها کردن کتف. <br> <strong>ریسک:</strong> شانه — زاویه کنترل‌شده.</div></div>
+            <div class="movement"><h4>فلای سینه کابل <span class="badge">۳ ست · ۱۲-۱۵ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Chest <span class="secondary">| فرعی:</span> Front Delt</div><div class="note"><strong>نکات:</strong> مسیر قوسی، خم جزئی آرنج، کتف پایین، انقباض در انتها. <br> <strong>اشتباهات:</strong> تبدیل به پرس، دامنه بیش از حد. <br> <strong>ریسک:</strong> کپسول قدامی شانه.</div></div>
+            <div class="movement"><h4>Machine Shoulder Press (گریپ خنثی) — نسخه محافظه‌کارانه <span class="badge">۲ ست (محدود) · ۱۰-۱۲ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Front/Side Delt <span class="secondary">| فرعی:</span> Triceps</div><div class="note"><strong>نکات:</strong> آرنج کمی جلوتر، پایین ۹۰ درجه، گریپ خنثی، قفسه سینه پایین، RIR=2 ثابت. <br> <strong>اشتباهات:</strong> پایین بیش از ۹۰ درجه، افزایش وزنه، قوس کمر. <br> <strong>ریسک:</strong> شانه — دامنه محدود و شدت پایین.</div></div>
+            <div class="movement"><h4>نشر جانب دستگاه <span class="badge">۴ ست · ۱۵-۲۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Lateral Delt</div><div class="note"><strong>نکات:</strong> پشت به تکیه‌گاه، تا ارتفاع شانه، بدون تاب. <br> <strong>اشتباهات:</strong> وزنه سنگین با دامنه ناقص، بالا انداختن شانه. <br> <strong>ریسک:</strong> کم‌ریسک.</div></div>
+            <div class="movement"><h4>پشت بازو تک‌دست کابل <span class="badge">۳ ست · ۱۲-۱۵ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Triceps</div><div class="note"><strong>نکات:</strong> آرنج چسبیده، چرخش مچ در انتها، بدون تاب تنه. <br> <strong>اشتباهات:</strong> حرکت آرنج، شتاب. <br> <strong>ریسک:</strong> کم‌ریسک.</div></div>
+            <div class="movement"><h4>پلانک <span class="badge">۲ ست · ۴۵-۶۰ ثانیه</span></h4><div class="row"><span class="primary">اولیه:</span> Core (کل) <span class="secondary">| فرعی:</span> Shoulders</div><div class="note"><strong>نکات:</strong> خط صاف، باسن نه بالا نه پایین، شکم منقبض، گردن خنثی. <br> <strong>اشتباهات:</strong> بالا رفتن باسن، افتادگی کمر. <br> <strong>ریسک:</strong> کمر — کاهش زمان در صورت افتادگی.</div></div>
+        </div>
+    </details>
+
+    <!-- ۸. روز ۵ — Pull B -->
+    <details>
+        <summary>۸. روز ۵ — Pull B <span class="chip">Lat ضخامت + Rear Delt/Lower Trap</span></summary>
+        <div class="card">
+            <div class="movement"><h4>روئینگ تک‌دست دمبل <span class="badge">۴ ست · ۸-۱۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Lats, Mid Back <span class="secondary">| فرعی:</span> Biceps, Rear Delt</div><div class="note"><strong>نکات:</strong> ابتدا کتف پایین/عقب، سپس آرنج، کشیدن به سمت لگن، مکث. <br> <strong>اشتباهات:</strong> فقط با بازو کشیدن، تاب تنه، گرد شدن کمر. <br> <strong>ریسک:</strong> کمر — تکیه‌گاه محکم.</div></div>
+            <div class="movement"><h4>Half-Kneeling Lat Pulldown <span class="badge">۳ ست · ۱۰-۱۲ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Lats (بالایی) <span class="secondary">| فرعی:</span> Biceps, Core</div><div class="note"><strong>نکات:</strong> تنه عمود، کشیدن به سمت شانه هم‌سمت، کتف پایین، Core منقبض. <br> <strong>اشتباهات:</strong> خم شدن تنه به عقب، عدم ثبات لگن. <br> <strong>ریسک:</strong> کمر — وزنه مناسب.</div></div>
+            <div class="movement"><h4>Trap-3 Raise <span class="badge">۳ ست · ۱۲-۱۵ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Lower Trap <span class="secondary">| فرعی:</span> Rear Delt</div><div class="note"><strong>نکات:</strong> روی نیمکت شیب‌دار، دمبل سبک، مسیر V معکوس، سرعت پایین. <br> <strong>اشتباهات:</strong> وزنه سنگین، سرعت بالا، بالا انداختن شانه. <br> <strong>ریسک:</strong> کم‌ریسک با وزنه سبک.</div></div>
+            <div class="movement"><h4>نشر جانب کابل (تکرار) <span class="badge">۳ ست · ۱۵-۲۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Lateral Delt</div><div class="note">همانند روز Push A — تکرار عمدی برای فرکانس بالاتر.</div></div>
+            <div class="movement"><h4>Face Pull (تکرار) <span class="badge">۳ ست · ۱۵-۲۰ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Rear Delt, Rotator Cuff</div><div class="note">کشش به سمت پیشانی/بینی، شست‌ها پشت سر، آرنج بالاتر از مچ.</div></div>
+            <div class="movement"><h4>Band External Rotation <span class="badge">۳ ست هر طرف · ۱۵ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Rotator Cuff (Infraspinatus, Teres Minor)</div><div class="note"><strong>نکات:</strong> آرنج چسبیده به پهلو ۹۰ درجه، فقط ساعد می‌چرخد، کتف ثابت. <br> <strong>اشتباهات:</strong> حرکت کل بازو، مقاومت زیاد. <br> <strong>ریسک:</strong> کم‌ریسک (اصلاحی).</div></div>
+            <div class="movement"><h4>جلو بازو چکشی (Hammer Curl) <span class="badge">۲ ست · ۱۲ تکرار</span></h4><div class="row"><span class="primary">اولیه:</span> Biceps, Brachialis <span class="secondary">| فرعی:</span> Forearms</div><div class="note"><strong>نکات:</strong> آرنج ثابت، گریپ خنثی، بدون تاب، بازگشت کنترل‌شده. <br> <strong>اشتباهات:</strong> تاب بدن، حرکت آرنج. <br> <strong>ریسک:</strong> کم‌ریسک.</div></div>
+        </div>
+    </details>
+
+    <!-- ۹. جدول حجم هفتگی -->
+    <details>
+        <summary>۹. جدول حجم هفتگی کامل</summary>
+        <div class="card">
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>عضله</th><th>حجم هفتگی (ست)</th></tr></thead>
+                    <tbody>
+                        <tr><td>Chest (کلی)</td><td>14</td></tr>
+                        <tr><td>Upper Chest (اختصاصی)</td><td>7</td></tr>
+                        <tr><td>Front Delt (غیرمستقیم)</td><td>overlap با پرس‌ها</td></tr>
+                        <tr><td>Lateral Delt</td><td>12 (5+4+3)</td></tr>
+                        <tr><td>Rear Delt</td><td>12</td></tr>
+                        <tr><td>Lats (عرض)</td><td>11</td></tr>
+                        <tr><td>Upper/Mid Back (Row)</td><td>10</td></tr>
+                        <tr><td>Lower Trap</td><td>8</td></tr>
+                        <tr><td>Rhomboids</td><td>overlap با Row/Reverse Fly</td></tr>
+                        <tr><td>Triceps</td><td>11</td></tr>
+                        <tr><td>Biceps</td><td>5</td></tr>
+                        <tr><td>Forearms</td><td>غیرمستقیم</td></tr>
+                        <tr><td>Quads</td><td>8</td></tr>
+                        <tr><td>Hamstrings</td><td>7</td></tr>
+                        <tr><td>Glutes</td><td>overlap</td></tr>
+                        <tr><td>Calves</td><td>3</td></tr>
+                        <tr><td>Core</td><td>7</td></tr>
+                        <tr><td>Serratus</td><td>2 (+ غیرمستقیم)</td></tr>
+                        <tr><td>Neck</td><td>3 (+ روتین روزانه)</td></tr>
+                        <tr><td>Shoulder Press (عمودی)</td><td>2 (محدود)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><span class="strong">نسبت Pull به Push:</span> ~۱.۳ : ۱ (به نفع Pull)</p>
+        </div>
+    </details>
+
+    <!-- ۱۰. پیشرفت -->
+    <details>
+        <summary>۱۰. پیشرفت (Progression)</summary>
+        <div class="card">
+            <p><span class="strong">Double Progression:</span> در بازه تکرار مشخص (مثلاً ۸-۱۰) با وزنه ثابت پیش برو تا به سقف برسی، سپس وزنه را افزایش بده.</p>
+            <p><span class="strong">زمان افزایش وزنه:</span> وقتی در تمام ست‌ها سقف بازه با فرم صحیح انجام شد. <br> <span class="strong">میزان افزایش:</span> ۲.۵ تا ۵٪ (حرکات کوچک: کمترین افزایش). <br> <span class="strong">زمان کاهش:</span> اگر دو جلسه متوالی نتوانی کف بازه را با فرم صحیح انجام دهی. <br> <span class="strong">زمان توقف ست:</span> وقتی فرم خراب می‌شود (جبران، از دست رفتن تمپو، درد مفصلی).</p>
+        </div>
+    </details>
+
+    <!-- ۱۱. دوره‌بندی -->
+    <details>
+        <summary>۱۱. دوره‌بندی ۸ هفته‌ای</summary>
+        <div class="card">
+            <div class="table-wrap">
+                <table>
+                    <thead><tr><th>هفته</th><th>RIR</th><th>توضیح</th></tr></thead>
+                    <tbody>
+                        <tr><td>۱-۲</td><td>3</td><td>تطبیق عصبی-عضلانی، یادگیری الگوی حرکتی</td></tr>
+                        <tr><td>۳-۴</td><td>2</td><td>افزایش تدریجی شدت</td></tr>
+                        <tr><td>۵-۶</td><td>1</td><td>حداکثر تحریک هایپرتروفی</td></tr>
+                        <tr><td>۷</td><td>1-0</td><td>اوج شدت قبل از دیلود</td></tr>
+                        <tr><td>۸</td><td>Deload</td><td>حجم ۵۰٪، شدت ۶۰٪ — ریکاوری CNS و مفاصل</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>استثنا: Machine Shoulder Press همیشه RIR=2 ثابت.</p>
+        </div>
+    </details>
+
+    <!-- ۱۲. سرد کردن -->
+    <details>
+        <summary>۱۲. سرد کردن (بعد از هر جلسه)</summary>
+        <div class="card">
+            <table>
+                <thead><tr><th>حرکت</th><th>زمان</th><th>چرا</th></tr></thead>
+                <tbody>
+                    <tr><td>Doorway Chest Stretch</td><td>2×30s</td><td>کشش سینه/Front Delt</td></tr>
+                    <tr><td>Child Pose</td><td>1×60s</td><td>کشش ستون فقرات و Lat</td></tr>
+                    <tr><td>Cat-Camel</td><td>1×10</td><td>بازگرداندن تحرک ستون فقرات</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </details>
+
+    <!-- ۱۳. روتین روزانه اصلاح پوسچر -->
+    <details>
+        <summary>۱۳. روتین روزانه اصلاح پوسچر (۱۰ دقیقه — جدا از تمرین)</summary>
+        <div class="card">
+            <table>
+                <thead><tr><th>حرکت</th><th>ست×تکرار/زمان</th><th>هدف</th></tr></thead>
+                <tbody>
+                    <tr><td>Chin Tuck</td><td>3×10 (نگه ۳s)</td><td>Forward Head</td></tr>
+                    <tr><td>Deep Neck Flexor Hold</td><td>2×15-20s</td><td>تقویت خم‌کننده عمقی گردن</td></tr>
+                    <tr><td>Doorway Chest Stretch</td><td>2×30s</td><td>باز کردن سینه/Front Delt</td></tr>
+                    <tr><td>Wall Slide</td><td>2×10</td><td>تحرک شانه + فعال‌سازی Lower Trap</td></tr>
+                    <tr><td>Cat-Camel</td><td>1×10</td><td>تحرک قفسه سینه</td></tr>
+                    <tr><td>Prone Y-Raise (بدون وزنه)</td><td>2×12</td><td>Lower Trap</td></tr>
+                    <tr><td>Band External Rotation</td><td>2×12 هر طرف</td><td>Rotator Cuff</td></tr>
+                    <tr><td>Push-up Plus (بدون وزنه)</td><td>1×10</td><td>Serratus Anterior</td></tr>
+                </tbody>
+            </table>
+            <p><span class="strong">چرا جدا لازم است:</span> اصلاح الگوهای مزمن به فرکانس بالاتر نیاز دارد؛ تکرار روزانه بازآموزی عصبی-عضلانی را تسریع می‌کند.</p>
+        </div>
+    </details>
+
+    <!-- ۱۴. کاردیو -->
+    <details>
+        <summary>۱۴. کاردیو</summary>
+        <div class="card">
+            <p><span class="strong">نوع:</span> پیاده‌روی سریع، دوچرخه ثابت، الپتیکال (Zone 2) <br> <span class="strong">ضربان قلب:</span> ۶۰-۷۰٪ HRmax <br> <span class="strong">فرکانس:</span> ۲ جلسه در هفته · ۲۰-۳۰ دقیقه <br> <span class="strong">زمان:</span> ترجیحاً روز پا یا روزهای بدون تمرین.</p>
+        </div>
+    </details>
+
+    <!-- ۱۵. تغذیه -->
+    <details>
+        <summary>۱۵. تغذیه (Lean Bulk)</summary>
+        <div class="card">
+            <p><span class="strong">مازاد کالری:</span> ۱۵۰-۲۵۰ کیلوکالری روزانه <br> <span class="strong">پروتئین:</span> ۱.۸-۲.۲ گرم/kg (~۱۴۰-۱۷۲ گرم) <br> <span class="strong">چربی:</span> ۰.۸-۱ گرم/kg (~۶۲-۷۸ گرم) <br> <span class="strong">کربوهیدرات:</span> باقی‌مانده کالری <br> <span class="strong">آب:</span> ≥۳۵ میلی‌لیتر/kg، بیشتر در روزهای تمرین.</p>
+        </div>
+    </details>
+
+    <!-- ۱۶. ریکاوری -->
+    <details>
+        <summary>۱۶. ریکاوری</summary>
+        <div class="card">
+            <p><span class="strong">خواب:</span> ۷.۵-۹ ساعت شبانه. <br> <span class="strong">دیلود:</span> هفته ۸ اجباری. <br> <span class="strong">مدیریت خستگی:</span> اگر دو جلسه متوالی قدرت کاهش یافت، یک روز استراحت اضافه. <br> <span class="strong">نشانه‌های Overreaching:</span> افت قدرت، اختلال خواب، تحریک‌پذیری، ضربان قلب بالاتر، دردهای مفصلی مداوم.</p>
+        </div>
+    </details>
+
+    <!-- ۱۷. پروتکل پیگیری -->
+    <details>
+        <summary>۱۷. پروتکل پیگیری اصلاح پوسچر (هر ۴ هفته)</summary>
+        <div class="card">
+            <p>عکس در حالت طبیعی از سه زاویه: روبه‌رو، پشت، بغل. مقایسه:</p>
+            <ul style="margin-right: 20px; margin-bottom: 6px;">
+                <li>ارتفاع دو شانه</li>
+                <li>جلو بودن گردن (فاصله گوش تا خط عمود شانه)</li>
+                <li>گردی پشت از بغل</li>
+                <li>فاصله بازو تا پهلو</li>
+                <li>عرض ظاهری شانه</li>
+            </ul>
+            <p>این معیارها ملاک اصلی موفقیت‌اند، نه فقط افزایش وزنه.</p>
+        </div>
+    </details>
+
+    <!-- نکته پایانی -->
+    <div style="background: #e6f0fa; border-radius: 20px; padding: 16px 20px; margin-top: 30px; border-right: 6px solid #1f5b9e;">
+        <p style="font-weight: 500; color: #0b2b4a;">📌 نکته پایانی</p>
+        <p>این برنامه به سقف کیفیتی رسیده که بدون ارزیابی حرکتی حضوری قابل طراحی است. اگر بعد از ۸-۱۲ هفته اجرای دقیق، در عکس‌های مقایسه‌ای بهبود محسوسی در پوسچر ندیدی، یا در هر مرحله درد مفصلی/بی‌حسی تجربه کردی، توقف کن و ارزیابی حضوری بگیر. هیچ برنامه نوشته‌شده‌ای جایگزین چشم متخصص حاضر نمی‌شود.</p>
     </div>
-    <div class="farm-animals">
-      <span>🐔</span> <span>🐓</span> <span>🐣</span>
-    </div>
-    <div class="mushroom-man">
-      <span>🍄</span> <span>🧑‍🌾</span> <small>قارچ‌خور</small>
-    </div>
-  </div>
 
-  <!-- بخش خلاصه -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">🧑‍🌾</span> خلاصه و اهداف</div>
-    <div style="display: flex; flex-wrap: wrap; gap: 12px 30px; font-size:1.1rem;">
-      <div><span class="badge-farm">قد</span> ۱۸۲ سانتی‌متر</div>
-      <div><span class="badge-farm">وزن</span> ۷۸ کیلوگرم</div>
-      <div><span class="badge-farm">سابقه</span> ~۵ ماه</div>
-      <div><span class="badge-farm">چربی</span> ۱۷-۲۰٪</div>
-      <div><span class="badge-farm">اسپلیت</span> Push A / Pull A / Legs / Push B / Pull B</div>
-    </div>
-    <div style="margin-top:12px; background:#e6dbb0; padding:10px 18px; border-radius:40px;">
-      <strong>🎯 اولویت:</strong> اصلاح Forward Head → Rounded Shoulders → کایفوز → عرض شانه → V-Taper → ...
-    </div>
-  </div>
-
-  <!-- گرم‌کردن -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">🔥</span> گرم‌کردن (۸-۱۰ دقیقه)</div>
-    <div class="grid-2col">
-      <div><strong>🐈 Cat-Camel</strong> 1×10</div>
-      <div><strong>🔄 Band Pull-Apart</strong> 2×15</div>
-      <div><strong>🧘 Dead Hang</strong> 2×30s</div>
-      <div><strong>👤 Chin Tuck</strong> 2×10 (نگه ۳s)</div>
-      <div><strong>🧱 Scapular Wall Slide</strong> 1×10</div>
-    </div>
-  </div>
-
-  <!-- روز ۱ Push A -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">💪</span> روز ۱ — Push A (Upper Chest + Lateral Delt + Triceps)</div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🏋️</span> پرس سینه دمبل شیب‌دار (۳۰-۴۵ درجه)</div><div class="exercise-detail"><strong>ست:</strong> 4 | <strong>تکرار:</strong> 8-10 | <strong>تمپو:</strong> 2-1-1-0 | <strong>استراحت:</strong> 90s</div><div class="note">کتف پایین و عقب، آرنج ~۴۵ درجه، بدون قفل کردن</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🎣</span> فلای شیب‌دار کابل</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 12-15 | <strong>تمپو:</strong> 2-0-1-1 | <strong>استراحت:</strong> 60s</div><div class="note">مسیر بغل‌کردن درخت، آرنج ثابت</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">📡</span> نشر جانب کابل</div><div class="exercise-detail"><strong>ست:</strong> 5 | <strong>تکرار:</strong> 15-20 | <strong>تمپو:</strong> 2-0-1-1 | <strong>استراحت:</strong> 45s</div><div class="note">تا ارتفاع شانه، شروع از شانه نه مچ</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">💢</span> پشت بازو کابل طناب</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 10-12 | <strong>تمپو:</strong> 2-0-1-0 | <strong>استراحت:</strong> 60s</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">⬆️</span> پشت بازو اورهد کابل</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 12-15 | <strong>تمپو:</strong> 2-1-1-0 | <strong>استراحت:</strong> 60s</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🌀</span> Pallof Press</div><div class="exercise-detail"><strong>ست:</strong> 2 هر طرف | <strong>تکرار:</strong> 12 | <strong>استراحت:</strong> 45s</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">➕</span> Push-up Plus (Serratus)</div><div class="exercise-detail"><strong>ست:</strong> 2 | <strong>تکرار:</strong> 12-15 | <strong>تمپو:</strong> 2-1-2-0</div></div>
-  </div>
-
-  <!-- روز ۲ Pull A -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">🔙</span> روز ۲ — Pull A (Lat عرض + ضخامت + Rear Delt)</div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">⬇️</span> لت پول‌داون دست باز</div><div class="exercise-detail"><strong>ست:</strong> 4 | <strong>تکرار:</strong> 8-10 | <strong>تمپو:</strong> 2-1-1-0 | <strong>استراحت:</strong> 90s</div><div class="note">میله تا بالای سینه، آرنج به پایین/عقب</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🪑</span> Chest-Supported Row</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 10-12 | <strong>تمپو:</strong> 2-1-1-0 | <strong>استراحت:</strong> 75s</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🪶</span> Chest-Supported Reverse Fly (Rear Delt)</div><div class="exercise-detail"><strong>ست:</strong> 4 | <strong>تکرار:</strong> 12-15 | <strong>تمپو:</strong> 2-0-1-1 | <strong>استراحت:</strong> 60s</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🎭</span> Face Pull</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 15-20 | <strong>تمپو:</strong> کنترل‌شده | <strong>استراحت:</strong> 45s</div><div class="note">به سمت پیشانی/بینی، شست‌ها پشت سر</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🙆</span> Prone Y-Raise</div><div class="exercise-detail"><strong>ست:</strong> 2 | <strong>تکرار:</strong> 12-15 | <strong>تمپو:</strong> 2-0-1-1</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">💪</span> جلو بازو دمبل</div><div class="exercise-detail"><strong>ست:</strong> 2 | <strong>تکرار:</strong> 10-12 | <strong>تمپو:</strong> 2-0-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🧗</span> Scapular Pull-up</div><div class="exercise-detail"><strong>ست:</strong> 2 | <strong>تکرار:</strong> 10-12 | <strong>تمپو:</strong> 2-1-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🧠</span> Deep Neck Flexor Hold</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>زمان:</strong> 15-20s | <strong>ایزومتریک</strong></div></div>
-  </div>
-
-  <!-- روز ۳ Legs -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">🦵</span> روز ۳ — Legs (حجم متوسط)</div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🏋️</span> اسکوات پا یا لگ پرس</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 8-10 | <strong>تمپو:</strong> 2-1-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🍗</span> رومانین ددلیفت دمبل</div><div class="exercise-detail"><strong>ست:</strong> 4 | <strong>تکرار:</strong> 8-10 | <strong>تمپو:</strong> 3-0-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🚶</span> لانج بلغاری</div><div class="exercise-detail"><strong>ست:</strong> 2 هر پا | <strong>تکرار:</strong> 10 | <strong>تمپو:</strong> 2-0-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🔽</span> پشت پا خوابیده</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 12-15 | <strong>تمپو:</strong> 2-1-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🐮</span> ساق ایستاده</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 15-20 | <strong>تمپو:</strong> 2-0-1-1</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🧳</span> Suitcase Carry</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>مسافت:</strong> ۳۰-۴۰ متر هر طرف</div></div>
-  </div>
-
-  <!-- روز ۴ Push B -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">💢</span> روز ۴ — Push B (سینه میانی + Shoulder Press سبک + Triceps)</div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🏋️</span> پرس سینه دمبل (تخت یا شیب ۱۵°)</div><div class="exercise-detail"><strong>ست:</strong> 4 | <strong>تکرار:</strong> 8-10 | <strong>تمپو:</strong> 2-1-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🪢</span> فلای سینه کابل</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 12-15 | <strong>تمپو:</strong> 2-0-1-1</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🤖</span> Machine Shoulder Press (گریپ خنثی) — محافظه‌کارانه</div><div class="exercise-detail"><strong>ست:</strong> 2 (محدود) | <strong>تکرار:</strong> 10-12 | <strong>RIR:</strong> 2 ثابت</div><div class="note">فقط حفظ الگو، نه عضله‌سازی اصلی</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">📐</span> نشر جانب دستگاه</div><div class="exercise-detail"><strong>ست:</strong> 4 | <strong>تکرار:</strong> 15-20 | <strong>تمپو:</strong> 2-0-1-1</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">💪</span> پشت بازو تک‌دست کابل</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 12-15 | <strong>تمپو:</strong> 2-0-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🧘</span> پلانک</div><div class="exercise-detail"><strong>ست:</strong> 2 | <strong>زمان:</strong> ۴۵-۶۰s</div></div>
-  </div>
-
-  <!-- روز ۵ Pull B -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">🔁</span> روز ۵ — Pull B (Lat ضخامت + Rear Delt/Lower Trap)</div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">💪</span> روئینگ تک‌دست دمبل</div><div class="exercise-detail"><strong>ست:</strong> 4 | <strong>تکرار:</strong> 8-10 | <strong>تمپو:</strong> 2-1-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🧎</span> Half-Kneeling Lat Pulldown</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 10-12 | <strong>تمپو:</strong> 2-1-1-0</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">📐</span> Trap-3 Raise</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 12-15 | <strong>تمپو:</strong> 2-0-1-1</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">📡</span> نشر جانب کابل (تکرار)</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 15-20 | <strong>تمپو:</strong> 2-0-1-1</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🎭</span> Face Pull (تکرار)</div><div class="exercise-detail"><strong>ست:</strong> 3 | <strong>تکرار:</strong> 15-20</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🔄</span> Band External Rotation</div><div class="exercise-detail"><strong>ست:</strong> 3 هر طرف | <strong>تکرار:</strong> 15</div></div>
-    <div class="exercise-block"><div class="exercise-name"><span class="icon">🔨</span> جلو بازو چکشی (Hammer Curl)</div><div class="exercise-detail"><strong>ست:</strong> 2 | <strong>تکرار:</strong> 12 | <strong>تمپو:</strong> 2-0-1-0</div></div>
-  </div>
-
-  <!-- جدول حجم هفتگی -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">📊</span> جدول حجم هفتگی (ست)</div>
-    <table class="table-vol">
-      <tr><th>عضله</th><th>حجم</th><th>عضله</th><th>حجم</th></tr>
-      <tr><td>Chest (کلی)</td><td>۱۴</td><td>Lateral Delt</td><td>۱۲</td></tr>
-      <tr><td>Upper Chest</td><td>۷</td><td>Rear Delt</td><td>۱۲</td></tr>
-      <tr><td>Lats (عرض)</td><td>۱۱</td><td>Triceps</td><td>۱۱</td></tr>
-      <tr><td>Upper/Mid Back</td><td>۱۰</td><td>Biceps</td><td>۵</td></tr>
-      <tr><td>Lower Trap</td><td>۸</td><td>Core</td><td>۷</td></tr>
-      <tr><td>Quads</td><td>۸</td><td>Hamstrings</td><td>۷</td></tr>
-    </table>
-    <div style="margin-top:12px; background:#dac29c; padding:6px 18px; border-radius:40px; display:inline-block;">نسبت Pull:Push ~ 1.3:1</div>
-  </div>
-
-  <!-- دوره‌بندی و پیشرفت -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">📈</span> پیشرفت و دوره‌بندی ۸ هفته‌ای</div>
-    <div style="display:flex; flex-wrap:wrap; gap:12px;">
-      <div><span class="badge-farm">هفته ۱-۲</span> RIR 3 (تطبیق)</div>
-      <div><span class="badge-farm">هفته ۳-۴</span> RIR 2</div>
-      <div><span class="badge-farm">هفته ۵-۶</span> RIR 1</div>
-      <div><span class="badge-farm">هفته ۷</span> RIR 1-0 (اوج)</div>
-      <div><span class="badge-farm">هفته ۸</span> Deload (۵۰% حجم)</div>
-    </div>
-    <div style="margin-top:12px; background:#f3e8c5; padding:6px 20px; border-radius:40px;"><strong>Double Progression:</strong> افزایش وزنه در سقف تکرار</div>
-  </div>
-
-  <!-- سرد کردن + روتین روزانه -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">🧘</span> سرد کردن و روتین روزانه اصلاح پوسچر</div>
-    <div><span class="badge-farm">سرد کردن</span> Doorway Chest Stretch · Child Pose · Cat-Camel</div>
-    <div style="margin-top:12px;"><span class="badge-farm">روزانه (۱۰ دقیقه)</span> Chin Tuck · Deep Neck Flexor Hold · Wall Slide · Prone Y-Raise · Band External Rotation · Push-up Plus</div>
-  </div>
-
-  <!-- کاردیو، تغذیه، ریکاوری -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">🥗</span> کاردیو · تغذیه · ریکاوری</div>
-    <div><span class="badge-farm">کاردیو</span> ۲ جلسه هفته، Zone 2، ۲۰-۳۰ دقیقه</div>
-    <div><span class="badge-farm">تغذیه (Lean Bulk)</span> مازاد ۱۵۰-۲۵۰ کالری · پروتئین ۱.۸-۲.۲ گرم/کیلو</div>
-    <div><span class="badge-farm">ریکاوری</span> خواب ۷.۵-۹ ساعت · دیلود هفته ۸ · مدیریت خستگی</div>
-  </div>
-
-  <!-- پروتکل پیگیری -->
-  <div class="section-card relative">
-    <div class="section-title"><span class="emoji-big">📸</span> پروتکل پیگیری (هر ۴ هفته)</div>
-    <div>عکس از ۳ زاویه (روبه‌رو، پشت، بغل) و مقایسه ارتفاع شانه، جلو بودن گردن، گردی پشت، عرض شانه.</div>
-  </div>
-
-  <!-- قارچ‌خور و مرغ و خروس در فوتر -->
-  <div class="mushroom-footer">
-    <span>🍄</span> <span>🧑‍🌾</span> قارچ‌خورِ تمرین‌دهنده <span>🐔</span> <span>🐓</span> <span>🐣</span>
-    <span style="font-size:1.8rem; background: #2d4a2c; padding:0 20px; border-radius:60px;">🌾</span>
-  </div>
-
-  <div class="footer-chicken">
-    <span>🐓</span> <span>🌽</span> <span>🐔</span> <span>🥚</span> <span>🐣</span> <span>🌾</span>
-  </div>
-
-  <!-- نکته پایانی -->
-  <div style="background: #dbbd87; border-radius: 60px; padding: 14px 24px; margin-top: 30px; border: 4px solid #6d4f2b; text-align: center; font-weight: bold;">
-    🧑‍⚕️ این برنامه به سقف کیفیت طراحی رسیده، ولی هیچ برنامه‌ای جای ارزیابی حضوری متخصص را نمی‌گیرد. در صورت درد یا بی‌حسی، تمرین را متوقف کنید.
-  </div>
-
+    <hr>
+    <p style="text-align: center; color: #526e8a; font-size: 0.9rem; margin-top: 16px;">برنامه جامع اصلاحی-عضله‌سازی · ۸ هفته · طراحی شده بر اساس اولویت پوسچر</p>
 </div>
-<!-- پایان farm-container -->
 </body>
 </html>
