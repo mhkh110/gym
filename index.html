@@ -24,7 +24,6 @@
       position: relative;
     }
 
-    /* ستاره‌های CSS */
     body::before {
       content: '';
       position: fixed;
@@ -53,7 +52,6 @@
       z-index: 2;
     }
 
-    /* header */
     .header {
       text-align: right;
       margin-bottom: 1.8rem;
@@ -78,7 +76,6 @@
       margin-top: 6px;
     }
 
-    /* info box */
     .info-box {
       background: rgba(18, 12, 42, 0.75);
       backdrop-filter: blur(8px);
@@ -202,7 +199,6 @@
       padding: 0.4rem 0.8rem 1.6rem 0.8rem;
     }
 
-    /* جدول */
     .table-wrap {
       overflow-x: auto;
       border-radius: 20px;
@@ -244,7 +240,6 @@
       max-width: 220px;
     }
 
-    /* ===== موبایل: کارت ===== */
     @media screen and (max-width: 650px) {
       .table-wrap {
         overflow-x: visible;
@@ -314,7 +309,6 @@
       }
     }
 
-    /* day off notice */
     .day-off {
       background: rgba(251, 191, 36, 0.06);
       border: 1px dashed #b89b4b;
@@ -353,7 +347,6 @@
     <div class="sub">۵ روز تمرین · سه‌شنبه و جمعه استراحت</div>
   </header>
 
-  <!-- RIR & پیشرفت -->
   <div class="info-box">
     <div class="rir-row">
       <span class="rir-tag">هفته ۱-۲: <strong>RIR ۳</strong></span>
@@ -375,7 +368,6 @@
     </div>
   </div>
 
-  <!-- آکاردئون‌ها -->
   <div id="accordionContainer"></div>
 
   <div class="footer">★ برنامه تمرینی ۵ روزه · بدون چک‌باکس · راست‌چین ★</div>
@@ -383,94 +375,93 @@
 
 <script>
   (function() {
-    // ===== داده =====
-    const daysData = [
-      {
-        id: 1,
-        label: 'روز ۱',
-        name: 'Push A',
-        exercises: [
-          ["پرس سینه دمبل شیب‌دار ۳۰-۴۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵° نه ۹۰°؛ کتف پایین/عقب قبل از شروع"],
-          ["فلای شیب‌دار کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی؛ در بالا کامل قفل نکن"],
-          ["نشر جانب کابل", "5×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه، نه بالاتر؛ بدون تاب بدن"],
-          ["پشت بازو کابل طناب", "3×10-12", "2-0-1-0", "60s", "آرنج چسبیده به پهلو"],
-          ["پشت بازو اورهد کابل", "3×12-15", "2-1-1-0", "60s", "آرنج ثابت نزدیک سر"],
-          ["Pallof Press", "2×12 هر طرف", "کنترل‌شده", "45s", "بدون چرخش تنه"],
-          ["Push-up Plus", "2×12-15", "2-1-2-0", "45s", "در بالا کتف را ۱s بیشتر جلو هل بده"]
-        ]
-      },
-      {
-        id: 2,
-        label: 'روز ۲',
-        name: 'Pull A',
-        exercises: [
-          ["لت پول‌داون دست باز", "4×8-10", "2-1-1-0", "90s", "تا بالای سینه؛ بدون تاب بدن"],
-          ["Chest-Supported Row", "3×10-12", "2-1-1-0", "75s", "مکث و انقباض کامل کتف در انتها"],
-          ["Chest-Supported Reverse Fly", "4×12-15", "2-0-1-1", "60s", "حرکت از شانه نه مچ"],
-          ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی؛ شست‌ها پشت سر در انتها"],
-          ["Prone Y-Raise", "2×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک"],
-          ["جلو بازو دمبل", "2×10-12", "2-0-1-0", "60s", "آرنج ثابت کنار تنه"],
-          ["Scapular Pull-up", "2×10-12", "2-1-1-0", "45s", "بدون خم‌کردن آرنج"],
-          ["Deep Neck Flexor Hold", "3×15-20s", "ایزومتریک", "30s", "چانه جمع، سر کمی بلند"]
-        ]
-      },
-      {
-        id: 3,
-        label: 'روز ۳',
-        name: 'Legs',
-        exercises: [
-          ["اسکوات یا لگ پرس", "3×8-10", "2-1-1-0", "90s", "زانو هم‌راستا با نوک پا؛ کمر صاف"],
-          ["رومانین ددلیفت دمبل", "4×8-10", "3-0-1-0", "90s", "چرخش از لگن؛ کشش هدف است نه لمس زمین"],
-          ["لانج بلغاری", "2×10 هر پا", "2-0-1-0", "60s", "تنه کمی جلو؛ تمرکز روی پای جلو"],
-          ["پشت پا خوابیده", "3×12-15", "2-1-1-0", "60s", "لگن چسبیده به دستگاه"],
-          ["ساق ایستاده", "3×15-20", "2-0-1-1", "45s", "دامنه کامل؛ مکث در بالا"],
-          ["Suitcase Carry", "3×30-40m هر طرف", "کنترل‌شده", "60s", "تنه کاملاً عمود"]
-        ]
-      },
-      {
-        id: 4,
-        label: 'روز ۴',
-        name: 'Push B',
-        exercises: [
-          ["پرس سینه دمبل تخت/شیب ۱۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵°؛ دامنه کامل"],
-          ["فلای سینه کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی، کتف ثابت"],
-          ["Machine Shoulder Press", "2×10-12", "2-1-1-0", "75s", "RIR ثابت ۲؛ پایین نرو بیش از ۹۰°؛ آرنج کمی جلوتر از تنه"],
-          ["نشر جانب دستگاه", "4×15-20", "2-0-1-1", "45s", "بدون بالا انداختن شانه"],
-          ["پشت بازو تک‌دست کابل", "3×12-15", "2-0-1-0", "45s", "آرنج چسبیده به پهلو"],
-          ["پلانک", "2×45-60s", "ایزومتریک", "45s", "باسن نه بالا نه پایین"]
-        ]
-      },
-      {
-        id: 5,
-        label: 'روز ۵',
-        name: 'Pull B',
-        exercises: [
-          ["روئینگ تک‌دست دمبل", "4×8-10", "2-1-1-0", "90s", "اول کتف پایین/عقب، بعد آرنج بکش"],
-          ["Half-Kneeling Lat Pulldown", "3×10-12", "2-1-1-0", "75s", "تنه عمود؛ Core منقبض"],
-          ["Trap-3 Raise", "3×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک، مسیر قطری"],
-          ["نشر جانب کابل", "3×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه"],
-          ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی"],
-          ["Band External Rotation", "3×15 هر طرف", "کنترل‌شده", "30s", "فقط ساعد می‌چرخد"],
-          ["جلو بازو چکشی", "2×12", "2-0-1-0", "45s", "گریپ خنثی ثابت"]
-        ]
-      }
+    // ===== داده با نام روزهای هفته =====
+    const weekDays = ['شنبه', 'یکشنبه', 'دوشنبه', 'سه‌شنبه', 'چهارشنبه', 'پنجشنبه', 'جمعه'];
+    // روزهای تمرین: شنبه(0), یکشنبه(1), دوشنبه(2), چهارشنبه(4), پنجشنبه(5) — سه‌شنبه(3) و جمعه(6) استراحت
+    const workoutMap = [
+      { dayIndex: 0, label: 'شنبه', name: 'Push A' },
+      { dayIndex: 1, label: 'یکشنبه', name: 'Pull A' },
+      { dayIndex: 2, label: 'دوشنبه', name: 'Legs' },
+      { dayIndex: 4, label: 'چهارشنبه', name: 'Push B' },
+      { dayIndex: 5, label: 'پنجشنبه', name: 'Pull B' }
     ];
+
+    const exercisesData = {
+      'Push A': [
+        ["پرس سینه دمبل شیب‌دار ۳۰-۴۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵° نه ۹۰°؛ کتف پایین/عقب قبل از شروع"],
+        ["فلای شیب‌دار کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی؛ در بالا کامل قفل نکن"],
+        ["نشر جانب کابل", "5×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه، نه بالاتر؛ بدون تاب بدن"],
+        ["پشت بازو کابل طناب", "3×10-12", "2-0-1-0", "60s", "آرنج چسبیده به پهلو"],
+        ["پشت بازو اورهد کابل", "3×12-15", "2-1-1-0", "60s", "آرنج ثابت نزدیک سر"],
+        ["Pallof Press", "2×12 هر طرف", "کنترل‌شده", "45s", "بدون چرخش تنه"],
+        ["Push-up Plus", "2×12-15", "2-1-2-0", "45s", "در بالا کتف را ۱s بیشتر جلو هل بده"]
+      ],
+      'Pull A': [
+        ["لت پول‌داون دست باز", "4×8-10", "2-1-1-0", "90s", "تا بالای سینه؛ بدون تاب بدن"],
+        ["Chest-Supported Row", "3×10-12", "2-1-1-0", "75s", "مکث و انقباض کامل کتف در انتها"],
+        ["Chest-Supported Reverse Fly", "4×12-15", "2-0-1-1", "60s", "حرکت از شانه نه مچ"],
+        ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی؛ شست‌ها پشت سر در انتها"],
+        ["Prone Y-Raise", "2×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک"],
+        ["جلو بازو دمبل", "2×10-12", "2-0-1-0", "60s", "آرنج ثابت کنار تنه"],
+        ["Scapular Pull-up", "2×10-12", "2-1-1-0", "45s", "بدون خم‌کردن آرنج"],
+        ["Deep Neck Flexor Hold", "3×15-20s", "ایزومتریک", "30s", "چانه جمع، سر کمی بلند"]
+      ],
+      'Legs': [
+        ["اسکوات یا لگ پرس", "3×8-10", "2-1-1-0", "90s", "زانو هم‌راستا با نوک پا؛ کمر صاف"],
+        ["رومانین ددلیفت دمبل", "4×8-10", "3-0-1-0", "90s", "چرخش از لگن؛ کشش هدف است نه لمس زمین"],
+        ["لانج بلغاری", "2×10 هر پا", "2-0-1-0", "60s", "تنه کمی جلو؛ تمرکز روی پای جلو"],
+        ["پشت پا خوابیده", "3×12-15", "2-1-1-0", "60s", "لگن چسبیده به دستگاه"],
+        ["ساق ایستاده", "3×15-20", "2-0-1-1", "45s", "دامنه کامل؛ مکث در بالا"],
+        ["Suitcase Carry", "3×30-40m هر طرف", "کنترل‌شده", "60s", "تنه کاملاً عمود"]
+      ],
+      'Push B': [
+        ["پرس سینه دمبل تخت/شیب ۱۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵°؛ دامنه کامل"],
+        ["فلای سینه کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی، کتف ثابت"],
+        ["Machine Shoulder Press", "2×10-12", "2-1-1-0", "75s", "RIR ثابت ۲؛ پایین نرو بیش از ۹۰°؛ آرنج کمی جلوتر از تنه"],
+        ["نشر جانب دستگاه", "4×15-20", "2-0-1-1", "45s", "بدون بالا انداختن شانه"],
+        ["پشت بازو تک‌دست کابل", "3×12-15", "2-0-1-0", "45s", "آرنج چسبیده به پهلو"],
+        ["پلانک", "2×45-60s", "ایزومتریک", "45s", "باسن نه بالا نه پایین"]
+      ],
+      'Pull B': [
+        ["روئینگ تک‌دست دمبل", "4×8-10", "2-1-1-0", "90s", "اول کتف پایین/عقب، بعد آرنج بکش"],
+        ["Half-Kneeling Lat Pulldown", "3×10-12", "2-1-1-0", "75s", "تنه عمود؛ Core منقبض"],
+        ["Trap-3 Raise", "3×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک، مسیر قطری"],
+        ["نشر جانب کابل", "3×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه"],
+        ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی"],
+        ["Band External Rotation", "3×15 هر طرف", "کنترل‌شده", "30s", "فقط ساعد می‌چرخد"],
+        ["جلو بازو چکشی", "2×12", "2-0-1-0", "45s", "گریپ خنثی ثابت"]
+      ]
+    };
 
     const container = document.getElementById('accordionContainer');
     if (!container) return;
 
-    // برای هر روز یک آیتم آکاردئون بساز
-    daysData.forEach((day, index) => {
-      const item = document.createElement('div');
-      item.className = 'accordion-item' + (index === 0 ? ' active' : '');
+    // به ترتیب روزهای هفته از شنبه تا جمعه
+    for (let i = 0; i < 7; i++) {
+      const dayInfo = workoutMap.find(d => d.dayIndex === i);
+      if (!dayInfo) {
+        // روز استراحت (سه‌شنبه یا جمعه)
+        const offDiv = document.createElement('div');
+        offDiv.className = 'day-off';
+        const dayName = weekDays[i];
+        offDiv.innerHTML = `🛌 ${dayName} — استراحت <span>بدون تمرین، ریکاوری فعال</span>`;
+        container.appendChild(offDiv);
+        continue;
+      }
 
-      // header
+      const dayName = dayInfo.label;
+      const workoutName = dayInfo.name;
+      const exercises = exercisesData[workoutName] || [];
+
+      const item = document.createElement('div');
+      item.className = 'accordion-item' + (i === 0 ? ' active' : '');
+
       const header = document.createElement('div');
       header.className = 'accordion-header';
       header.innerHTML = `
         <h2>
-          ${day.label}
-          <span class="day-badge">${day.name}</span>
+          ${dayName}
+          <span class="day-badge">${workoutName}</span>
         </h2>
         <span class="arrow">▾</span>
       `;
@@ -493,15 +484,13 @@
         }
       });
 
-      // body
       const body = document.createElement('div');
       body.className = 'accordion-body';
-      if (index === 0) body.style.maxHeight = '1800px';
+      if (i === 0) body.style.maxHeight = '1800px';
 
       const inner = document.createElement('div');
       inner.className = 'accordion-body-inner';
 
-      // جدول
       const wrap = document.createElement('div');
       wrap.className = 'table-wrap';
 
@@ -514,7 +503,7 @@
           <th>نکات اجرا</th>
         </tr></thead><tbody>`;
 
-      day.exercises.forEach(ex => {
+      exercises.forEach(ex => {
         const [movement, setsReps, tempo, rest, note] = ex;
         tableHtml += `<tr>
           <td data-label="حرکت"><span class="movement-name">${movement}</span></td>
@@ -532,9 +521,9 @@
       item.appendChild(header);
       item.appendChild(body);
       container.appendChild(item);
-    });
+    }
 
-    // تنظیم ارتفاع اولیه برای آیتم active
+    // تنظیم ارتفاع اولیه برای active
     document.querySelectorAll('.accordion-item.active').forEach(item => {
       const body = item.querySelector('.accordion-body');
       const inner = body?.querySelector('.accordion-body-inner');
@@ -543,7 +532,6 @@
       }
     });
 
-    // برای ریسپانسیو: در صورت تغییر اندازه، ارتفاع active ها به‌روز شود
     window.addEventListener('resize', function() {
       document.querySelectorAll('.accordion-item.active').forEach(item => {
         const body = item.querySelector('.accordion-body');
