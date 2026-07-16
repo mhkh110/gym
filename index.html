@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
@@ -9,41 +9,41 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      font-family: 'Segoe UI', Tahoma, 'IRANSans', system-ui, sans-serif;
     }
 
     body {
-      min-height: 100vh;
-      background: radial-gradient(circle at 10% 20%, #0b0a1a, #120b2b 40%, #0f1a2e 80%, #03050c);
+      background: radial-gradient(circle at 20% 30%, #0b0a1a, #100b2b 40%, #0a1428 75%, #03050c);
       background-attachment: fixed;
-      color: #f2eee9;
-      padding: 1.2rem 1rem 3rem;
+      min-height: 100vh;
+      color: #f2edfc;
+      padding: 1.5rem 1rem 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;
     }
 
-    /* افکت ستاره‌های کوچک با CSS */
+    /* ستاره‌های CSS */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image: 
-        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 90px 40px, #ddd, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 160px 120px, #f0f0ff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 200px 50px, #eaeaff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 300px 80px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 400px 30px, #f8f4ff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 500px 120px, #e0e0ff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 700px 60px, #ffffff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 900px 40px, #f2f0ff, rgba(0,0,0,0));
-      background-size: 200px 200px;
-      opacity: 0.35;
       z-index: 0;
+      background-image: 
+        radial-gradient(2px 2px at 15px 25px, #eee, transparent),
+        radial-gradient(2px 2px at 80px 110px, #f0f0ff, transparent),
+        radial-gradient(1.5px 1.5px at 150px 50px, #fff, transparent),
+        radial-gradient(1px 1px at 250px 180px, #e8e4ff, transparent),
+        radial-gradient(2px 2px at 350px 70px, #faf8ff, transparent),
+        radial-gradient(1.5px 1.5px at 470px 130px, #d9d0ff, transparent),
+        radial-gradient(2px 2px at 600px 40px, #ffffff, transparent),
+        radial-gradient(1px 1px at 720px 160px, #e0daff, transparent),
+        radial-gradient(2px 2px at 850px 90px, #f2eeff, transparent),
+        radial-gradient(1.5px 1.5px at 1000px 60px, #cbc0ff, transparent);
+      background-size: 200px 200px;
+      opacity: 0.4;
     }
 
     .container {
@@ -53,569 +53,503 @@
       z-index: 2;
     }
 
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      margin-bottom: 0.25rem;
-      background: linear-gradient(to right, #d9c9ff, #b7a4ff, #8f7cff);
+    /* header */
+    .header {
+      text-align: right;
+      margin-bottom: 1.8rem;
+      padding-right: 4px;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #d6caff, #b297ff, #8a7aff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 0 15px rgba(120, 80, 255, 0.3);
-      display: inline-block;
+      text-shadow: 0 0 30px rgba(140, 100, 255, 0.25);
+      letter-spacing: 1px;
     }
-
-    .sub {
+    .header .sub {
+      font-size: 1.1rem;
       font-weight: 600;
-      color: #cbc3e6;
-      margin-bottom: 1.8rem;
-      border-right: 3px solid #7d6bc9;
-      padding-right: 12px;
-      font-size: 1rem;
+      color: #c5bae6;
+      border-right: 4px solid #7b66d9;
+      padding-right: 14px;
+      margin-top: 6px;
     }
 
-    /* باکس RIR و پیشرفت */
+    /* info box */
     .info-box {
-      background: rgba(18, 12, 40, 0.7);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid #4d3b7a;
-      border-radius: 24px;
-      padding: 1.2rem 1.5rem;
-      margin-bottom: 2rem;
+      background: rgba(18, 12, 42, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid #4a367a;
+      border-radius: 28px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 8px 35px rgba(0, 0, 0, 0.6);
+    }
+    .info-box .rir-row {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+      gap: 10px 16px;
+      margin-bottom: 14px;
     }
-
-    .info-box strong {
-      color: #d6caff;
-      font-weight: 700;
-    }
-
-    .rir-tag {
-      background: #342b5c;
-      padding: 0.4rem 1rem;
+    .info-box .rir-tag {
+      background: #2a1f52;
+      padding: 0.4rem 1.2rem;
       border-radius: 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #e3d9ff;
+      border-right: 3px solid #a187ff;
+    }
+    .info-box .rir-tag strong {
+      color: #bca8ff;
+    }
+    .info-box .prog-text {
+      font-size: 1.05rem;
+      color: #ded6f7;
+      background: rgba(255, 215, 0, 0.04);
+      padding: 0.7rem 1.2rem;
+      border-radius: 16px;
+      border-right: 4px solid #fbbf24;
+      margin-top: 6px;
+      line-height: 1.7;
+    }
+    .info-box .prog-text u {
+      color: #f5e56b;
+      text-decoration-color: #a187ff;
+    }
+    .info-box .warmup {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid #3b2e62;
+      font-size: 0.95rem;
+      color: #c8bce8;
+    }
+    .info-box .warmup span {
+      background: #2a2250;
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      display: inline-block;
+      margin: 3px 5px 3px 0;
       font-weight: 600;
       font-size: 0.9rem;
-      border-left: 3px solid #a088ff;
+      color: #e2d6ff;
     }
 
-    .prog-note {
-      font-size: 0.95rem;
-      max-width: 600px;
-      margin-top: 6px;
-      color: #dfd7f5;
-    }
-
-    .prog-note span {
-      background: #2f2555;
-      padding: 0.15rem 0.7rem;
-      border-radius: 30px;
-      font-weight: 600;
-      color: #cfbeff;
-    }
-
-    /* آکاردئون */
+    /* accordion */
     .accordion-item {
-      background: rgba(8, 6, 22, 0.6);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      border: 1px solid #3a2c63;
-      border-radius: 20px;
-      margin-bottom: 1.2rem;
+      background: rgba(10, 6, 28, 0.6);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid #3f306b;
+      border-radius: 24px;
+      margin-bottom: 1.3rem;
       overflow: hidden;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
       transition: border-color 0.2s;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
     }
 
     .accordion-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.8rem;
       cursor: pointer;
-      background: rgba(28, 18, 55, 0.5);
+      background: rgba(28, 18, 58, 0.5);
       transition: background 0.2s;
       user-select: none;
-      border-radius: 20px 20px 0 0;
+      border-radius: 24px 24px 0 0;
     }
-
     .accordion-header:hover {
-      background: rgba(48, 34, 85, 0.7);
+      background: rgba(50, 34, 88, 0.7);
     }
-
     .accordion-header h2 {
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-size: 1.6rem;
+      font-weight: 800;
       color: #f0eaff;
-      letter-spacing: 0.3px;
       display: flex;
       align-items: center;
-      gap: 0.7rem;
+      gap: 0.8rem;
+      flex-wrap: wrap;
     }
-
-    .accordion-header h2 small {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: #b3a3e8;
-      background: #2a1e4a;
-      padding: 0.2rem 0.9rem;
-      border-radius: 30px;
+    .accordion-header h2 .day-badge {
+      background: #342a60;
+      padding: 0.15rem 1.2rem;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #cdbeff;
     }
-
-    .arrow {
-      font-size: 1.8rem;
-      color: #b29eff;
-      transition: transform 0.3s ease;
+    .accordion-header .arrow {
+      font-size: 2rem;
+      color: #b6a2ff;
+      transition: transform 0.35s ease;
       line-height: 1;
+    }
+    .accordion-item.active .arrow {
+      transform: rotate(180deg);
     }
 
     .accordion-body {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.45s cubic-bezier(0.33, 1, 0.68, 1);
-      background: transparent;
+      transition: max-height 0.45s cubic-bezier(0.25, 1, 0.3, 1);
     }
-
     .accordion-body-inner {
-      padding: 0.2rem 0.8rem 1.6rem 0.8rem;
-    }
-
-    .accordion-item.active .arrow {
-      transform: rotate(180deg);
+      padding: 0.4rem 0.8rem 1.6rem 0.8rem;
     }
 
     /* جدول */
     .table-wrap {
       overflow-x: auto;
-      margin: 0.5rem 0 0.2rem;
-      border-radius: 16px;
+      border-radius: 20px;
       background: rgba(0, 0, 0, 0.2);
-      padding: 0.2rem 0;
+      padding: 0.2rem 0.2rem;
     }
-
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.9rem;
-      min-width: 480px;
+      font-size: 1rem;
+      min-width: 550px;
     }
-
     th {
       text-align: right;
-      padding: 0.8rem 0.5rem 0.5rem 0.5rem;
+      padding: 0.9rem 0.8rem 0.6rem 0.8rem;
       font-weight: 700;
-      color: #c9baff;
-      border-bottom: 2px solid #4b377a;
-      font-size: 0.85rem;
+      color: #cfc0ff;
+      border-bottom: 2px solid #4f3b84;
+      font-size: 0.95rem;
       letter-spacing: 0.3px;
     }
-
     td {
-      padding: 0.7rem 0.4rem;
-      border-bottom: 1px solid #322b4b;
+      padding: 0.8rem 0.6rem;
+      border-bottom: 1px solid #342b55;
       vertical-align: middle;
-      line-height: 1.4;
+      line-height: 1.6;
     }
+    td:first-child, th:first-child { padding-right: 1.2rem; }
+    td:last-child, th:last-child { padding-left: 1rem; }
 
-    td:first-child, th:first-child { padding-right: 0.8rem; }
-    td:last-child, th:last-child { padding-left: 0.4rem; }
-
-    .movement-cell {
-      font-weight: 600;
-      color: #f2ecff;
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .movement-name {
+      font-weight: 700;
+      color: #f5efff;
+      font-size: 1.05rem;
     }
-
-    .movement-cell .checker {
-      width: 18px;
-      height: 18px;
-      accent-color: #a184ff;
-      cursor: pointer;
-      transform: scale(1.1);
-      flex-shrink: 0;
-    }
-
-    .movement-cell label {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
     .note-tip {
-      font-size: 0.78rem;
-      color: #c2b6e6;
-      max-width: 200px;
+      font-size: 0.9rem;
+      color: #c4b8e8;
+      max-width: 220px;
     }
 
-    /* در موبایل جدول به کارت تبدیل شود */
-    @media screen and (max-width: 600px) {
+    /* ===== موبایل: کارت ===== */
+    @media screen and (max-width: 650px) {
       .table-wrap {
         overflow-x: visible;
         background: transparent;
         padding: 0;
       }
-
       table, thead, tbody, th, td, tr {
         display: block;
       }
-
-      thead {
-        display: none;
-      }
+      thead { display: none; }
 
       tr {
-        background: rgba(16, 10, 38, 0.5);
-        backdrop-filter: blur(2px);
-        border-radius: 16px;
-        padding: 0.7rem 0.8rem;
-        margin-bottom: 0.8rem;
-        border: 1px solid #3d2e64;
+        background: rgba(18, 12, 44, 0.7);
+        backdrop-filter: blur(3px);
+        border-radius: 18px;
+        padding: 0.8rem 1rem;
+        margin-bottom: 0.9rem;
+        border: 1px solid #443573;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 6px 12px;
-        box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+        gap: 4px 16px;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.3);
       }
 
       td {
         border: none;
-        padding: 0.25rem 0;
+        padding: 0.2rem 0;
         display: flex;
         flex-direction: column;
         gap: 2px;
       }
-
       td:first-child { grid-column: 1 / -1; }
       td:last-child { grid-column: 1 / -1; }
 
       td::before {
         content: attr(data-label);
-        font-weight: 600;
+        font-weight: 700;
         color: #b7a6f0;
-        font-size: 0.7rem;
-        letter-spacing: 0.4px;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
         opacity: 0.9;
         display: block;
       }
-
-      .movement-cell {
-        font-size: 1rem;
+      .movement-name {
+        font-size: 1.2rem;
       }
-
       .note-tip {
         max-width: 100%;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
-
       .accordion-header {
-        padding: 0.8rem 1rem;
+        padding: 0.8rem 1.2rem;
       }
       .accordion-header h2 {
-        font-size: 1.2rem;
-        flex-wrap: wrap;
+        font-size: 1.3rem;
       }
       .info-box {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.4rem;
+        padding: 1rem 1.2rem;
       }
+      .header h1 { font-size: 2rem; }
     }
 
     @media screen and (max-width: 400px) {
       tr {
         grid-template-columns: 1fr;
-        gap: 4px;
+        gap: 2px;
       }
     }
 
-    /* check state */
-    .movement-cell .checker:checked + span {
-      text-decoration: line-through;
-      opacity: 0.7;
+    /* day off notice */
+    .day-off {
+      background: rgba(251, 191, 36, 0.06);
+      border: 1px dashed #b89b4b;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      color: #f0e6b0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+    }
+    .day-off span {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #cbbd89;
+      margin-top: 6px;
     }
 
-    .footer-note {
-      margin-top: 2.5rem;
-      color: #857bb5;
-      font-size: 0.8rem;
+    .footer {
+      margin-top: 2.8rem;
+      color: #7f71b5;
+      font-size: 0.85rem;
       text-align: center;
       border-top: 1px solid #342b57;
       padding-top: 1.5rem;
-      opacity: 0.8;
     }
   </style>
 </head>
 <body>
+
 <div class="container">
-  <h1>🚀 برنامه کهکشانی</h1>
-  <div class="sub">۵ روز · دوره‌بندی RIR · پیشرفت پویا</div>
 
-  <!-- باکس RIR و پیشرفت -->
+  <header class="header">
+    <h1>🚀 برنامه کهکشانی</h1>
+    <div class="sub">۵ روز تمرین · سه‌شنبه و جمعه استراحت</div>
+  </header>
+
+  <!-- RIR & پیشرفت -->
   <div class="info-box">
-    <div>
-      <strong>📋 دوره‌بندی RIR</strong>
-      <div style="display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 6px;">
-        <span class="rir-tag">هفته ۱-۲: RIR ۳</span>
-        <span class="rir-tag">هفته ۳-۴: RIR ۲</span>
-        <span class="rir-tag">هفته ۵-۶: RIR ۱</span>
-        <span class="rir-tag">هفته ۷: RIR ۱-۰</span>
-        <span class="rir-tag" style="background:#2f2555;">هفته ۸: دیلود (۵۰٪ حجم، ۶۰٪ شدت)</span>
-      </div>
+    <div class="rir-row">
+      <span class="rir-tag">هفته ۱-۲: <strong>RIR ۳</strong></span>
+      <span class="rir-tag">هفته ۳-۴: <strong>RIR ۲</strong></span>
+      <span class="rir-tag">هفته ۵-۶: <strong>RIR ۱</strong></span>
+      <span class="rir-tag">هفته ۷: <strong>RIR ۱-۰</strong></span>
+      <span class="rir-tag" style="background:#302555;">هفته ۸: <strong>دیلود</strong> (۵۰٪ حجم، ۶۰٪ شدت)</span>
     </div>
-    <div class="prog-note">
-      <span>📈 پیشرفت</span> وقتی در تمام ست‌ها به سقف بازه رسیدی → وزنه +۲.۵ تا ۵٪ اضافه کن، تکرار به کف بازه برگردد.
+    <div class="prog-text">
+      <strong>📈 پیشرفت (Progressive Overload):</strong> وقتی در <u>تمام ست‌های</u> یک حرکت به سقف بازه تکرار رسیدی → جلسه بعد <strong>۲.۵% تا ۵%</strong> وزنه اضافه کن، تکرار به کف بازه برگردد.
+    </div>
+    <div class="warmup">
+      🔥 گرم‌کردن هر جلسه:
+      <span>Cat-Camel</span>
+      <span>Band Pull-Apart</span>
+      <span>Dead Hang</span>
+      <span>Chin Tuck</span>
+      (هرکدام ۲ ست کوتاه)
     </div>
   </div>
 
-  <!-- روزها با آکاردئون -->
-  <div id="accordionContainer">
-    <!-- روز ۱ -->
-    <div class="accordion-item active">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h2>💪 روز ۱ — Push A <small>سینه · شانه · پشت بازو</small></h2>
-        <span class="arrow">▾</span>
-      </div>
-      <div class="accordion-body" style="max-height: 2000px;">
-        <div class="accordion-body-inner">
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>حرکت</th><th>ست×تکرار</th><th>تمپو</th><th>استراحت</th><th>نکات اجرا</th></tr></thead>
-              <tbody id="day1Body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- روز ۲ -->
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h2>🏋️ روز ۲ — Pull A <small>پشت · سرشانه · جلو بازو</small></h2>
-        <span class="arrow">▾</span>
-      </div>
-      <div class="accordion-body">
-        <div class="accordion-body-inner">
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>حرکت</th><th>ست×تکرار</th><th>تمپو</th><th>استراحت</th><th>نکات اجرا</th></tr></thead>
-              <tbody id="day2Body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- روز ۳ -->
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h2>🦵 روز ۳ — Legs <small>پاها · سرینی · ساق</small></h2>
-        <span class="arrow">▾</span>
-      </div>
-      <div class="accordion-body">
-        <div class="accordion-body-inner">
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>حرکت</th><th>ست×تکرار</th><th>تمپو</th><th>استراحت</th><th>نکات اجرا</th></tr></thead>
-              <tbody id="day3Body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- روز ۴ -->
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h2>🔥 روز ۴ — Push B <small>سینه · شانه · پشت بازو</small></h2>
-        <span class="arrow">▾</span>
-      </div>
-      <div class="accordion-body">
-        <div class="accordion-body-inner">
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>حرکت</th><th>ست×تکرار</th><th>تمپو</th><th>استراحت</th><th>نکات اجرا</th></tr></thead>
-              <tbody id="day4Body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- روز ۵ -->
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h2>🌀 روز ۵ — Pull B <small>پشت · سرشانه · جلو بازو</small></h2>
-        <span class="arrow">▾</span>
-      </div>
-      <div class="accordion-body">
-        <div class="accordion-body-inner">
-          <div class="table-wrap">
-            <table>
-              <thead><tr><th>حرکت</th><th>ست×تکرار</th><th>تمپو</th><th>استراحت</th><th>نکات اجرا</th></tr></thead>
-              <tbody id="day5Body"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="footer-note">★ هر حرکت را تیک بزنید — وضعیت در همین صفحه باقی می‌ماند ★</div>
+  <!-- آکاردئون‌ها -->
+  <div id="accordionContainer"></div>
+
+  <div class="footer">★ برنامه تمرینی ۵ روزه · بدون چک‌باکس · راست‌چین ★</div>
 </div>
 
 <script>
   (function() {
-    // داده‌های تمرین (همان جداول)
-    const data = {
-      day1: [
-        ["پرس سینه دمبل شیب‌دار ۳۰-۴۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵° نه ۹۰°؛ کتف پایین/عقب قبل از شروع"],
-        ["فلای شیب‌دار کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی؛ در بالا کامل قفل نکن"],
-        ["نشر جانب کابل", "5×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه، نه بالاتر؛ بدون تاب بدن"],
-        ["پشت بازو کابل طناب", "3×10-12", "2-0-1-0", "60s", "آرنج چسبیده به پهلو"],
-        ["پشت بازو اورهد کابل", "3×12-15", "2-1-1-0", "60s", "آرنج ثابت نزدیک سر"],
-        ["Pallof Press", "2×12 هر طرف", "کنترل‌شده", "45s", "بدون چرخش تنه"],
-        ["Push-up Plus", "2×12-15", "2-1-2-0", "45s", "در بالا کتف را ۱s بیشتر جلو هل بده"]
-      ],
-      day2: [
-        ["لت پول‌داون دست باز", "4×8-10", "2-1-1-0", "90s", "تا بالای سینه؛ بدون تاب بدن"],
-        ["Chest-Supported Row", "3×10-12", "2-1-1-0", "75s", "مکث و انقباض کامل کتف در انتها"],
-        ["Chest-Supported Reverse Fly", "4×12-15", "2-0-1-1", "60s", "حرکت از شانه نه مچ"],
-        ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی؛ شست‌ها پشت سر در انتها"],
-        ["Prone Y-Raise", "2×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک"],
-        ["جلو بازو دمبل", "2×10-12", "2-0-1-0", "60s", "آرنج ثابت کنار تنه"],
-        ["Scapular Pull-up", "2×10-12", "2-1-1-0", "45s", "بدون خم‌کردن آرنج"],
-        ["Deep Neck Flexor Hold", "3×15-20s", "ایزومتریک", "30s", "چانه جمع، سر کمی بلند"]
-      ],
-      day3: [
-        ["اسکوات یا لگ پرس", "3×8-10", "2-1-1-0", "90s", "زانو هم‌راستا با نوک پا؛ کمر صاف"],
-        ["رومانین ددلیفت دمبل", "4×8-10", "3-0-1-0", "90s", "چرخش از لگن؛ کشش هدف است نه لمس زمین"],
-        ["لانج بلغاری", "2×10 هر پا", "2-0-1-0", "60s", "تنه کمی جلو؛ تمرکز روی پای جلو"],
-        ["پشت پا خوابیده", "3×12-15", "2-1-1-0", "60s", "لگن چسبیده به دستگاه"],
-        ["ساق ایستاده", "3×15-20", "2-0-1-1", "45s", "دامنه کامل؛ مکث در بالا"],
-        ["Suitcase Carry", "3×30-40m هر طرف", "کنترل‌شده", "60s", "تنه کاملاً عمود"]
-      ],
-      day4: [
-        ["پرس سینه دمبل تخت/شیب ۱۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵°؛ دامنه کامل"],
-        ["فلای سینه کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی، کتف ثابت"],
-        ["Machine Shoulder Press", "2×10-12", "2-1-1-0", "75s", "RIR ثابت ۲؛ پایین نرو بیش از ۹۰°؛ آرنج کمی جلوتر از تنه"],
-        ["نشر جانب دستگاه", "4×15-20", "2-0-1-1", "45s", "بدون بالا انداختن شانه"],
-        ["پشت بازو تک‌دست کابل", "3×12-15", "2-0-1-0", "45s", "آرنج چسبیده به پهلو"],
-        ["پلانک", "2×45-60s", "ایزومتریک", "45s", "باسن نه بالا نه پایین"]
-      ],
-      day5: [
-        ["روئینگ تک‌دست دمبل", "4×8-10", "2-1-1-0", "90s", "اول کتف پایین/عقب، بعد آرنج بکش"],
-        ["Half-Kneeling Lat Pulldown", "3×10-12", "2-1-1-0", "75s", "تنه عمود؛ Core منقبض"],
-        ["Trap-3 Raise", "3×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک، مسیر قطری"],
-        ["نشر جانب کابل", "3×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه"],
-        ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی"],
-        ["Band External Rotation", "3×15 هر طرف", "کنترل‌شده", "30s", "فقط ساعد می‌چرخد"],
-        ["جلو بازو چکشی", "2×12", "2-0-1-0", "45s", "گریپ خنثی ثابت"]
-      ]
-    };
-
-    function buildTableRows(rows, dayId) {
-      const tbody = document.getElementById(dayId);
-      if (!tbody) return;
-      tbody.innerHTML = '';
-      rows.forEach((row, idx) => {
-        const tr = document.createElement('tr');
-        const [movement, reps, tempo, rest, tip] = row;
-        // ستون حرکت با چک‌باکس
-        const td1 = document.createElement('td');
-        td1.setAttribute('data-label', 'حرکت');
-        const label = document.createElement('label');
-        label.className = 'movement-cell';
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.className = 'checker';
-        checkbox.setAttribute('data-day', dayId);
-        checkbox.setAttribute('data-idx', idx);
-        // بازیابی وضعیت از حافظه موقت
-        const stored = sessionStorage.getItem(`check_${dayId}_${idx}`);
-        if (stored === 'true') checkbox.checked = true;
-        checkbox.addEventListener('change', function(e) {
-          sessionStorage.setItem(`check_${dayId}_${idx}`, this.checked);
-        });
-        const span = document.createElement('span');
-        span.textContent = movement;
-        label.appendChild(checkbox);
-        label.appendChild(span);
-        td1.appendChild(label);
-
-        const td2 = document.createElement('td'); td2.setAttribute('data-label', 'ست×تکرار'); td2.textContent = reps;
-        const td3 = document.createElement('td'); td3.setAttribute('data-label', 'تمپو'); td3.textContent = tempo;
-        const td4 = document.createElement('td'); td4.setAttribute('data-label', 'استراحت'); td4.textContent = rest;
-        const td5 = document.createElement('td'); td5.setAttribute('data-label', 'نکات اجرا'); 
-        td5.className = 'note-tip'; td5.textContent = tip;
-
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-        tr.appendChild(td4);
-        tr.appendChild(td5);
-        tbody.appendChild(tr);
-      });
-    }
-
-    // ساخت تمام جداول
-    buildTableRows(data.day1, 'day1Body');
-    buildTableRows(data.day2, 'day2Body');
-    buildTableRows(data.day3, 'day3Body');
-    buildTableRows(data.day4, 'day4Body');
-    buildTableRows(data.day5, 'day5Body');
-
-    // توابع آکاردئون
-    window.toggleAccordion = function(header) {
-      const item = header.closest('.accordion-item');
-      if (!item) return;
-      const body = item.querySelector('.accordion-body');
-      const isActive = item.classList.contains('active');
-      // بستن بقیه (اختیاری) — باز کردن همزمان چند تا مجاز است
-      // اما برای تجربه بهتر، بقیه را می‌بندیم (اختیاری)
-      // بسته به سلیقه: اگر می‌خواهید فقط یکی باز باشد، این بخش فعال کنید:
-      // if (!isActive) {
-      //   document.querySelectorAll('.accordion-item').forEach(el => {
-      //     if (el !== item) {
-      //       el.classList.remove('active');
-      //       el.querySelector('.accordion-body').style.maxHeight = '0';
-      //     }
-      //   });
-      // }
-      
-      if (isActive) {
-        item.classList.remove('active');
-        body.style.maxHeight = '0';
-      } else {
-        item.classList.add('active');
-        // محاسبه ارتفاع محتوا
-        const inner = body.querySelector('.accordion-body-inner');
-        if (inner) {
-          body.style.maxHeight = inner.scrollHeight + 40 + 'px';
-        } else {
-          body.style.maxHeight = '1200px';
-        }
+    // ===== داده =====
+    const daysData = [
+      {
+        id: 1,
+        label: 'روز ۱',
+        name: 'Push A',
+        exercises: [
+          ["پرس سینه دمبل شیب‌دار ۳۰-۴۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵° نه ۹۰°؛ کتف پایین/عقب قبل از شروع"],
+          ["فلای شیب‌دار کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی؛ در بالا کامل قفل نکن"],
+          ["نشر جانب کابل", "5×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه، نه بالاتر؛ بدون تاب بدن"],
+          ["پشت بازو کابل طناب", "3×10-12", "2-0-1-0", "60s", "آرنج چسبیده به پهلو"],
+          ["پشت بازو اورهد کابل", "3×12-15", "2-1-1-0", "60s", "آرنج ثابت نزدیک سر"],
+          ["Pallof Press", "2×12 هر طرف", "کنترل‌شده", "45s", "بدون چرخش تنه"],
+          ["Push-up Plus", "2×12-15", "2-1-2-0", "45s", "در بالا کتف را ۱s بیشتر جلو هل بده"]
+        ]
+      },
+      {
+        id: 2,
+        label: 'روز ۲',
+        name: 'Pull A',
+        exercises: [
+          ["لت پول‌داون دست باز", "4×8-10", "2-1-1-0", "90s", "تا بالای سینه؛ بدون تاب بدن"],
+          ["Chest-Supported Row", "3×10-12", "2-1-1-0", "75s", "مکث و انقباض کامل کتف در انتها"],
+          ["Chest-Supported Reverse Fly", "4×12-15", "2-0-1-1", "60s", "حرکت از شانه نه مچ"],
+          ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی؛ شست‌ها پشت سر در انتها"],
+          ["Prone Y-Raise", "2×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک"],
+          ["جلو بازو دمبل", "2×10-12", "2-0-1-0", "60s", "آرنج ثابت کنار تنه"],
+          ["Scapular Pull-up", "2×10-12", "2-1-1-0", "45s", "بدون خم‌کردن آرنج"],
+          ["Deep Neck Flexor Hold", "3×15-20s", "ایزومتریک", "30s", "چانه جمع، سر کمی بلند"]
+        ]
+      },
+      {
+        id: 3,
+        label: 'روز ۳',
+        name: 'Legs',
+        exercises: [
+          ["اسکوات یا لگ پرس", "3×8-10", "2-1-1-0", "90s", "زانو هم‌راستا با نوک پا؛ کمر صاف"],
+          ["رومانین ددلیفت دمبل", "4×8-10", "3-0-1-0", "90s", "چرخش از لگن؛ کشش هدف است نه لمس زمین"],
+          ["لانج بلغاری", "2×10 هر پا", "2-0-1-0", "60s", "تنه کمی جلو؛ تمرکز روی پای جلو"],
+          ["پشت پا خوابیده", "3×12-15", "2-1-1-0", "60s", "لگن چسبیده به دستگاه"],
+          ["ساق ایستاده", "3×15-20", "2-0-1-1", "45s", "دامنه کامل؛ مکث در بالا"],
+          ["Suitcase Carry", "3×30-40m هر طرف", "کنترل‌شده", "60s", "تنه کاملاً عمود"]
+        ]
+      },
+      {
+        id: 4,
+        label: 'روز ۴',
+        name: 'Push B',
+        exercises: [
+          ["پرس سینه دمبل تخت/شیب ۱۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵°؛ دامنه کامل"],
+          ["فلای سینه کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی، کتف ثابت"],
+          ["Machine Shoulder Press", "2×10-12", "2-1-1-0", "75s", "RIR ثابت ۲؛ پایین نرو بیش از ۹۰°؛ آرنج کمی جلوتر از تنه"],
+          ["نشر جانب دستگاه", "4×15-20", "2-0-1-1", "45s", "بدون بالا انداختن شانه"],
+          ["پشت بازو تک‌دست کابل", "3×12-15", "2-0-1-0", "45s", "آرنج چسبیده به پهلو"],
+          ["پلانک", "2×45-60s", "ایزومتریک", "45s", "باسن نه بالا نه پایین"]
+        ]
+      },
+      {
+        id: 5,
+        label: 'روز ۵',
+        name: 'Pull B',
+        exercises: [
+          ["روئینگ تک‌دست دمبل", "4×8-10", "2-1-1-0", "90s", "اول کتف پایین/عقب، بعد آرنج بکش"],
+          ["Half-Kneeling Lat Pulldown", "3×10-12", "2-1-1-0", "75s", "تنه عمود؛ Core منقبض"],
+          ["Trap-3 Raise", "3×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک، مسیر قطری"],
+          ["نشر جانب کابل", "3×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه"],
+          ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی"],
+          ["Band External Rotation", "3×15 هر طرف", "کنترل‌شده", "30s", "فقط ساعد می‌چرخد"],
+          ["جلو بازو چکشی", "2×12", "2-0-1-0", "45s", "گریپ خنثی ثابت"]
+        ]
       }
-    };
+    ];
 
-    // تنظیم ارتفاع اولیه برای آیتم‌های active
+    const container = document.getElementById('accordionContainer');
+    if (!container) return;
+
+    // برای هر روز یک آیتم آکاردئون بساز
+    daysData.forEach((day, index) => {
+      const item = document.createElement('div');
+      item.className = 'accordion-item' + (index === 0 ? ' active' : '');
+
+      // header
+      const header = document.createElement('div');
+      header.className = 'accordion-header';
+      header.innerHTML = `
+        <h2>
+          ${day.label}
+          <span class="day-badge">${day.name}</span>
+        </h2>
+        <span class="arrow">▾</span>
+      `;
+      header.addEventListener('click', function(e) {
+        const parent = this.closest('.accordion-item');
+        if (!parent) return;
+        const body = parent.querySelector('.accordion-body');
+        const isActive = parent.classList.contains('active');
+        if (isActive) {
+          parent.classList.remove('active');
+          body.style.maxHeight = '0';
+        } else {
+          parent.classList.add('active');
+          const inner = body.querySelector('.accordion-body-inner');
+          if (inner) {
+            body.style.maxHeight = (inner.scrollHeight + 40) + 'px';
+          } else {
+            body.style.maxHeight = '1500px';
+          }
+        }
+      });
+
+      // body
+      const body = document.createElement('div');
+      body.className = 'accordion-body';
+      if (index === 0) body.style.maxHeight = '1800px';
+
+      const inner = document.createElement('div');
+      inner.className = 'accordion-body-inner';
+
+      // جدول
+      const wrap = document.createElement('div');
+      wrap.className = 'table-wrap';
+
+      let tableHtml = `<table>
+        <thead><tr>
+          <th>حرکت</th>
+          <th>ست×تکرار</th>
+          <th>تمپو</th>
+          <th>استراحت</th>
+          <th>نکات اجرا</th>
+        </tr></thead><tbody>`;
+
+      day.exercises.forEach(ex => {
+        const [movement, setsReps, tempo, rest, note] = ex;
+        tableHtml += `<tr>
+          <td data-label="حرکت"><span class="movement-name">${movement}</span></td>
+          <td data-label="ست×تکرار">${setsReps}</td>
+          <td data-label="تمپو">${tempo}</td>
+          <td data-label="استراحت">${rest}</td>
+          <td data-label="نکات اجرا" class="note-tip">${note}</td>
+        </tr>`;
+      });
+
+      tableHtml += '</tbody></table>';
+      wrap.innerHTML = tableHtml;
+      inner.appendChild(wrap);
+      body.appendChild(inner);
+      item.appendChild(header);
+      item.appendChild(body);
+      container.appendChild(item);
+    });
+
+    // تنظیم ارتفاع اولیه برای آیتم active
     document.querySelectorAll('.accordion-item.active').forEach(item => {
       const body = item.querySelector('.accordion-body');
-      const inner = body.querySelector('.accordion-body-inner');
+      const inner = body?.querySelector('.accordion-body-inner');
       if (inner) {
-        body.style.maxHeight = inner.scrollHeight + 40 + 'px';
+        body.style.maxHeight = (inner.scrollHeight + 40) + 'px';
       }
     });
 
-    // برای ریسپانسیو، در صورت تغییر سایز، ارتفاع active ها تنظیم شود (اختیاری)
+    // برای ریسپانسیو: در صورت تغییر اندازه، ارتفاع active ها به‌روز شود
     window.addEventListener('resize', function() {
       document.querySelectorAll('.accordion-item.active').forEach(item => {
         const body = item.querySelector('.accordion-body');
-        const inner = body.querySelector('.accordion-body-inner');
+        const inner = body?.querySelector('.accordion-body-inner');
         if (inner) {
-          body.style.maxHeight = inner.scrollHeight + 40 + 'px';
+          body.style.maxHeight = (inner.scrollHeight + 40) + 'px';
         }
       });
     });
