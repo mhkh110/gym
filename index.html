@@ -461,7 +461,7 @@
 
     const exercisesData = {
       'Push A': [
-        ["پرس سینه دمبل شیب‌دار ۳۰-۴۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵° نه ۹۰°؛ کتف پایین/عقب قبل از شروع"],
+        ["پرس سینه دمبل شیب‌دار ۳۰-۴۵°", "5×8-10", "2-1-1-0", "90s", "آرنج ~۴۵° نه ۹۰°؛ کتف پایین/عقب قبل از شروع"],
         ["فلای شیب‌دار کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی؛ در بالا کامل قفل نکن"],
         ["نشر جانب کابل", "5×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه، نه بالاتر؛ بدون تاب بدن"],
         ["پشت بازو کابل طناب", "3×10-12", "2-0-1-0", "60s", "آرنج چسبیده به پهلو"],
@@ -475,7 +475,7 @@
         ["Chest-Supported Reverse Fly", "4×12-15", "2-0-1-1", "60s", "حرکت از شانه نه مچ"],
         ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی؛ شست‌ها پشت سر در انتها · در انتها ۱s مکث"],
         ["Prone Y-Raise", "2×12-15", "2-0-1-1", "45s", "وزنه بسیار سبک"],
-        ["جلو بازو دمبل", "2×10-12", "2-0-1-0", "60s", "آرنج ثابت کنار تنه"],
+        ["جلو بازو دمبل", "3×10-12", "2-0-1-0", "60s", "آرنج ثابت کنار تنه"],
         ["Scapular Pull-up", "2×10-12", "2-1-1-0", "45s", "بدون خم‌کردن آرنج"],
         ["Deep Neck Flexor Hold", "3×15-20s", "ایزومتریک", "30s", "چانه جمع، سر کمی بلند"]
       ],
@@ -488,12 +488,13 @@
         ["Suitcase Carry", "3×30-45s هر طرف", "کنترل‌شده", "60s", "تنه کاملاً عمود · زمان به جای مسافت"]
       ],
       'Push B': [
-        ["پرس سینه دمبل تخت/شیب ۱۵°", "4×8-10", "2-1-1-0", "90s", "آرنج ~۴۵°؛ دامنه کامل"],
+        ["پرس سینه دمبل تخت/شیب ۱۵°", "5×8-10", "2-1-1-0", "90s", "آرنج ~۴۵°؛ دامنه کامل"],
         ["فلای سینه کابل", "3×12-15", "2-0-1-1", "60s", "مسیر قوسی، کتف ثابت"],
         ["Machine Shoulder Press", "2×10-12", "2-1-1-0", "75s", "فقط ۲ ست با RIR=2 در تمام سیکل ۸ هفته‌ای · پایین نرو بیش از ۹۰°؛ آرنج کمی جلوتر از تنه"],
         ["نشر جانب دستگاه", "4×15-20", "2-0-1-1", "45s", "بدون بالا انداختن شانه"],
         ["پشت بازو تک‌دست کابل", "3×12-15", "2-0-1-0", "45s", "آرنج چسبیده به پهلو"],
-        ["پلانک", "2×45-60s", "ایزومتریک", "45s", "باسن نه بالا نه پایین"]
+        ["پلانک", "2×45-60s", "ایزومتریک", "45s", "باسن نه بالا نه پایین"],
+        ["Cable Crunch", "3×12-15", "2-1-1-0", "60s", "زانوها ثابت، فقط ستون فقرات گرد شود"]
       ],
       'Pull B': [
         ["روئینگ تک‌دست دمبل", "4×8-10", "2-1-1-0", "90s", "ابتدا کتف را پایین و عقب ببر، سپس آرنج را به سمت لگن بکش و در انتهای حرکت ۱ ثانیه انقباض لت را حفظ کن"],
@@ -502,7 +503,8 @@
         ["نشر جانب کابل", "3×15-20", "2-0-1-1", "45s", "تا ارتفاع شانه"],
         ["Face Pull", "3×15-20", "کنترل‌شده", "45s", "به سمت پیشانی · در انتها ۱s مکث"],
         ["Band External Rotation", "3×15 هر طرف", "کنترل‌شده", "30s", "فقط ساعد می‌چرخد"],
-        ["جلو بازو چکشی", "2×12", "2-0-1-0", "45s", "گریپ خنثی ثابت"]
+        ["جلو بازو چکشی", "3×12", "2-0-1-0", "45s", "گریپ خنثی ثابت"],
+        ["Hanging Leg Raise", "3×12-15", "2-1-1-0", "60s", "بدون تاب خوردن؛ پاها تا موازی زمین بالا بیاید"]
       ]
     };
 
@@ -521,12 +523,12 @@
         continue;
       }
 
-      const displayLabel = dayInfo.label; // "روز ۱ — شنبه"
+      const displayLabel = dayInfo.label;
       const workoutName = dayInfo.name;
       const exercises = exercisesData[workoutName] || [];
 
       const item = document.createElement('div');
-      item.className = 'accordion-item' + (i === 0 ? ' active' : '');
+      item.className = 'accordion-item';
 
       const header = document.createElement('div');
       header.className = 'accordion-header';
@@ -558,7 +560,7 @@
 
       const body = document.createElement('div');
       body.className = 'accordion-body';
-      if (i === 0) body.style.maxHeight = '1800px';
+      body.style.maxHeight = '0';
 
       const inner = document.createElement('div');
       inner.className = 'accordion-body-inner';
@@ -594,15 +596,6 @@
       item.appendChild(body);
       container.appendChild(item);
     }
-
-    // set initial height for active items
-    document.querySelectorAll('.accordion-item.active').forEach(item => {
-      const body = item.querySelector('.accordion-body');
-      const inner = body?.querySelector('.accordion-body-inner');
-      if (inner) {
-        body.style.maxHeight = (inner.scrollHeight + 40) + 'px';
-      }
-    });
 
     window.addEventListener('resize', function() {
       document.querySelectorAll('.accordion-item.active').forEach(item => {
