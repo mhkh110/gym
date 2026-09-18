@@ -12,6 +12,11 @@
       font-family: 'Segoe UI', Tahoma, 'IRANSans', system-ui, sans-serif;
     }
 
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
     body {
       background: #0c0a1a;
       min-height: 100vh;
@@ -25,176 +30,312 @@
     .container {
       max-width: 1100px;
       width: 100%;
+      overflow-x: hidden;
     }
 
+    /* ====== هدر ====== */
     .header {
       text-align: right;
       margin-bottom: 1.8rem;
       padding-right: 4px;
     }
     .header h1 {
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       font-weight: 900;
       background: linear-gradient(135deg, #d6caff, #b297ff, #8a7aff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 0 30px rgba(140, 100, 255, 0.25);
       letter-spacing: 1px;
+      line-height: 1.3;
     }
     .header .sub {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 600;
       color: #c5bae6;
       border-right: 4px solid #7b66d9;
       padding-right: 14px;
-      margin-top: 6px;
+      margin-top: 10px;
+      line-height: 1.7;
     }
     .header .goal {
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: #b0a3d9;
       margin-top: 8px;
       padding-right: 18px;
-      line-height: 1.7;
-    }
-    .header .session-time {
-      font-size: 1rem;
-      color: #b0a3d9;
-      margin-top: 6px;
-      padding-right: 18px;
-    }
-    .header .rule {
-      font-size: 0.95rem;
-      color: #c5bae6;
-      margin-top: 4px;
-      padding-right: 12px;
-      border-right: 3px solid #7b66d9;
+      line-height: 1.9;
     }
 
+    /* ====== کارت راهنمای ساده ====== */
+    .guide-box {
+      background: linear-gradient(135deg, rgba(60, 40, 110, 0.5), rgba(30, 20, 60, 0.6));
+      border: 1px solid #6b52b0;
+      border-radius: 24px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
+    .guide-box h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #e6dcff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .guide-item {
+      display: flex;
+      gap: 12px;
+      padding: 0.7rem 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+      align-items: flex-start;
+    }
+    .guide-item:last-child { border-bottom: none; }
+    .guide-icon {
+      background: #342a60;
+      color: #cdbeff;
+      min-width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .guide-text {
+      flex: 1;
+      font-size: 0.96rem;
+      color: #ded6f7;
+      line-height: 1.9;
+    }
+    .guide-text strong {
+      color: #f5e56b;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 1rem;
+    }
+
+    /* ====== اطلاعات RIR ====== */
     .info-box {
       background: rgba(18, 12, 42, 0.75);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
       border: 1px solid #4a367a;
-      border-radius: 28px;
-      padding: 1.5rem 1.8rem;
-      margin-bottom: 2.2rem;
+      border-radius: 24px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.8rem;
       box-shadow: 0 8px 35px rgba(0, 0, 0, 0.6);
+    }
+    .info-box .box-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #d6caff;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .info-box .rir-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px 16px;
-      margin-bottom: 14px;
+      gap: 8px;
+      margin-bottom: 1rem;
     }
     .info-box .rir-tag {
       background: #2a1f52;
-      padding: 0.4rem 1.2rem;
-      border-radius: 40px;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.92rem;
       color: #e3d9ff;
       border-right: 3px solid #a187ff;
+      line-height: 1.5;
     }
-    .info-box .rir-tag strong {
-      color: #bca8ff;
-    }
-    .info-box .prog-text {
-      font-size: 1.05rem;
+    .info-box .rir-tag strong { color: #bca8ff; }
+    .info-box .simple-note {
+      font-size: 0.95rem;
       color: #ded6f7;
-      background: rgba(255, 215, 0, 0.04);
-      padding: 0.7rem 1.2rem;
-      border-radius: 16px;
+      background: rgba(255, 215, 0, 0.05);
+      padding: 0.8rem 1.1rem;
+      border-radius: 14px;
       border-right: 4px solid #fbbf24;
-      margin-top: 10px;
-      line-height: 1.8;
+      line-height: 2;
+      margin-top: 0.8rem;
     }
-    .info-box .prog-text u {
-      color: #f5e56b;
-      text-decoration-color: #a187ff;
-    }
-    .info-box .prog-text.rp {
+    .info-box .simple-note strong { color: #f5e56b; }
+    .info-box .simple-note.purple {
       background: rgba(167, 139, 250, 0.07);
       border-right-color: #a187ff;
     }
-    .info-box .warmup {
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid #3b2e62;
-      font-size: 0.95rem;
-      color: #c8bce8;
-      line-height: 1.9;
+
+    /* ====== گرم‌کردن ====== */
+    .warmup-box {
+      background: rgba(18, 12, 42, 0.7);
+      border: 1px solid #4a367a;
+      border-radius: 24px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.4);
     }
-    .info-box .warmup span {
+    .warmup-box h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #d6caff;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .warmup-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .warmup-chip {
       background: #2a2250;
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-      display: inline-block;
-      margin: 3px 5px 3px 0;
-      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
       font-size: 0.9rem;
       color: #e2d6ff;
+      font-weight: 600;
+      line-height: 1.5;
     }
-    .info-box .warmup span.new-warm {
+    .warmup-chip .small-note {
+      font-weight: 400;
+      font-size: 0.82rem;
+      color: #b0a3d9;
+      margin-right: 5px;
+    }
+    .warmup-chip.new-chip {
       background: #3a2a52;
       border: 1px solid #7b66d9;
       color: #f0e6ff;
     }
-    .info-box .warmup .small-note {
-      font-weight: 400;
-      font-size: 0.85rem;
+    .warmup-hint {
+      margin-top: 0.9rem;
+      font-size: 0.88rem;
       color: #b0a3d9;
-      margin-right: 6px;
+      line-height: 1.8;
+      padding-top: 0.8rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
     }
 
+    /* ====== تغییرات فاز ۱ به ۲ (کارتی) ====== */
+    .changes-box {
+      background: rgba(18, 12, 42, 0.7);
+      border: 1px solid #4a367a;
+      border-radius: 24px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+    }
+    .changes-box h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #d6caff;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .change-card {
+      background: rgba(10, 6, 28, 0.5);
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid #3a2d63;
+    }
+    .change-card:last-child { margin-bottom: 0; }
+    .change-title {
+      font-weight: 800;
+      color: #e8dcff;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+    .change-compare {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+    .change-pill {
+      background: #2a1f52;
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.86rem;
+      color: #cdbeff;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+    .change-pill.new {
+      background: #3a2a6e;
+      color: #e6dcff;
+      border: 1px solid #7b66d9;
+    }
+    .change-arrow {
+      color: #a187ff;
+      font-weight: 900;
+      font-size: 1.1rem;
+    }
+    .change-why {
+      font-size: 0.88rem;
+      color: #b8aadd;
+      line-height: 1.9;
+      background: rgba(255, 215, 0, 0.04);
+      padding: 0.5rem 0.9rem;
+      border-radius: 12px;
+      border-right: 3px solid #fbbf24;
+    }
+
+    /* ====== آکاردئون روزها ====== */
     .accordion-item {
       background: rgba(10, 6, 28, 0.6);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
       border: 1px solid #3f306b;
-      border-radius: 24px;
-      margin-bottom: 1.3rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
       overflow: hidden;
       box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
-      transition: border-color 0.2s;
     }
 
     .accordion-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.8rem;
+      padding: 1rem 1.4rem;
       cursor: pointer;
       background: rgba(28, 18, 58, 0.5);
       transition: background 0.2s;
       user-select: none;
-      border-radius: 24px 24px 0 0;
+      gap: 10px;
     }
     .accordion-header:hover {
       background: rgba(50, 34, 88, 0.7);
     }
     .accordion-header h2 {
-      font-size: 1.6rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: #f0eaff;
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
     }
-    .accordion-header h2 .day-badge {
+    .accordion-header .day-badge {
       background: #342a60;
-      padding: 0.15rem 1.2rem;
+      padding: 0.15rem 0.9rem;
       border-radius: 40px;
-      font-size: 1rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: #cdbeff;
     }
     .accordion-header .arrow {
-      font-size: 2rem;
+      font-size: 1.7rem;
       color: #b6a2ff;
-      transition: transform 0.35s ease;
+      transition: transform 0.3s ease;
       line-height: 1;
+      flex-shrink: 0;
     }
     .accordion-item.active .arrow {
       transform: rotate(180deg);
@@ -203,163 +344,137 @@
     .accordion-body {
       max-height: 0;
       overflow: hidden;
-      transition: max-height 0.45s cubic-bezier(0.25, 1, 0.3, 1);
+      transition: max-height 0.4s ease;
     }
     .accordion-body-inner {
-      padding: 0.4rem 0.8rem 1.6rem 0.8rem;
+      padding: 0.6rem 0.9rem 1.4rem 0.9rem;
     }
 
-    .superset-note {
-      font-size: 0.95rem;
+    /* توضیح سوپرست */
+    .superset-info {
+      font-size: 0.9rem;
       color: #d8ccff;
       background: rgba(167, 139, 250, 0.08);
       border-right: 3px solid #a187ff;
       border-radius: 14px;
-      padding: 0.7rem 1rem;
-      margin: 0.4rem 0.4rem 1rem 0.4rem;
-      line-height: 1.8;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1rem;
+      line-height: 2;
+    }
+    .superset-info strong { color: #f5e56b; }
+
+    /* ====== کارت‌های حرکت (به جای جدول) ====== */
+    .exercise-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
     }
 
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 20px;
-      background: rgba(0, 0, 0, 0.2);
-      padding: 0.2rem 0.2rem;
+    .ex-card {
+      background: rgba(18, 12, 44, 0.7);
+      border: 1px solid #3a2d63;
+      border-radius: 16px;
+      padding: 0.9rem 1rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.7rem 0.9rem;
+      align-items: start;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 1rem;
-      min-width: 620px;
-    }
-    th {
-      text-align: right;
-      padding: 0.9rem 0.8rem 0.6rem 0.8rem;
-      font-weight: 700;
-      color: #cfc0ff;
-      border-bottom: 2px solid #4f3b84;
-      font-size: 0.95rem;
-      letter-spacing: 0.3px;
-    }
-    td {
-      padding: 0.8rem 0.6rem;
-      border-bottom: 1px solid #342b55;
-      vertical-align: middle;
-      line-height: 1.6;
-    }
-    td:first-child, th:first-child { padding-right: 1.2rem; }
-    td:last-child, th:last-child { padding-left: 1rem; }
 
-    .movement-name {
-      font-weight: 700;
-      color: #f5efff;
-      font-size: 1.05rem;
+    .ex-card.paired-odd {
+      background: rgba(96, 165, 250, 0.06);
+      border-color: #3d5a8a;
     }
-    .ex-id {
-      display: inline-block;
-      min-width: 2.1rem;
-      text-align: center;
+    .ex-card.paired-even {
+      background: rgba(167, 139, 250, 0.06);
+      border-color: #5a4a9a;
+    }
+
+    .ex-id-badge {
       background: #342a60;
-      color: #cdbeff;
+      color: #e2d6ff;
       border-radius: 10px;
-      padding: 0.1rem 0.5rem;
-      font-size: 0.8rem;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.82rem;
       font-weight: 800;
-      margin-left: 0.55rem;
-      vertical-align: middle;
-      letter-spacing: 0.5px;
+      min-width: 48px;
+      text-align: center;
+      line-height: 1.3;
     }
-    .note-tip {
-      font-size: 0.9rem;
-      color: #c4b8e8;
-      max-width: 240px;
+    .ex-id-badge .pair-num {
+      display: block;
+      font-size: 0.7rem;
+      color: #b8aadd;
+      font-weight: 600;
     }
-
-    .changes-table td, .changes-table th { font-size: 0.95rem; }
-
-    @media screen and (max-width: 650px) {
-      .table-wrap {
-        overflow-x: visible;
-        background: transparent;
-        padding: 0;
-      }
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-      thead { display: none; }
-
-      tr {
-        background: rgba(18, 12, 44, 0.7);
-        backdrop-filter: blur(3px);
-        border-radius: 18px;
-        padding: 0.8rem 1rem;
-        margin-bottom: 0.9rem;
-        border: 1px solid #443573;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4px 16px;
-        box-shadow: 0 3px 15px rgba(0,0,0,0.3);
-      }
-
-      td {
-        border: none;
-        padding: 0.2rem 0;
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
-      td:first-child { grid-column: 1 / -1; }
-      td:last-child { grid-column: 1 / -1; }
-
-      td::before {
-        content: attr(data-label);
-        font-weight: 700;
-        color: #b7a6f0;
-        font-size: 0.75rem;
-        letter-spacing: 0.5px;
-        opacity: 0.9;
-        display: block;
-      }
-      .movement-name {
-        font-size: 1.2rem;
-      }
-      .note-tip {
-        max-width: 100%;
-        font-size: 0.9rem;
-      }
-      .accordion-header {
-        padding: 0.8rem 1.2rem;
-      }
-      .accordion-header h2 {
-        font-size: 1.3rem;
-      }
-      .info-box {
-        padding: 1rem 1.2rem;
-      }
-      .header h1 { font-size: 1.9rem; }
+    .ex-card.paired-odd .ex-id-badge {
+      background: #2c4170;
+      color: #cbe1ff;
+    }
+    .ex-card.paired-even .ex-id-badge {
+      background: #40307a;
+      color: #ddd0ff;
     }
 
-    @media screen and (max-width: 400px) {
-      tr {
-        grid-template-columns: 1fr;
-        gap: 2px;
-      }
+    .ex-main {
+      min-width: 0;
+    }
+    .ex-name {
+      font-weight: 800;
+      color: #f5efff;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    .ex-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .ex-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 0.28rem 0.7rem;
+      font-size: 0.82rem;
+      color: #d5ccf0;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+    .ex-chip span {
+      color: #a99cd4;
+      font-weight: 400;
+      margin-left: 4px;
+      font-size: 0.78rem;
+    }
+    .ex-note {
+      font-size: 0.88rem;
+      color: #b8aadd;
+      line-height: 1.9;
+      padding-top: 0.55rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+    }
+    .ex-note::before {
+      content: "💡 ";
+      margin-left: 3px;
     }
 
+    /* ====== روز استراحت / کاردیو ====== */
     .day-off {
       background: rgba(251, 191, 36, 0.06);
       border: 1px dashed #b89b4b;
-      border-radius: 20px;
-      padding: 1.5rem;
+      border-radius: 18px;
+      padding: 1.2rem;
       text-align: center;
       color: #f0e6b0;
-      font-size: 1.3rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      margin: 0 0 1.3rem 0;
+      margin-bottom: 1rem;
+      line-height: 1.7;
     }
     .day-off span {
       display: block;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       font-weight: 400;
       color: #cbbd89;
       margin-top: 6px;
@@ -368,98 +483,137 @@
     .cardio-day {
       background: rgba(56, 189, 248, 0.06);
       border: 1px dashed #4a7fa5;
-      border-radius: 20px;
-      padding: 1.4rem 1.6rem;
-      margin-bottom: 1.3rem;
-      color: #d3ecff;
+      border-radius: 18px;
+      padding: 1.2rem;
       text-align: center;
-      font-size: 1.2rem;
+      color: #d3ecff;
+      font-size: 1.15rem;
       font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.7;
     }
     .cardio-day span {
       display: block;
-      font-size: 0.98rem;
+      font-size: 0.92rem;
       font-weight: 400;
       color: #a8c8de;
       margin-top: 8px;
       line-height: 1.9;
     }
 
+    /* ====== بخش‌های اضافه ====== */
     .extra-section {
       background: rgba(18, 12, 42, 0.7);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
       border: 1px solid #4a367a;
-      border-radius: 24px;
-      padding: 1.5rem 1.8rem;
-      margin-top: 1.8rem;
+      border-radius: 22px;
+      padding: 1.3rem 1.5rem;
+      margin-top: 1.3rem;
       box-shadow: 0 6px 25px rgba(0,0,0,0.4);
     }
     .extra-section h3 {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 800;
       color: #d6caff;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.9rem;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
+      line-height: 1.6;
+    }
+    .extra-section .note-small {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #b0a3d9;
     }
     .extra-section ul {
       list-style: none;
-      padding-right: 0;
+      padding: 0;
     }
     .extra-section li {
-      padding: 0.3rem 0;
+      padding: 0.55rem 0;
       color: #ded6f7;
-      font-size: 1rem;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.96rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
       display: flex;
-      align-items: baseline;
-      gap: 8px;
-      line-height: 1.8;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.9;
     }
+    .extra-section li:last-child { border-bottom: none; }
     .extra-section li::before {
       content: "•";
       color: #a187ff;
       font-weight: 900;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
+      line-height: 1;
       flex-shrink: 0;
     }
-    .extra-section .sub-item {
-      font-size: 0.92rem;
-      color: #b8aadd;
-      margin-right: 1.2rem;
-    }
 
+    /* ====== هشدار ====== */
     .warn-box {
       background: rgba(251, 113, 133, 0.07);
       border: 1px solid #a04a5e;
-      border-radius: 24px;
-      padding: 1.5rem 1.8rem;
-      margin-top: 1.8rem;
+      border-radius: 22px;
+      padding: 1.3rem 1.5rem;
+      margin-top: 1.3rem;
       box-shadow: 0 6px 25px rgba(0,0,0,0.4);
     }
     .warn-box h3 {
-      font-size: 1.35rem;
+      font-size: 1.15rem;
       font-weight: 800;
       color: #ffb3c1;
       margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     .warn-box p {
       color: #f3d3da;
-      font-size: 1rem;
+      font-size: 0.96rem;
       line-height: 2;
     }
     .warn-box p strong { color: #ffd166; }
 
     .footer {
-      margin-top: 2.8rem;
+      margin-top: 2.5rem;
       color: #7f71b5;
       font-size: 0.85rem;
       text-align: center;
       border-top: 1px solid #342b57;
       padding-top: 1.5rem;
+    }
+
+    /* ====== ریسپانسیو ====== */
+    @media screen and (max-width: 650px) {
+      body { padding: 1rem 0.7rem 2.5rem; }
+      .header h1 { font-size: 1.7rem; }
+      .header .sub { font-size: 0.95rem; }
+      .header .goal { font-size: 0.88rem; padding-right: 12px; }
+      .guide-box, .info-box, .warmup-box, .changes-box { padding: 1.1rem 1.1rem; }
+      .guide-item { gap: 10px; }
+      .guide-icon { min-width: 38px; height: 38px; font-size: 0.9rem; }
+      .guide-text { font-size: 0.88rem; }
+      .accordion-header { padding: 0.85rem 1rem; }
+      .accordion-header h2 { font-size: 1.05rem; }
+      .accordion-header .day-badge { font-size: 0.75rem; padding: 0.1rem 0.7rem; }
+      .accordion-body-inner { padding: 0.5rem 0.6rem 1rem 0.6rem; }
+      .ex-card { padding: 0.75rem 0.8rem; }
+      .ex-name { font-size: 0.95rem; }
+      .ex-chip { font-size: 0.78rem; padding: 0.22rem 0.6rem; }
+      .ex-note { font-size: 0.83rem; }
+      .extra-section, .warn-box { padding: 1.1rem 1.1rem; }
+      .extra-section h3, .warn-box h3 { font-size: 1.05rem; }
+      .extra-section li, .warn-box p { font-size: 0.9rem; }
+      .change-card { padding: 0.85rem 0.9rem; }
+      .change-title { font-size: 0.92rem; }
+      .change-pill { font-size: 0.78rem; padding: 0.3rem 0.75rem; }
+      .change-why { font-size: 0.82rem; }
+    }
+
+    @media screen and (max-width: 400px) {
+      .ex-card { grid-template-columns: 1fr; }
+      .ex-id-badge { justify-self: start; }
     }
   </style>
 </head>
@@ -469,163 +623,218 @@
 
   <header class="header">
     <h1>🚀 برنامه کهکشانی — فاز ۲</h1>
-    <div class="sub">۵ روز تمرین · سه‌شنبه و جمعه استراحت</div>
-    <div class="goal">🎯 هدف: ادامه Bulk + اصلاح پوسچر (کمر گرد، گردن رو به جلو) + رفع صدای شونه</div>
-    <div class="session-time">⏱ مدت هر جلسه: ۵۰ تا ۶۰ دقیقه (با سوپرست‌های آنتاگونیست برای فشرده‌سازی زمان بدون افت حجم)</div>
-    <div class="rule">📌 ترتیب حرکات: ابتدا چندمفصلی، سپس تک‌مفصلی، در پایان حرکات اصلاحی و Core</div>
+    <div class="sub">۵ روز تمرین · سه‌شنبه و جمعه استراحت · هر جلسه ۵۰ تا ۶۰ دقیقه</div>
+    <div class="goal">
+      🎯 هدف این فاز: ادامه افزایش حجم عضلانی + اصلاح قوز کمر و گردن جلوآمده + رفع صدای شونه
+    </div>
   </header>
 
-  <!-- ===== اطلاعات کلی ===== -->
-  <div class="info-box">
-    <div class="rir-row">
-      <span class="rir-tag">هفته ۱-۲: <strong>RIR ۳</strong></span>
-      <span class="rir-tag">هفته ۳-۴: <strong>RIR ۲</strong></span>
-      <span class="rir-tag">هفته ۵-۶: <strong>RIR ۱</strong></span>
-      <span class="rir-tag">هفته ۷: <strong>RIR ۱-۰</strong></span>
-      <span class="rir-tag" style="background:#302555;">هفته ۸: <strong>دیلود</strong> (حجم: ۵۰٪ کمتر (نصف ست‌ها) · شدت: ۸۵–۹۰٪ وزنه هفته قبل · RIR: ۴–۵)</span>
+  <!-- ===== راهنمای ساده ===== -->
+  <div class="guide-box">
+    <h3>📖 راهنمای ساده اصطلاحات</h3>
+
+    <div class="guide-item">
+      <div class="guide-icon">RIR</div>
+      <div class="guide-text">
+        <strong>یعنی «چند تکرار دیگه می‌تونستم بزنم ولی نزدم»</strong>
+        مثلاً RIR ۳ یعنی وقتی ست رو تموم کردی، هنوز ۳ تکرار دیگه توی توان داشتی ولی نزدی. هرچی RIR کمتر → تمرین سخت‌تر.
+      </div>
     </div>
 
-    <div class="prog-text">
-      <strong>📈 پیشرفت (Progressive Overload):</strong> طبق فاز ۱ — وقتی در <u>تمام ست‌های</u> یک حرکت به سقف بازه تکرار رسیدی → جلسه بعد <strong>۲.۵٪ تا ۵٪</strong> وزنه اضافه کن، تکرار به کف بازه برگردد.
+    <div class="guide-item">
+      <div class="guide-icon">🔗</div>
+      <div class="guide-text">
+        <strong>سوپرست یعنی دو حرکت رو پشت سر هم بدون استراحت بزنی</strong>
+        توی هر روز، حرکاتی که با هم «جفت» شدن (مثل ۱-الف و ۱-ب) رو اینطور اجرا کن: حرکت اول → بدون استراحت → حرکت دوم → استراحت کامل → دوباره. اینطوری توی زمان کمتر، حجم بیشتر می‌زنی.
+      </div>
     </div>
 
-    <div class="prog-text rp">
-      <strong>⏱ Rest-Pause (از هفته ۳ به بعد):</strong> فقط در <u>ست آخر حرکات چندمفصلی اصلی</u> — بعد از رسیدن به Failure نسبی (RIR هدف همان هفته) → <strong>۱۵ ثانیه استراحت</strong> → تا جای ممکن <strong>۲ تا ۴ تکرار</strong> دیگر بزن.
+    <div class="guide-item">
+      <div class="guide-icon">⏱</div>
+      <div class="guide-text">
+        <strong>تمپو یعنی سرعت اجرای حرکت (۴ عدد)</strong>
+        مثل «۲-۱-۱-۰» یعنی: ۲ ثانیه پایین برو → ۱ ثانیه پایین توقف کن → ۱ ثانیه بالا بیا → بدون توقف دوباره.
+      </div>
     </div>
 
-    <div class="warmup">
-      🔥 گرم‌کردن هر جلسه:
-      <span>Cat-Camel <span class="small-note">۱×۱۰</span></span>
-      <span>Band Pull Apart <span class="small-note">۲×۱۵</span></span>
-      <span>Dead Hang <span class="small-note">۲×۲۰–۳۰s</span></span>
-      <span>Chin Tuck <span class="small-note">۲×۱۰ (نگه‌داری ۳ ثانیه)</span></span>
-      <span>Wall Slide <span class="small-note">۲×۱۲</span></span>
-      <span class="new-warm">🆕 Band External Rotation <span class="small-note">۱×۱۵ هر طرف — قبل از هر جلسه‌ای که پرس داره</span></span>
+    <div class="guide-item">
+      <div class="guide-icon">⚡</div>
+      <div class="guide-text">
+        <strong>Rest-Pause یعنی بعد از ست اصلی، یک نفس تازه و ادامه</strong>
+        فقط از هفته ۳ به بعد، فقط توی ست آخر حرکات اصلی: ست رو تا نزدیک ناتوانی بزن → ۱۵ ثانیه استراحت → بعد ۲ تا ۴ تکرار دیگه بزن. تموم!
+      </div>
     </div>
   </div>
 
-  <!-- ===== تغییرات فاز ۲ ===== -->
-  <div class="extra-section">
-    <h3>🔑 تغییرات کلیدی نسبت به فاز ۱</h3>
-    <div class="table-wrap">
-      <table class="changes-table">
-        <thead>
-          <tr>
-            <th>مورد</th>
-            <th>فاز ۱</th>
-            <th>فاز ۲</th>
-            <th>دلیل</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="مورد"><span class="movement-name">نسبت Push:Pull</span></td>
-            <td data-label="فاز ۱">~۱:۱</td>
-            <td data-label="فاز ۲">~۱:۱.۳</td>
-            <td data-label="دلیل" class="note-tip">کمر گرد → پشت باید غالب باشه</td>
-          </tr>
-          <tr>
-            <td data-label="مورد"><span class="movement-name">ساختار ست</span></td>
-            <td data-label="فاز ۱">جدا (Straight Sets)</td>
-            <td data-label="فاز ۲">سوپرست آنتاگونیست (Push+Pull)</td>
-            <td data-label="دلیل" class="note-tip">جا شدن حجم در ۵۰-۶۰ دقیقه</td>
-          </tr>
-          <tr>
-            <td data-label="مورد"><span class="movement-name">گردن</span></td>
-            <td data-label="فاز ۱">Isometric Hold</td>
-            <td data-label="فاز ۲">مقاومتی + ۲ نوبت روزانه</td>
-            <td data-label="دلیل" class="note-tip">Hold ساده کافی نبود</td>
-          </tr>
-          <tr>
-            <td data-label="مورد"><span class="movement-name">شونه (صدا)</span></td>
-            <td data-label="فاز ۱">—</td>
-            <td data-label="فاز ۲">External Rotation قبل هر پرس (activation)</td>
-            <td data-label="دلیل" class="note-tip">جلوگیری از تشدید کلیک/صدا</td>
-          </tr>
-          <tr>
-            <td data-label="مورد"><span class="movement-name">تشدید حجم</span></td>
-            <td data-label="فاز ۱">فقط وزنه</td>
-            <td data-label="فاز ۲">+ Rest-Pause از هفته ۳ (فقط ست آخر حرکت اصلی)</td>
-            <td data-label="دلیل" class="note-tip">پیشرفت یکنواخت = آماده استرس جدید</td>
-          </tr>
-          <tr>
-            <td data-label="مورد"><span class="movement-name">مازاد کالری</span></td>
-            <td data-label="فاز ۱">۱۵۰-۲۵۰</td>
-            <td data-label="فاز ۲">۲۵۰-۳۵۰</td>
-            <td data-label="دلیل" class="note-tip">Bulk ادامه‌دار</td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- ===== RIR و پیشرفت ===== -->
+  <div class="info-box">
+    <div class="box-title">📊 شدت تمرین در طول ۸ هفته</div>
+    <div class="rir-row">
+      <span class="rir-tag">هفته ۱ و ۲: <strong>RIR ۳</strong> (آسون)</span>
+      <span class="rir-tag">هفته ۳ و ۴: <strong>RIR ۲</strong></span>
+      <span class="rir-tag">هفته ۵ و ۶: <strong>RIR ۱</strong></span>
+      <span class="rir-tag">هفته ۷: <strong>RIR ۱ تا ۰</strong> (سخت‌ترین)</span>
+      <span class="rir-tag" style="background:#302555;">هفته ۸: <strong>دیلود (ریکاوری)</strong></span>
+    </div>
+
+    <div class="simple-note">
+      <strong>📈 چطور سنگین‌تر بشم؟</strong><br>
+      وقتی تونستی توی همه ست‌های یک حرکت به بیشترین تکرار بازه برسی (مثلاً ۱۰ تکرار از بازه ۸ تا ۱۰) → جلسه بعد وزنه رو ۲.۵ تا ۵ درصد بیشتر کن و برگرد به کف بازه (۸ تکرار).
+    </div>
+
+    <div class="simple-note purple">
+      <strong>🛌 هفته ۸ چیکار کنم؟</strong><br>
+      نصف ست‌ها رو حذف کن · وزنه رو ۸۵ تا ۹۰ درصد هفته قبل بذار · RIR رو ببر روی ۴ تا ۵. یعنی یه هفته سبک برای ریکاوری، نه استراحت کامل.
+    </div>
+  </div>
+
+  <!-- ===== گرم‌کردن ===== -->
+  <div class="warmup-box">
+    <h3>🔥 گرم‌کردن قبل از هر جلسه (حدود ۵ دقیقه)</h3>
+    <div class="warmup-list">
+      <span class="warmup-chip">Cat-Camel <span class="small-note">۱×۱۰</span></span>
+      <span class="warmup-chip">Band Pull Apart <span class="small-note">۲×۱۵</span></span>
+      <span class="warmup-chip">Dead Hang <span class="small-note">۲×۲۰-۳۰ ثانیه</span></span>
+      <span class="warmup-chip">Chin Tuck <span class="small-note">۲×۱۰ (هر کدوم ۳ ثانیه نگه‌دار)</span></span>
+      <span class="warmup-chip">Wall Slide <span class="small-note">۲×۱۲</span></span>
+      <span class="warmup-chip new-chip">🆕 Band External Rotation <span class="small-note">۱×۱۵ هر طرف — فقط قبل جلساتی که پرس دارن</span></span>
+    </div>
+    <div class="warmup-hint">
+      💡 چرا «Band External Rotation» اضافه شد؟ چون شونه‌ت صدا میده و این حرکت عضلات چرخاننده شونه رو قبل از پرس بیدار می‌کنه.
+    </div>
+  </div>
+
+  <!-- ===== تغییرات فاز ۱ به ۲ (کارتی) ===== -->
+  <div class="changes-box">
+    <h3>🔑 چه چیزی از فاز ۱ به ۲ تغییر کرد؟</h3>
+
+    <div class="change-card">
+      <div class="change-title">۱. تعادل بین حرکات هل دادن و کشیدن</div>
+      <div class="change-compare">
+        <span class="change-pill">فاز ۱: برابر (۱:۱)</span>
+        <span class="change-arrow">←</span>
+        <span class="change-pill new">فاز ۲: کشیدن بیشتر (۱:۱.۳)</span>
+      </div>
+      <div class="change-why">💡 چون کمرت گرده، عضلات پشت باید بیشتر تقویت بشن تا شونه‌ها رو عقب بکشن.</div>
+    </div>
+
+    <div class="change-card">
+      <div class="change-title">۲. نحوه اجرای ست‌ها</div>
+      <div class="change-compare">
+        <span class="change-pill">فاز ۱: جدا جدا (هر حرکت با استراحت کامل)</span>
+        <span class="change-arrow">←</span>
+        <span class="change-pill new">فاز ۲: سوپرست (دو حرکت پشت سر هم)</span>
+      </div>
+      <div class="change-why">💡 تا بتونیم همین حجم تمرین رو توی ۵۰-۶۰ دقیقه (به جای ۹۰ دقیقه) انجام بدیم.</div>
+    </div>
+
+    <div class="change-card">
+      <div class="change-title">۳. تمرین گردن</div>
+      <div class="change-compare">
+        <span class="change-pill">فاز ۱: فقط نگه‌داری ساده</span>
+        <span class="change-arrow">←</span>
+        <span class="change-pill new">فاز ۲: با مقاومت دست + ۲ نوبت در روز</span>
+      </div>
+      <div class="change-why">💡 نگه‌داری ساده کافی نبود، الان باید عضلات گردن قوی‌تر بشن تا سر رو عقب نگه دارن.</div>
+    </div>
+
+    <div class="change-card">
+      <div class="change-title">۴. رفع صدای شونه</div>
+      <div class="change-compare">
+        <span class="change-pill">فاز ۱: هیچ‌چیزی نبود</span>
+        <span class="change-arrow">←</span>
+        <span class="change-pill new">فاز ۲: چرخش خارجی قبل از هر پرس</span>
+      </div>
+      <div class="change-why">💡 چرخاننده‌های شونه قبل از پرس بیدار می‌شن تا کلیک و صدا کمتر بشه.</div>
+    </div>
+
+    <div class="change-card">
+      <div class="change-title">۵. سخت‌تر کردن تمرین</div>
+      <div class="change-compare">
+        <span class="change-pill">فاز ۱: فقط اضافه کردن وزنه</span>
+        <span class="change-arrow">←</span>
+        <span class="change-pill new">فاز ۲: وزنه + تکنیک Rest-Pause</span>
+      </div>
+      <div class="change-why">💡 چون فقط اضافه کردن وزنه یکنواخت می‌شه، از هفته ۳ یه تکنیک جدید هم اضافه شد.</div>
+    </div>
+
+    <div class="change-card">
+      <div class="change-title">۶. کالری روزانه</div>
+      <div class="change-compare">
+        <span class="change-pill">فاز ۱: ۱۵۰ تا ۲۵۰ کالری مازاد</span>
+        <span class="change-arrow">←</span>
+        <span class="change-pill new">فاز ۲: ۲۵۰ تا ۳۵۰ کالری مازاد</span>
+      </div>
+      <div class="change-why">💡 چون می‌خوایم افزایش وزن ادامه‌دار داشته باشیم.</div>
     </div>
   </div>
 
   <!-- ===== روزهای هفته ===== -->
-  <div id="accordionContainer" style="margin-top:1.8rem;"></div>
+  <div id="accordionContainer"></div>
 
-  <!-- ===== روتین اصلاح پوسچر ===== -->
+  <!-- ===== روتین پوسچر ===== -->
   <div class="extra-section">
-    <h3>🧘 روتین روزانه اصلاح پوسچر <span style="font-size:0.95rem;font-weight:600;color:#b0a3d9;">(به‌روزشده — هر روز، ۲ نوبت: صبح + بعد تمرین)</span></h3>
+    <h3>🧘 روتین اصلاح پوسچر <span class="note-small">(هر روز — ۲ نوبت: صبح و بعد تمرین)</span></h3>
     <ul>
-      <li>Chin Tuck مقاومتی (با دست) — ۲×۱۰ هر نوبت</li>
+      <li>Chin Tuck با مقاومت ملایم دست — ۲×۱۰ در هر نوبت</li>
       <li>Wall Slide — ۲×۱۲</li>
       <li>Band Pull Apart — ۲×۲۰</li>
-      <li>Doorway Stretch — ۲×۳۰s</li>
+      <li>Doorway Stretch (کشش سینه) — ۲×۳۰ ثانیه</li>
       <li>Thoracic Extension روی فوم رولر — ۲ دقیقه</li>
     </ul>
   </div>
 
   <!-- ===== کاردیو ===== -->
   <div class="extra-section">
-    <h3>🏃 کاردیو (۲ جلسه در هفته، بدون تغییر)</h3>
+    <h3>🏃 کاردیو <span class="note-small">(۲ جلسه در هفته)</span></h3>
     <ul>
-      <li>Zone 2 <span class="sub-item">۲۰–۳۰ دقیقه</span></li>
-      <li><span class="sub-item">بهتر است بعد از تمرین پا یا در روز استراحت انجام شود.</span></li>
+      <li>Zone 2 (دویدن یا دوچرخه با شدت آرام) — ۲۰ تا ۳۰ دقیقه</li>
+      <li>بهترین زمان: بعد از تمرین پا یا در روز استراحت</li>
     </ul>
   </div>
 
   <!-- ===== تغذیه ===== -->
   <div class="extra-section">
-    <h3>🥗 تغذیه (فاز ۲)</h3>
+    <h3>🥗 تغذیه فاز ۲</h3>
     <ul>
-      <li>مازاد کالری: <strong style="color:#f5e56b;">۲۵۰–۳۵۰ کیلوکالری</strong> (افزایش از فاز ۱)</li>
-      <li>پروتئین: ۱.۸–۲.۲ گرم به ازای هر کیلوگرم وزن بدن (بدون تغییر)</li>
-      <li>چربی: ۰.۸–۱ گرم به ازای هر کیلوگرم</li>
-      <li>باقی کالری از کربوهیدرات</li>
-      <li>آب: ۳–۴ لیتر در روز</li>
+      <li>کالری مازاد روزانه: ۲۵۰ تا ۳۵۰ کیلوکالری (بیشتر از فاز ۱)</li>
+      <li>پروتئین: ۱.۸ تا ۲.۲ گرم به ازای هر کیلوگرم از وزن بدن</li>
+      <li>چربی: ۰.۸ تا ۱ گرم به ازای هر کیلوگرم از وزن بدن</li>
+      <li>باقی کالری از کربوهیدرات (برنج، نان، سیب‌زمینی و...)</li>
+      <li>آب: روزانه ۳ تا ۴ لیتر</li>
     </ul>
   </div>
 
   <!-- ===== هشدار شونه ===== -->
   <div class="warn-box">
-    <h3>⚠️ نکته پیگیری شونه</h3>
+    <h3>⚠️ هشدار مهم درباره شونه</h3>
     <p>
-      اگه صدای شونه حین External Rotation یا Overhead Press <strong>دردناک</strong> شد (نه فقط صدا)، همون لحظه
-      <strong>Machine Shoulder Press</strong> رو حذف کن و فقط <strong>Landmine Press با دامنه محدود</strong> جایگزین کن —
-      این یه هشدار قابل چشم‌پوشی نیست.
+      اگه موقع <strong>چرخش خارجی شونه</strong> یا <strong>پرس بالای سر</strong> صدای شونه‌ت <strong>دردناک</strong> بود (نه فقط صدا، بلکه همراه با درد) → همون لحظه تمرین <strong>Machine Shoulder Press</strong> رو کنار بذار و فقط <strong>Landmine Press</strong> رو با دامنه محدود انجام بده.<br>
+      این هشدار قابل چشم‌پوشی نیست.
     </p>
   </div>
 
-  <div class="footer">★ برنامه فاز ۲ · نسخه نهایی ★</div>
+  <div class="footer">★ برنامه کهکشانی — فاز ۲ · نسخه نهایی ★</div>
 </div>
 
 <script>
   (function() {
-    // ===== داده‌های روزها =====
+    // ===== داده‌های روزهای هفته =====
     const days = [
       {
         type: 'workout',
         label: 'روز ۱ — شنبه',
         badge: 'Push غالب',
-        note: '🔗 سوپرست‌ها با حرف یکسان مشخص شدن (A با A، B با B و...) — بین دو حرکت هر سوپرست ۱۵-۲۰ ثانیه و بعد از کل جفت، استراحت کامل.',
+        note: 'حرکاتی که با یک رنگ و شماره یکسان مشخص شدن، «سوپرست» هستن: حرکت اول رو بزن → بدون استراحت برو سراغ حرکت دوم → بعد از حرکت دوم ۹۰ ثانیه استراحت → دوباره همین جفت رو تکرار کن.',
         exercises: [
-          ['A1', 'پرس سینه دمبل شیب‌دار ۳۰-۴۵°', '۴×۸-۱۰', '2-1-1-0', '—', 'آرنج ~۴۵°؛ کتف پایین/عقب قبل شروع'],
-          ['A2', 'لت‌پول‌داون دست باز', '۴×۸-۱۰', '2-1-1-0', '۹۰s بعد جفت', 'کتف پایین اول (Scapular Depression)، بعد بکش'],
-          ['B1', 'فلای شیب‌دار کابل', '۳×۱۲-۱۵', '2-0-1-1', '—', 'مسیر قوسی، در بالا کامل قفل نکن'],
-          ['B2', 'Chest-Supported Row', '۳×۱۰-۱۲', '2-1-1-0', '۷۵s بعد جفت', 'مکث و انقباض کامل کتف در انتها'],
-          ['C1', 'نشر جانب کابل', '۳×۱۵-۲۰', '2-0-1-1', '—', 'تا ارتفاع شانه، بدون تاب بدن'],
-          ['C2', 'Face Pull', '۴×۱۵-۲۰', 'کنترل‌شده', '۴۵s بعد جفت', 'به سمت پیشانی، ۱s مکث در انتها'],
-          ['D', 'پشت بازو کابل طناب', '۳×۱۰-۱۲', '2-0-1-0', '۶۰s', 'آرنج چسبیده به پهلو'],
-          ['E', 'Deep Neck Flexor (مقاومتی با دست)', '۳×۱۲-۱۵', 'کنترل‌شده', '۳۰s', 'چانه جمع، مقاومت ملایم دست روی پیشانی']
+          { pair: 1, letter: 'الف', name: 'پرس سینه دمبل شیب‌دار ۳۰-۴۵ درجه', sets: '۴×۸-۱۰', tempo: '۲-۱-۱-۰', rest: 'بدون استراحت', note: 'آرنج حدود ۴۵ درجه باز باشه (نه کامل ۹۰ درجه). قبل از شروع، کتف رو پایین و عقب نگه‌دار.' },
+          { pair: 1, letter: 'ب', name: 'لت پول‌داون دست باز', sets: '۴×۸-۱۰', tempo: '۲-۱-۱-۰', rest: '۹۰ ثانیه (بعد از جفت)', note: 'اول کتف رو پایین ببر، بعد میله رو بکش. میله تا بالای سینه.' },
+          { pair: 2, letter: 'الف', name: 'فلای شیب‌دار کابل', sets: '۳×۱۲-۱۵', tempo: '۲-۰-۱-۱', rest: 'بدون استراحت', note: 'مسیر حرکت قوسی شکل باشه. در نقطه بالا کامل قفل نکن.' },
+          { pair: 2, letter: 'ب', name: 'قایقی سینه‌تکیه (Chest-Supported Row)', sets: '۳×۱۰-۱۲', tempo: '۲-۱-۱-۰', rest: '۷۵ ثانیه (بعد از جفت)', note: 'در انتهای حرکت، کتف رو کاملاً منقبض کن و ۱ ثانیه نگه‌دار.' },
+          { pair: 3, letter: 'الف', name: 'نشر جانب کابل', sets: '۳×۱۵-۲۰', tempo: '۲-۰-۱-۱', rest: 'بدون استراحت', note: 'دست تا ارتفاع شانه بیاد، بیشتر نرو. بدن رو تاب نده.' },
+          { pair: 3, letter: 'ب', name: 'فیس پول (Face Pull)', sets: '۴×۱۵-۲۰', tempo: 'کنترل‌شده', rest: '۴۵ ثانیه (بعد از جفت)', note: 'طناب رو به سمت پیشانی بکش. در انتها ۱ ثانیه نگه‌دار.' },
+          { pair: null, letter: 'D', name: 'پشت بازو کابل طناب', sets: '۳×۱۰-۱۲', tempo: '۲-۰-۱-۰', rest: '۶۰ ثانیه', note: 'آرنج چسبیده به پهلو، فقط ساعد حرکت کنه.' },
+          { pair: null, letter: 'E', name: 'جلو آوردن چانه با مقاومت دست (Deep Neck Flexor)', sets: '۳×۱۲-۱۵', tempo: 'کنترل‌شده', rest: '۳۰ ثانیه', note: 'چانه رو جمع کن، دستت رو روی پیشانی بذار و مقاومت ملایم بده.' }
         ]
       },
       {
@@ -634,35 +843,35 @@
         badge: 'پایین‌تنه + Core',
         note: '',
         exercises: [
-          ['۱', 'اسکوات یا لگ پرس', '۴×۸-۱۰', '2-1-1-0', '۹۰s', 'زانو هم‌راستا نوک پا، کمر صاف'],
-          ['۲', 'رومانین ددلیفت دمبل', '۴×۸-۱۰', '3-0-1-0', '۹۰s', 'ستون فقرات خنثی، کشش همسترینگ'],
-          ['۳', 'لانج بلغاری', '۲×۱۰ هر پا', '2-0-1-0', '۶۰s', 'تنه کمی جلو، تمرکز پای جلو'],
-          ['۴', 'پشت پا خوابیده', '۳×۱۲-۱۵', '2-1-1-0', '۶۰s', 'لگن چسبیده دستگاه'],
-          ['۵', 'ساق ایستاده', '۳×۱۵-۲۰', '2-0-1-1', '۴۵s', 'دامنه کامل، مکث بالا'],
-          ['۶', 'Pallof Press', '۲×۱۲ هر طرف', 'کنترل‌شده', '۴۵s', 'بدون چرخش تنه'],
-          ['۷', 'Hanging Leg Raise', '۳×۱۲-۱۵', '2-1-1-0', '۶۰s', 'بدون تاب، پا تا موازی زمین']
+          { pair: null, letter: '۱', name: 'اسکوات یا لگ پرس', sets: '۴×۸-۱۰', tempo: '۲-۱-۱-۰', rest: '۹۰ ثانیه', note: 'زانو هم‌راستا با نوک پا باشه، کمر صاف بمونه.' },
+          { pair: null, letter: '۲', name: 'ددلیفت رومانین با دمبل', sets: '۴×۸-۱۰', tempo: '۳-۰-۱-۰', rest: '۹۰ ثانیه', note: 'ستون فقرات خنثی. تا جایی پایین برو که کشش همسترینگ رو حس کنی.' },
+          { pair: null, letter: '۳', name: 'لانج بلغاری', sets: '۲×۱۰ هر پا', tempo: '۲-۰-۱-۰', rest: '۶۰ ثانیه', note: 'تنه کمی جلو خم، تمرکز روی پای جلو.' },
+          { pair: null, letter: '۴', name: 'پشت پا خوابیده (دستگاه)', sets: '۳×۱۲-۱۵', tempo: '۲-۱-۱-۰', rest: '۶۰ ثانیه', note: 'لگن چسبیده به دستگاه، فقط ساق پایین بیاد.' },
+          { pair: null, letter: '۵', name: 'ساق ایستاده', sets: '۳×۱۵-۲۰', tempo: '۲-۰-۱-۱', rest: '۴۵ ثانیه', note: 'دامنه کامل. در بالا ۱ ثانیه مکث کن.' },
+          { pair: null, letter: '۶', name: 'پالوف پرس (Pallof Press)', sets: '۲×۱۲ هر طرف', tempo: 'کنترل‌شده', rest: '۴۵ ثانیه', note: 'بدن نچرخه. فقط دست‌ها جلو و عقب برن.' },
+          { pair: null, letter: '۷', name: 'بالا آوردن پا از بارفیکس', sets: '۳×۱۲-۱۵', tempo: '۲-۱-۱-۰', rest: '۶۰ ثانیه', note: 'تاب نخور. پاها تا موازی زمین بالا بیان.' }
         ]
       },
       {
         type: 'rest',
         label: 'روز ۳ — دوشنبه',
         title: '🛌 دوشنبه — استراحت',
-        sub: 'روتین روزانه اصلاح پوسچر اجرا بشه'
+        sub: 'روتین روزانه اصلاح پوسچر رو اجرا کن'
       },
       {
         type: 'workout',
         label: 'روز ۴ — سه‌شنبه',
         badge: 'Pull غالب',
-        note: '🔗 مهم‌ترین روز فاز ۲ — سوپرست‌ها با حرف یکسان (A1+A2، B1+B2، C1+C2)؛ بین دو حرکت هر سوپرست ۱۵-۲۰ ثانیه و بعد از کل جفت، استراحت کامل.',
+        note: '⭐ این مهم‌ترین روز فاز ۲ هست. حرکاتی که با یک رنگ و شماره یکسان مشخص شدن «سوپرست» هستن: حرکت اول → بدون استراحت → حرکت دوم → بعد استراحت کامل.',
         exercises: [
-          ['A1', 'روئینگ تک‌دست دمبل', '۴×۸-۱۰', '2-1-1-0', '—', 'اول کتف پایین/عقب، بعد آرنج به لگن، ۱s مکث لت'],
-          ['A2', 'پرس سینه دمبل تخت/شیب ۱۵°', '۳×۸-۱۰', '2-1-1-0', '۹۰s بعد جفت', 'آرنج ~۴۵°، دامنه کامل'],
-          ['B1', 'Half-Kneeling Lat Pulldown', '۳×۱۰-۱۲', '2-1-1-0', '—', 'تنه عمود، Core منقبض'],
-          ['B2', 'Machine Shoulder Press', '۲×۱۰-۱۲ (فقط RIR۲ کل سیکل)', '2-1-1-0', '۷۵s بعد جفت', 'پایین‌تر از ۹۰° نرو'],
-          ['C1', 'Chest-Supported Reverse Fly', '۴×۱۲-۱۵', '2-0-1-1', '—', 'حرکت از شونه، نه مچ'],
-          ['C2', 'نشر جانب دستگاه', '۳×۱۵-۲۰', '2-0-1-1', '۴۵s بعد جفت', 'بدون بالا انداختن شونه'],
-          ['D', 'Trap-3 Raise', '۳×۱۲-۱۵', '2-0-1-1', '۴۵s', 'وزنه بسیار سبک، مسیر قطری'],
-          ['E', 'Scapular Pull-up', '۲×۱۰-۱۲', '2-1-1-0', '۴۵s', 'بدون خم‌کردن آرنج']
+          { pair: 1, letter: 'الف', name: 'قایقی تک‌دست با دمبل', sets: '۴×۸-۱۰', tempo: '۲-۱-۱-۰', rest: 'بدون استراحت', note: 'اول کتف رو پایین و عقب ببر، بعد آرنج رو به سمت لگن بکش. در انتها ۱ ثانیه لت رو فشار بده.' },
+          { pair: 1, letter: 'ب', name: 'پرس سینه دمبل تخت یا شیب ۱۵ درجه', sets: '۳×۸-۱۰', tempo: '۲-۱-۱-۰', rest: '۹۰ ثانیه (بعد از جفت)', note: 'آرنج حدود ۴۵ درجه، دامنه کامل.' },
+          { pair: 2, letter: 'الف', name: 'لت پول‌داون نیمه‌زانو (Half-Kneeling)', sets: '۳×۱۰-۱۲', tempo: '۲-۱-۱-۰', rest: 'بدون استراحت', note: 'تنه عمود، شکم سفت.' },
+          { pair: 2, letter: 'ب', name: 'پرس شونه دستگاه', sets: '۲×۱۰-۱۲ (همیشه RIR ۲ در کل ۸ هفته)', tempo: '۲-۱-۱-۰', rest: '۷۵ ثانیه (بعد از جفت)', note: 'دست رو پایین‌تر از ۹۰ درجه نبر. اگه شونه صدا داد، این حرکت رو حذف کن.' },
+          { pair: 3, letter: 'الف', name: 'فلای معکوس سینه‌تکیه (Reverse Fly)', sets: '۴×۱۲-۱۵', tempo: '۲-۰-۱-۱', rest: 'بدون استراحت', note: 'حرکت از شونه شروع بشه، نه از مچ.' },
+          { pair: 3, letter: 'ب', name: 'نشر جانب دستگاه', sets: '۳×۱۵-۲۰', tempo: '۲-۰-۱-۱', rest: '۴۵ ثانیه (بعد از جفت)', note: 'شانه رو بالا ننداز.' },
+          { pair: null, letter: 'D', name: 'بالا آوردن قطری شونه (Trap-3 Raise)', sets: '۳×۱۲-۱۵', tempo: '۲-۰-۱-۱', rest: '۴۵ ثانیه', note: 'وزنه خیلی سبک، مسیر قطری.' },
+          { pair: null, letter: 'E', name: 'بارفیکس کتف (Scapular Pull-up)', sets: '۲×۱۰-۱۲', tempo: '۲-۱-۱-۰', rest: '۴۵ ثانیه', note: 'آرنج رو خم نکن، فقط کتف رو پایین ببر.' }
         ]
       },
       {
@@ -671,21 +880,21 @@
         badge: 'بازو، Core و اصلاحی',
         note: '',
         exercises: [
-          ['۱', 'جلو بازو دمبل', '۳×۱۰-۱۲', '2-0-1-0', '۶۰s', 'آرنج ثابت کنار تنه'],
-          ['۲', 'پشت بازو اورهد کابل', '۳×۱۲-۱۵', '2-1-1-0', '۶۰s', 'آرنج ثابت نزدیک سر'],
-          ['۳', 'جلو بازو چکشی', '۳×۱۲', '2-0-1-0', '۴۵s', 'گریپ خنثی ثابت'],
-          ['۴', 'پشت بازو تک‌دست کابل', '۳×۱۲-۱۵', '2-0-1-0', '۴۵s', 'آرنج چسبیده به پهلو'],
-          ['۵', 'Push-up Plus', '۲×۱۲-۱۵', '2-1-2-0', '۴۵s', 'در بالا کتف را ۱s جلو هل بده'],
-          ['۶', 'Prone Y-Raise', '۲×۱۲-۱۵', '2-0-1-1', '۴۵s', 'وزنه بسیار سبک'],
-          ['۷', 'Cable Crunch', '۳×۱۲-۱۵', '2-1-1-0', '۶۰s', 'زانو ثابت، فقط ستون فقرات'],
-          ['۸', 'Plank', '۲×۴۵-۶۰s', 'ایزومتریک', '۴۵s', 'باسن نه بالا نه پایین']
+          { pair: null, letter: '۱', name: 'جلو بازو دمبل', sets: '۳×۱۰-۱۲', tempo: '۲-۰-۱-۰', rest: '۶۰ ثانیه', note: 'آرنج ثابت کنار تنه.' },
+          { pair: null, letter: '۲', name: 'پشت بازو اورهد کابل', sets: '۳×۱۲-۱۵', tempo: '۲-۱-۱-۰', rest: '۶۰ ثانیه', note: 'آرنج ثابت نزدیک سر.' },
+          { pair: null, letter: '۳', name: 'جلو بازو چکشی', sets: '۳×۱۲', tempo: '۲-۰-۱-۰', rest: '۴۵ ثانیه', note: 'گریپ خنثی (کف دست‌ها رو به هم) ثابت بمونه.' },
+          { pair: null, letter: '۴', name: 'پشت بازو تک‌دست کابل', sets: '۳×۱۲-۱۵', tempo: '۲-۰-۱-۰', rest: '۴۵ ثانیه', note: 'آرنج چسبیده به پهلو.' },
+          { pair: null, letter: '۵', name: 'پوش‌آپ پلاس (Push-up Plus)', sets: '۲×۱۲-۱۵', tempo: '۲-۱-۲-۰', rest: '۴۵ ثانیه', note: 'در نقطه بالا، ۱ ثانیه کتف رو بیشتر جلو هل بده.' },
+          { pair: null, letter: '۶', name: 'بالا آوردن Y شکل روی میز شیب‌دار (Prone Y-Raise)', sets: '۲×۱۲-۱۵', tempo: '۲-۰-۱-۱', rest: '۴۵ ثانیه', note: 'وزنه خیلی سبک.' },
+          { pair: null, letter: '۷', name: 'کرانچ کابل', sets: '۳×۱۲-۱۵', tempo: '۲-۱-۱-۰', rest: '۶۰ ثانیه', note: 'زانو ثابت، فقط ستون فقرات گرد بشه.' },
+          { pair: null, letter: '۸', name: 'پلانک', sets: '۲×۴۵-۶۰ ثانیه', tempo: 'ثابت', rest: '۴۵ ثانیه', note: 'باسن نه بالا، نه پایین.' }
         ]
       },
       {
         type: 'cardio',
         label: 'روز ۶ — پنجشنبه',
-        title: '🏃 پنجشنبه — کاردیو Zone 2',
-        sub: '۲۰–۳۰ دقیقه Zone 2 + روتین روزانه اصلاح پوسچر (جلسه سبک، بدون وزنه سنگین)'
+        title: '🏃 پنجشنبه — کاردیو سبک',
+        sub: '۲۰ تا ۳۰ دقیقه Zone 2 (دویدن آرام یا دوچرخه) + روتین اصلاح پوسچر'
       },
       {
         type: 'rest',
@@ -698,9 +907,16 @@
     const container = document.getElementById('accordionContainer');
     if (!container) return;
 
+    // ===== تبدیل عدد فارسی به انگلیسی =====
+    const faToEn = { '۰':'0','۱':'1','۲':'2','۳':'3','۴':'4','۵':'5','۶':'6','۷':'7','۸':'8','۹':'9' };
+    function faNum(str) {
+      return String(str).replace(/[۰-۹]/g, function(d) { return faToEn[d]; });
+    }
+
+    // ===== رندر روزها =====
     days.forEach(function(day) {
 
-      // ---- روز استراحت ----
+      // روز استراحت
       if (day.type === 'rest') {
         const offDiv = document.createElement('div');
         offDiv.className = 'day-off';
@@ -709,7 +925,7 @@
         return;
       }
 
-      // ---- روز کاردیو ----
+      // روز کاردیو
       if (day.type === 'cardio') {
         const cDiv = document.createElement('div');
         cDiv.className = 'cardio-day';
@@ -718,7 +934,7 @@
         return;
       }
 
-      // ---- روز تمرین (آکاردئون) ----
+      // روز تمرین
       const item = document.createElement('div');
       item.className = 'accordion-item';
 
@@ -739,7 +955,7 @@
         } else {
           parent.classList.add('active');
           const inner = body.querySelector('.accordion-body-inner');
-          body.style.maxHeight = inner ? (inner.scrollHeight + 40) + 'px' : '2000px';
+          body.style.maxHeight = inner ? (inner.scrollHeight + 60) + 'px' : '3000px';
         }
       });
 
@@ -753,50 +969,63 @@
       // توضیح سوپرست
       if (day.note) {
         const noteEl = document.createElement('div');
-        noteEl.className = 'superset-note';
-        noteEl.textContent = day.note;
+        noteEl.className = 'superset-info';
+        noteEl.innerHTML = '🔗 ' + day.note;
         inner.appendChild(noteEl);
       }
 
-      const wrap = document.createElement('div');
-      wrap.className = 'table-wrap';
-
-      let tableHtml = '<table>' +
-        '<thead><tr>' +
-          '<th>حرکت</th>' +
-          '<th>ست×رپ</th>' +
-          '<th>تمپو</th>' +
-          '<th>استراحت</th>' +
-          '<th>نکته</th>' +
-        '</tr></thead><tbody>';
+      // لیست کارت‌های حرکات
+      const list = document.createElement('div');
+      list.className = 'exercise-list';
 
       day.exercises.forEach(function(ex) {
-        const eid = ex[0], movement = ex[1], setsReps = ex[2], tempo = ex[3], rest = ex[4], note = ex[5];
-        tableHtml += '<tr>' +
-          '<td data-label="حرکت"><span class="ex-id">' + eid + '</span><span class="movement-name">' + movement + '</span></td>' +
-          '<td data-label="ست×رپ">' + setsReps + '</td>' +
-          '<td data-label="تمپو">' + tempo + '</td>' +
-          '<td data-label="استراحت">' + rest + '</td>' +
-          '<td data-label="نکته" class="note-tip">' + note + '</td>' +
-        '</tr>';
+        const card = document.createElement('div');
+        card.className = 'ex-card';
+        if (ex.pair !== null && ex.pair !== undefined) {
+          card.classList.add(ex.pair % 2 === 0 ? 'paired-even' : 'paired-odd');
+        }
+
+        // بج شناسه
+        let badgeHtml = '<div class="ex-id-badge">';
+        if (ex.pair !== null && ex.pair !== undefined) {
+          badgeHtml += '<span class="pair-num">سوپرست ' + ex.pair + '</span>' + ex.letter;
+        } else {
+          badgeHtml += 'حرکت ' + ex.letter;
+        }
+        badgeHtml += '</div>';
+
+        // نکته با علامت ⚡ یا 💡
+        const noteText = ex.note || '';
+
+        card.innerHTML =
+          badgeHtml +
+          '<div class="ex-main">' +
+            '<div class="ex-name">' + ex.name + '</div>' +
+            '<div class="ex-meta">' +
+              '<span class="ex-chip">' + ex.sets + '<span>ست و تکرار</span></span>' +
+              '<span class="ex-chip">تمپو: ' + ex.tempo + '</span>' +
+              '<span class="ex-chip">استراحت: ' + ex.rest + '</span>' +
+            '</div>' +
+            (noteText ? '<div class="ex-note">' + noteText + '</div>' : '') +
+          '</div>';
+
+        list.appendChild(card);
       });
 
-      tableHtml += '</tbody></table>';
-      wrap.innerHTML = tableHtml;
-      inner.appendChild(wrap);
+      inner.appendChild(list);
       body.appendChild(inner);
       item.appendChild(header);
       item.appendChild(body);
       container.appendChild(item);
     });
 
-    // ---- اصلاح ارتفاع آکاردئون‌های باز هنگام تغییر اندازه ----
+    // اصلاح ارتفاع آکاردئون‌های باز هنگام تغییر اندازه صفحه
     window.addEventListener('resize', function() {
       document.querySelectorAll('.accordion-item.active').forEach(function(item) {
         const body = item.querySelector('.accordion-body');
         const inner = body ? body.querySelector('.accordion-body-inner') : null;
         if (inner) {
-          body.style.maxHeight = (inner.scrollHeight + 40) + 'px';
+          body.style.maxHeight = (inner.scrollHeight + 60) + 'px';
         }
       });
     });
